@@ -10,6 +10,7 @@ const contentfulConfig = {
 
 const { spaceId, accessToken } = contentfulConfig
 
+console.log(spaceId, accessToken)
 if (!spaceId || !accessToken) {
   throw new Error(
     'Contentful spaceId and the access token need to be provided.'
