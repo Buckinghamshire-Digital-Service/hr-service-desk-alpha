@@ -10,10 +10,13 @@ module.exports = {
     "graphql": false,
   },
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "jsx": true,
-    },
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true
+      }
+  },
+  "rules": {
+      "semi": ["error", "never"]
   }
 }
