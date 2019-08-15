@@ -42,6 +42,10 @@ module.exports = {
           failOnError: true
         }
       }
+    },
+    {
+      resolve: "gatsby-plugin-stylelint",
+      options: { files: ["**/*.{js,jsx}"] }
     }
   ],
 }
