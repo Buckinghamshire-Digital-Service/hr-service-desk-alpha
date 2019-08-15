@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
 const ArticlePreview = ({ article }) => {
-  console.log(article)
   return (
     <div>
       <Img alt='' fluid={article.heroImage.fluid} />
