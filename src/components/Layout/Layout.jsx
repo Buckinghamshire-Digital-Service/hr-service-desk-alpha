@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Container from '../Container/component.jsx'
-import Navigation from '../Navigation/component.jsx'
+import Container from '../Container/Container.jsx'
+import Navigation from '../Navigation/Navigation.jsx'
 
 class Layout extends React.PureComponent {
   render() {

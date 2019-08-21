@@ -2,15 +2,16 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Hero from '../components/Hero/component.jsx'
-import Layout from '../components/Layout/component.jsx'
-import ArticlePreview from '../components/ArticlePreview/component.jsx'
+import Hero from '../components/Hero/Hero.jsx'
+import Layout from '../components/Layout/Layout.jsx'
+import ArticlePreview from '../components/ArticlePreview/ArticlePreview.jsx'
 import './index.scss'
 
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+    let posts = get(this, 'props.data.allContentfulPage.edges')
+    posts = posts.filter(v => v.node.childPages !== null)
 
     return (
       <Layout location={this.props.location} >
@@ -44,23 +45,15 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulPage {
       edges {
         node {
+          childPages {
+            id
+          }
           title
           slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-             ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
+
         }
       }
     }

@@ -2,20 +2,22 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Layout from '../components/Layout/component.jsx'
-import ArticlePreview from '../components/ArticlePreview/component'
+import Layout from '../components/Layout/Layout.jsx'
+import ArticlePreview from '../components/ArticlePreview/ArticlePreview.jsx'
 
-class BlogIndex extends React.Component {
+class PageIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+    let posts = get(this, 'props.data.allContentfulPage.edges')
+    posts = posts.filter(v => v.node.childPages !== null)
 
     return (
       <Layout location={this.props.location} >
         <Helmet title={siteTitle} />
-          Blog
+          
+        <pre>{JSON.stringify(posts, null, 2)}</pre>
+
         <div className='wrapper'>
-          <h2 className='section-headline'>Recent articles</h2>
           <ul className='article-list'>
             {posts && posts.map(({ node }) => {
               return (
@@ -31,7 +33,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex
+export default PageIndex
 
 export const pageQuery = graphql`
   query BlogIndexQuery {
@@ -40,23 +42,17 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulPage {
       edges {
         node {
+
+          childPages {
+            id
+          }          
+
           title
           slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
+          
         }
       }
     }
