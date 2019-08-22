@@ -3,6 +3,9 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Layout from '../components/Layout/Layout.jsx'
+import Text from '../components/Text/Text.jsx'
+
+import renderer from '../renderer.js'
 
 class PageTemplate extends React.PureComponent {
   render() {
@@ -11,14 +14,11 @@ class PageTemplate extends React.PureComponent {
     return (
       <Layout location={this.props.location} >
         <Helmet title={`${post.metaTitle}`} />
-        <pre>{JSON.stringify(post, null, 2)}</pre>
         <div className="wrapper">
           <h1 className="section-headline">{post.title}</h1>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: post.intro.childMarkdownRemark.html,
-            }}
-          />
+          
+          <Text content={post.intro.childMarkdownRemark.html} />
+          {post.bodyContent && renderer(post.bodyContent.json)}
         </div>
       </Layout>
     )

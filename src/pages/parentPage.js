@@ -1,73 +1,60 @@
 import React from 'react'
-import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
+import Helmet from 'react-helmet'
 import Layout from '../components/Layout/Layout.jsx'
+import ArticlePreview from '../components/ArticlePreview/ArticlePreview.jsx'
 
-class PageTemplate extends React.PureComponent {
+class PageIndex extends React.Component {
   render() {
-    const post = get(this.props, 'data.contentfulPage')
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    let posts = get(this, 'props.data.allContentfulPage.edges')
+    posts = posts.filter(v => v.node.childPages !== null)
 
-console.log()
     return (
       <Layout location={this.props.location} >
-        <Helmet title={`${post.metaTitle}`} />
-        <pre>{JSON.stringify(post, null, 2)}</pre>
-        <div className="wrapper">
-          <h1 className="section-headline">{post.title}</h1>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: post.intro.childMarkdownRemark.html,
-            }}
-          />
+        <Helmet title={siteTitle} />
+          
+        <pre>{JSON.stringify(posts, null, 2)}</pre>
+
+        <div className='wrapper'>
+          <ul className='article-list'>
+            {posts && posts.map(({ node }) => {
+              return (
+                <li key={node.slug}>
+                  <ArticlePreview article={node} />
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </Layout>
     )
   }
 }
 
-export default PageTemplate
+export default PageIndex
 
 export const pageQuery = graphql`
-  query PageBySlug($slug: String!) {
+  query BlogIndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allContentfulPage {
+      edges {
+        node {
 
-    contentfulPage(slug: { eq: $slug }) {
-      title
-      metaTitle
-      metaDescription
+          childPages {
+            id
+          }          
 
-      hero {
-        headline
-        subHeading
-        image {
           title
-          description
-          file {
-            details {
-              size
-              image {
-                width
-                height
-              }
-            }
-            fileName
-            contentType
-            url
-          }
-        }
-      }   
-
-      intro {
-        childMarkdownRemark {
-          html
+          slug
+          
         }
       }
-
-      bodyContent {
-        json
-      }
-
-
     }
   }
 `

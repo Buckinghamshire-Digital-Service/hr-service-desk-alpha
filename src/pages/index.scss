@@ -1,22 +1,13 @@
 @charset "utf-8";
 
-// Brand colors
-$purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+@import "settings";
 
-// Global variables
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
 $link: $pink;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 
 // Some component variables
-$body-background-color: $beige-lighter;
+$body-background-color: $white;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
@@ -31,3 +22,7 @@ $input-shadow: none;
 @import "~bulma/sass/components/navbar.sass";
 @import "~bulma/sass/layout/hero.sass";
 @import "~bulma/sass/layout/section.sass";
+
+
+
+@import "../components/Collapsible/Collapsible.module.scss"

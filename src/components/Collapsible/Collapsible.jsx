@@ -1,11 +1,10 @@
 import React from 'react'
 import classNames from 'classnames'
-import Heading from '../Heading/Heading.jsx'
 import { scrollIntoView } from '../../utilities'
 import Grid from '../Grid/Grid.jsx'
 import GridCol from '../GridCol/GridCol.jsx'
 
-export default class Toggle extends React.PureComponent {
+export default class Collapsible extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = {
@@ -26,19 +25,21 @@ export default class Toggle extends React.PureComponent {
   }
 
   componentDidMount () {
-    if (this.props.history.hash === '#' + this.returnId()) {
-      this.setState({ visible: true })
-      scrollIntoView(this.node)
-    }
+    // if (this.props.history.hash === '#' + this.returnId()) {
+    //   this.setState({ visible: true })
+    //   scrollIntoView(this.node)
+    // }
   }
 
   returnId () {
-    return this.props.text.toLowerCase().trim().replace(/[^\w\s]|_/g, '').replace(/ /g, '-')
+    return this.props.title['en-US'].toLowerCase().trim().replace(/[^\w\s]|_/g, '').replace(/ /g, '-')
   }
 
   render () {
+    
+    let title = this.props.title['en-US']
     const id = this.returnId()
-    let text = this.props.text
+
     let classes = classNames('collapsible', this.props.className, {
       'collapsible--active': this.state.visible
     })
@@ -54,14 +55,14 @@ export default class Toggle extends React.PureComponent {
       <div className={classes} id={id} ref={node => { this.node = node }}>
         <div className='wrapper'>
           <Grid>
-            <GridCol className='col-12 col-md-7 offset-md-3 bordered'>
+            <GridCol className='col-12 col-md-7'>
               <h2 className='h4'>
                 <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`}>
-                {text}
+                {title}
                 </a>
               </h2>
               <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`}>
-                {this.props.children}
+                {this.props.content['en-US']}
               </div>
             </GridCol>
           </Grid>
