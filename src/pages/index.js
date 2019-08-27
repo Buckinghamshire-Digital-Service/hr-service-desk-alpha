@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import Hero from '../components/Hero/Hero.jsx'
 import Layout from '../components/Layout/Layout.jsx'
 import ArticlePreview from '../components/ArticlePreview/ArticlePreview.jsx'
-import './index.scss'
+import '../scss/index.scss'
 
 class RootIndex extends React.Component {
   render() {

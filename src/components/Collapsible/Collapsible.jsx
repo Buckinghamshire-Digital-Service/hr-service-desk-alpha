@@ -8,7 +8,7 @@ export default class Collapsible extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = {
-      visible: this.props.open || this.props.className === 'collapsible_trigger--active'
+      visible: this.props.open['en-US'] === 'Yes' || this.props.className === 'collapsible_trigger--active'
     }
   }
 
@@ -44,8 +44,7 @@ export default class Collapsible extends React.PureComponent {
       'collapsible--active': this.state.visible
     })
     let contentClasses = classNames('collapsible__content', {
-      'collapsible__content--active': this.state.visible,
-      'has-unordered': this.props.toggleFancyList
+      'collapsible__content--active': this.state.visible
     })
     let toggleClass = classNames('collapsible__trigger', {
       'collapsible__trigger--active': this.state.visible
@@ -53,20 +52,18 @@ export default class Collapsible extends React.PureComponent {
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
-        <div className='wrapper'>
-          <Grid>
-            <GridCol className='col-12 col-md-7'>
-              <h2 className='h4'>
-                <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`}>
-                {title}
-                </a>
-              </h2>
-              <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`}>
-                {this.props.content['en-US']}
-              </div>
-            </GridCol>
-          </Grid>
-        </div>
+        <Grid>
+          <GridCol className='col-12 col-md-7'>
+            <h2 className='h4'>
+              <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`}>
+              {title}
+              </a>
+            </h2>
+            <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`}>
+              {this.props.content['en-US']}
+            </div>
+          </GridCol>
+        </Grid>
       </div>
     )
   }

@@ -10,10 +10,8 @@ const Progress = props => {
   )
 }
 
-
 Progress.defaultProps = {
   className: ''
 }
-
 
 export default Progress

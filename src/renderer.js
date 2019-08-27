@@ -8,6 +8,7 @@ import List from './components/List/List.jsx'
 import Progress from './components/Progress/Progress.jsx'
 import Callout from './components/Callout/Callout.jsx'
 import Collapsible from './components/Collapsible/Collapsible.jsx'
+// import marked from 'marked'
 
 const options = {
   renderNode: {
@@ -19,28 +20,30 @@ const options = {
       if (system && system.contentType) {
         const type = system.contentType.sys.id
         const rand = Math.floor((Math.random() * 10000) + 1)
+        const fields = node.data.target.fields
 
         switch (type) {
           case 'heading':
-            reactComponent = <Heading {...node.data.target.fields} key={system.id + rand} />
+            reactComponent = <Heading {...fields} key={system.id + rand} />
             break
           case 'text':
-            reactComponent = <Text {...node.data.target.fields} key={system.id + rand} />
+
+            reactComponent = <Text {...fields} key={system.id + rand} />
             break
           case 'callout':
-            reactComponent = <Callout {...node.data.target.fields} key={system.id + rand} />
+            reactComponent = <Callout {...fields} key={system.id + rand} />
             break
           case 'list':
-            reactComponent = <List {...node.data.target.fields} key={system.id + rand} />
+            reactComponent = <List {...fields} key={system.id + rand} />
             break
           case 'collapsible':
-            reactComponent = <Collapsible {...node.data.target.fields} key={system.id + rand} />
+            reactComponent = <Collapsible {...fields} key={system.id + rand} />
             break
           case 'blockquote':
-            reactComponent = <Blockquote {...node.data.target.fields} key={system.id + rand} />
+            reactComponent = <Blockquote {...fields} key={system.id + rand} />
             break             
           case 'progress':
-            reactComponent = <Progress {...node.data.target.fields} key={system.id + rand} />
+            reactComponent = <Progress {...fields} key={system.id + rand} />
             break              
           default:
             console.error('Could not match ' + type)

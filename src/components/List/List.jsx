@@ -5,8 +5,8 @@ const List = props => {
 
   return (
     <React.Fragment>
-      <Tag className={`list ${props.className}`}>
-      {props.items && props.items['en-US'].map((v, i) => <li className='xlist__item' key={i}>{v}</li>)}
+      <Tag className={`list ${props.className} ${props.modifiers}`}>
+      {props.items && props.items['en-US'].map((v, i) => <li className='list__item' key={i}>{v}</li>)}
       </Tag>
     </React.Fragment>
   )
@@ -14,7 +14,8 @@ const List = props => {
 
 List.defaultProps = {
   type: 'ul',
-  className: ''
+  className: '',
+  modifiers: ''
 }
 
 export default List
