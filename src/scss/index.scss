@@ -16,9 +16,6 @@ $body-color: $black;
 $body-family: 'Open Sans', sans-serif;
 $body-family-bold: 'Open Sans Bold', sans-serif;
 
-// components and ting
-@import "title";
-
 // Bulma styles
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
@@ -28,6 +25,11 @@ $body-family-bold: 'Open Sans Bold', sans-serif;
 @import "~bulma/sass/components/navbar.sass";
 @import "~bulma/sass/layout/hero.sass";
 @import "~bulma/sass/layout/section.sass";
+
+
+// components and ting
+@import "_mixins";
+@import "title";
 
 
 @import "../components/Collapsible/Collapsible.module.scss"

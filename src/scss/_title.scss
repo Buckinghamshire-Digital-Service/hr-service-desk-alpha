@@ -1,3 +1,4 @@
+// stylelint-disable declaration-no-important, selector-list-comma-newline-after
 
 $size-1: 3rem !default
 $size-2: 2.5rem !default
@@ -27,18 +28,16 @@ $subtitle-negative-margin: -1.25rem !default
 .subtitle {
   @extend %block;
   word-break: break-word;
+  font-family: $body-family-bold;
 
   em,
   span {
     font-weight: inherit;
   }
 
-  sub {
-    font-size: $title-sub-size;
-  }
-
+  sub,
   sup {
-    font-size: $title-sup-size;
+    font-size: 1.2rem;
   }
 
   .tag {
@@ -48,15 +47,9 @@ $subtitle-negative-margin: -1.25rem !default
 }
 
 .title {
-  color: $title-color;
+  color: $black;
   font-size: $title-size;
-  font-weight: $title-weight;
   line-height: $title-line-height;
-
-  strong {
-    color: $title-strong-color;
-    font-weight: $title-strong-weight;
-  }
 
   & + .highlight {
     margin-top: -0.75rem;
@@ -65,37 +58,233 @@ $subtitle-negative-margin: -1.25rem !default
   &:not(.is-spaced) + .subtitle {
     margin-top: $subtitle-negative-margin;
   }
-
-  // Sizes
-  @each $size in $sizes {
-    $i: index($sizes, $size);
-
-    &.is-#{$i} {
-      font-size: $size;
-    }    
-  }
-
 }
 
 .subtitle {
-  color: $subtitle-color;
+  color: $gray-800;
   font-size: $subtitle-size;
-  font-weight: $subtitle-weight;
   line-height: $subtitle-line-height;
-  strong {
-    color: $subtitle-strong-color;
-    font-weight: $subtitle-strong-weight;
-  }
 
   &:not(.is-spaced) + .title {
     margin-top: $subtitle-negative-margin;
   }
-  // Sizes
-  @each $size in $sizes {
-    $i: index($sizes, $size);
+}
 
-    &.is-#{$i} {
-      font-size: $size;
+
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: $body-family-bold;
+  margin-bottom: .5em;
+}
+
+h1,
+.h1,
+%h1 {
+  font-size: 4rem;
+  line-height: (90px / 86px);
+
+  @include from($tablet) {
+    font-size: 6rem;
+  }
+
+  @include from($desktop) {
+    font-size: 9rem;
+  }
+}
+
+h2,
+.h2,
+%h2 {
+  line-height: 1;
+  font-size: 3.2rem;
+
+  @include from($tablet) {
+    font-size: 4rem;
+  }
+
+  @include from($desktop) {
+    font-size: 5rem;
+  }
+}
+
+h3,
+.h3,
+%h3 {
+  font-size: 2.8rem;
+
+
+  @include from($tablet) {
+    font-size: 3.2rem;
+  }
+
+  @include from($desktop) {
+    font-size: 3.8rem;
+  }
+}
+
+.constrained-text {
+  max-width: 50%;
+}
+
+.constrained-text--wide {
+  max-width: 70%;
+}
+
+h4,
+.h4,
+%lead,
+%h4 {
+  margin-bottom: 1rem;
+  font-size: 2.3rem;
+}
+
+.lead {
+  @extend %lead;
+}
+
+strong,
+.bold,
+b {
+  font-family: $body-family-bold;
+}
+
+.list-link {
+  display: block;
+  color: inherit;
+
+  .has-hover & {
+    &:hover p {
+      text-decoration: none;
     }
   }
 }
+
+%break-word,
+.break-word {
+  @include break-word;
+}
+
+
+// long-form content overrides
+
+.long-form {
+  p {
+    margin-bottom: 1em;
+  }
+
+  a {
+    @include link;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    margin-top: 1.5em;
+    font-size: 1.8rem;
+  }
+
+  h3,
+  h4 {
+    line-height: 1.2;
+  }
+
+
+  ol,
+  ul {
+    padding-left: 0;
+
+    > li {
+      padding-left: 2.5rem;
+      position: relative;
+      margin-bottom: .5rem;
+      list-style: none;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+      }
+
+      p {
+        margin-left: 0;
+      }
+    }
+  }
+
+  ul {
+    > li {
+      &::before {
+        background-color: $black;
+        border-radius: 100%;
+        height: 6px;
+        top: .6em;
+        width: 6px;
+      }
+    }
+  }
+
+  ol {
+    counter-reset: counter;
+
+    > li::before {
+      content: counter(counter);
+      counter-increment: counter;
+    }
+  }
+
+
+  &--indented {
+    @include from($tablet) {
+      h2,
+      h3,
+      h4,
+      p:not(.lead) {
+        margin-left: 4rem;
+      }
+
+      li {
+        &::before {
+          left: 4rem !important;
+        }
+      }
+    }
+  }
+}
+
+p {
+  a {
+    @include link;
+  }
+}
+
+.long-form ol,
+.long-form ul,
+.has-unordered ul {
+  margin-bottom: 2.5rem;
+}
+
+.page-title {
+  @extend %h2;
+  margin: 3rem 2rem 1rem 0;
+
+  @include from($tablet) {
+    margin-left: 2rem;
+    margin-bottom: 3rem;
+  }
+}
+
+
