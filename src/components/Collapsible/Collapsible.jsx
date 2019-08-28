@@ -50,12 +50,13 @@ export default class Collapsible extends React.PureComponent {
       'collapsible__trigger--active': this.state.visible
     })
 
+    console.log(this.props)
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
         <Grid>
           <GridCol className='col-12 col-md-7'>
             <h2 className='h4'>
-              <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`}>
+              <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={this.props.ariaLabel['en-US'] || title}>
               {title}
               </a>
             </h2>

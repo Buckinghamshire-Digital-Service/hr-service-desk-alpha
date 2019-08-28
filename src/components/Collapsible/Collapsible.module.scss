@@ -68,8 +68,6 @@ $dims: 2rem;
     display: block;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
-    //font-family: $headings-font-family;
-    //color: $text-dark-blue;
     line-height: 1.2;
 
     .has-hover & {
@@ -97,25 +95,23 @@ $dims: 2rem;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        background-image: url('/ui/svg/plus.svg');
+        background-image: url('/svg/plus.svg');
       }
     }
 
     .collapsible__trigger--active {
       &::before {
-        background-image: url('/ui/svg/minus.svg');
+        background-image: url('/svg/minus.svg');
       }
     }
   }
 
   strong {
-    //color: $text-dark-blue;
     display: inline-block;
   }
 
   // slightly smelly - this is in place to negate the need for a really complex
   // overhaul of Contentful. The rules will need to be written out for content editors
-  // @joel @refactor - write readme.md
 
   p,
   .panel,

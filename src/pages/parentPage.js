@@ -37,11 +37,6 @@ export default PageIndex
 
 export const pageQuery = graphql`
   query BlogIndexQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allContentfulPage {
       edges {
         node {
@@ -51,6 +46,8 @@ export const pageQuery = graphql`
           }          
 
           title
+          metaTitle
+          metaDescription
           slug
           
         }

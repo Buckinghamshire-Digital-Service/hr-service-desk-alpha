@@ -30,6 +30,7 @@ $body-family-bold: 'Open Sans Bold', sans-serif;
 // components and ting
 @import "_mixins";
 @import "title";
+@import "panel";
 
 
 @import "../components/Collapsible/Collapsible.module.scss"

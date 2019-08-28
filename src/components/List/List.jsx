@@ -6,7 +6,7 @@ const List = props => {
   return (
     <React.Fragment>
       <Tag className={`list ${props.className} ${props.modifiers}`}>
-      {props.items && props.items['en-US'].map((v, i) => <li className='list__item' key={i}>{v}</li>)}
+        {props.items && props.items['en-US'].map((v, i) => <li className='list__item' key={i}>{v}</li>)}
       </Tag>
     </React.Fragment>
   )

@@ -15,7 +15,7 @@ class Layout extends React.PureComponent {
 
     return (
       <Container>
-        <Navigation />
+        <Navigation location={location}/>
         {children}
       </Container>
     )

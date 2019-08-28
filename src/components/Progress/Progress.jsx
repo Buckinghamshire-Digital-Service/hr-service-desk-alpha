@@ -6,6 +6,7 @@ const Progress = props => {
   return (
     <section className={classes}>
       PROGRESS COMPONENT
+      {props.items && props.items['en-US'].map((v, i) => <li className='list__item' key={i}>{v}</li>)}
     </section>
   )
 }
