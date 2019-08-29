@@ -3,17 +3,16 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout/Layout.jsx'
-import ArticlePreview from '../components/ArticlePreview/ArticlePreview.jsx'
+import ListItem from '../components/ListItem/ListItem.jsx'
 
 class PageIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     let posts = get(this, 'props.data.allContentfulPage.edges')
     posts = posts.filter(v => v.node.childPages !== null)
 
     return (
       <Layout location={this.props.location} >
-        <Helmet title={siteTitle} />
+        <Helmet title={'hshdkjfhsjkhdfkhsjkdhf'} />
           
         <pre>{JSON.stringify(posts, null, 2)}</pre>
 
@@ -22,7 +21,7 @@ class PageIndex extends React.Component {
             {posts && posts.map(({ node }) => {
               return (
                 <li key={node.slug}>
-                  <ArticlePreview article={node} />
+                  <ListItem article={node} />
                 </li>
               )
             })}
@@ -36,22 +35,22 @@ class PageIndex extends React.Component {
 export default PageIndex
 
 export const pageQuery = graphql`
-  query BlogIndexQuery {
-    allContentfulPage {
-      edges {
-        node {
-
-          childPages {
-            id
-          }          
-
-          title
-          metaTitle
-          metaDescription
-          slug
-          
+query ParentPageQuery {
+  allContentfulPage {
+    edges {
+      node {
+        intro {
+          childMarkdownRemark {
+            html
+          }
         }
+        slug
+        title
+        metaTitle
+        metaDescription
       }
     }
   }
+}
+
 `

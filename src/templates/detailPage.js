@@ -35,26 +35,26 @@ export const pageQuery = graphql`
       metaTitle
       metaDescription
 
-      hero {
-        headline
-        subHeading
-        image {
-          title
-          description
-          file {
-            details {
-              size
-              image {
-                width
-                height
-              }
-            }
-            fileName
-            contentType
-            url
-          }
-        }
-      }   
+      # hero {
+      #   headline
+      #   subHeading
+      #   image {
+      #     title
+      #     description
+      #     file {
+      #       details {
+      #         size
+      #         image {
+      #           width
+      #           height
+      #         }
+      #       }
+      #       fileName
+      #       contentType
+      #       url
+      #     }
+      #   }
+      # }   
 
       intro {
         childMarkdownRemark {
@@ -65,7 +65,6 @@ export const pageQuery = graphql`
       bodyContent {
         json
       }
-
 
     }
   }

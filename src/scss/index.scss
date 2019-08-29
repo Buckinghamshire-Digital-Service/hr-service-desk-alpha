@@ -13,16 +13,16 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 $body-color: $black;
-$body-family: 'Open Sans', sans-serif;
-$body-family-bold: 'Open Sans Bold', sans-serif;
+$body-family: 'OpenSans', sans-serif;
+$body-family-bold: 'OpenSans-Bold', sans-serif;
 
 // Bulma styles
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
 @import "~bulma/sass/elements/button.sass";
 @import "~bulma/sass/elements/container.sass";
-// @import "~bulma/sass/form/_all.sass";
-@import "~bulma/sass/components/navbar.sass";
+@import "~bulma/sass/form/_all.sass";
+//@import "~bulma/sass/components/navbar.sass";
 @import "~bulma/sass/layout/hero.sass";
 @import "~bulma/sass/layout/section.sass";
 

@@ -7,6 +7,10 @@ export function isArray (obj) {
   return obj.constructor === Array
 }
 
+export function returnId (str) {
+  return str.toLowerCase().trim().replace(/[^\w\s]|_/g, '').replace(/ /g, '-')
+}
+
 export function stringContains (haystack, needles) {
   if (isArray(needles)) {
     for (let needle of needles) {

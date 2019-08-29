@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 import Layout from '../components/Layout/Layout.jsx'
 import ListItem from '../components/ListItem/ListItem.jsx'
 import Heading from '../components/Heading/Heading.jsx'
+import Text from '../components/Text/Text.jsx'
 import { Link } from 'gatsby'
 
 import '../scss/index.scss'
@@ -15,14 +16,15 @@ class RootIndex extends React.PureComponent {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     let post = get(this, 'props.data.contentfulHomePage')
 
+console.log(post)
     return (
       <Layout location={this.props.location} >
       
-        <Helmet title={siteTitle} />
-
+        <Helmet title={`${post.title} | ${siteTitle}`} description={post.metaDescription}/>
 
         <div className='wrapper'>
           <Heading text={post.title} type='h1'/>
+          {post.intro && <Text content={post.intro.childMarkdownRemark.html} />}
           {post.childPages && <ul className='list list--raised'>
             {post.childPages.map(v => {
               
@@ -65,7 +67,11 @@ query HomeQuery {
     title
     metaTitle
     metaDescription
-
+    intro {
+      childMarkdownRemark {
+        html
+      }
+    }
     childPages {
       title
       slug
@@ -78,5 +84,4 @@ query HomeQuery {
     }
   }
 }
-
 `

@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { scrollIntoView } from '../../utilities'
+import { scrollIntoView, returnId } from '../../utilities'
 import Grid from '../Grid/Grid.jsx'
 import GridCol from '../GridCol/GridCol.jsx'
 
@@ -32,7 +32,7 @@ export default class Collapsible extends React.PureComponent {
   }
 
   returnId () {
-    return this.props.title['en-US'].toLowerCase().trim().replace(/[^\w\s]|_/g, '').replace(/ /g, '-')
+    return returnId(this.props.title['en-US'])
   }
 
   render () {
@@ -50,13 +50,12 @@ export default class Collapsible extends React.PureComponent {
       'collapsible__trigger--active': this.state.visible
     })
 
-    console.log(this.props)
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
         <Grid>
-          <GridCol className='col-12 col-md-7'>
+          <GridCol>
             <h2 className='h4'>
-              <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={this.props.ariaLabel['en-US'] || title}>
+              <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={this.props.ariaLabel || title}>
               {title}
               </a>
             </h2>
