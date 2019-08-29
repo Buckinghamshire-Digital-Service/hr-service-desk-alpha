@@ -1,8 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { scrollIntoView, returnId } from '../../utilities'
-import Grid from '../Grid/Grid.jsx'
-import GridCol from '../GridCol/GridCol.jsx'
+import Text from '../Text/Text.jsx'
 
 export default class Collapsible extends React.PureComponent {
   constructor (props) {
@@ -25,7 +24,7 @@ export default class Collapsible extends React.PureComponent {
   }
 
   componentDidMount () {
-    // if (this.props.history.hash === '#' + this.returnId()) {
+    // if (this.props.history.hash === '#' + returnId(this.props.title['en-US'])) {
     //   this.setState({ visible: true })
     //   scrollIntoView(this.node)
     // }
@@ -54,18 +53,16 @@ export default class Collapsible extends React.PureComponent {
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
-        <Grid>
-          <GridCol>
-            <h2 className='h4'>
-              <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || title}>
-              {title}
-              </a>
-            </h2>
-            <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`}>
-              {this.props.content['en-US']}
-            </div>
-          </GridCol>
-        </Grid>
+
+        <h2 className='h4'>
+          <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || title}>
+          {title}
+          </a>
+        </h2>
+        <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`}>
+          <Text content={this.props.content}/>
+        </div>
+
       </div>
     )
   }

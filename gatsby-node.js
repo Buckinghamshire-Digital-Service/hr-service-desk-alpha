@@ -24,7 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-          `
+        `
       ).then(result => {
         if (result.errors) {
           console.log(result.errors)
@@ -34,6 +34,8 @@ exports.createPages = ({ graphql, actions }) => {
         const posts = result.data.allContentfulPage.edges
         posts.forEach((post, index) => {
           let path = post.node.parentPage !== null ? `/${post.node.parentPage.slug}/${post.node.slug}/` : `/${post.node.slug}/`
+          // let path = `/${post.node.slug}/`
+
           createPage({
             path: path,
             component: detailPage,

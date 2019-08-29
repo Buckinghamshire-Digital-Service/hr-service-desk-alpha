@@ -8,7 +8,7 @@ import List from './components/List/List.jsx'
 import Progress from './components/Progress/Progress.jsx'
 import Callout from './components/Callout/Callout.jsx'
 import Collapsible from './components/Collapsible/Collapsible.jsx'
-// import marked from 'marked'
+import marked from 'marked'
 
 const options = {
   renderNode: {
@@ -37,6 +37,8 @@ const options = {
             reactComponent = <List {...fields} key={system.id + rand} />
             break
           case 'collapsible':
+            fields.content = fields.content['en-US'] !== undefined ? fields.content['en-US'] : fields.content 
+            fields.content = marked(fields.content)
             reactComponent = <Collapsible {...fields} key={system.id + rand} />
             break
           case 'blockquote':
