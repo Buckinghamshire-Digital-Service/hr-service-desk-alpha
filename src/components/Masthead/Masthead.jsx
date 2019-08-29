@@ -9,8 +9,6 @@ import Nav from '../Nav/component.jsx'
 import CookieBar from '../CookieBar/component.jsx'
 import Icon from '../Icon/component.jsx'
 import Anchor from '../Anchor/component.jsx'
-import { primary } from '../../fixtures/navigation.js'
-import { ViewportMobile, ViewportDefault } from '../Breakpoints/component.jsx'
 
 export default class Masthead extends React.PureComponent {
   constructor () {
