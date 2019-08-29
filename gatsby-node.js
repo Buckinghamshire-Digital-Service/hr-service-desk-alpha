@@ -6,20 +6,24 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const detailPage = path.resolve('./src/templates/detailPage.js')
-    
+
     resolve(
       graphql(
         `
-          {
-            allContentfulPage {
-              edges {
-                node {
-                  title
+        query allQuery {
+          allContentfulPage {
+            edges {
+              node {
+                slug
+                title
+                metaDescription
+                parentPage {
                   slug
                 }
               }
             }
           }
+        }
           `
       ).then(result => {
         if (result.errors) {
@@ -29,8 +33,9 @@ exports.createPages = ({ graphql, actions }) => {
 
         const posts = result.data.allContentfulPage.edges
         posts.forEach((post, index) => {
+          let path = post.node.parentPage !== null ? `/${post.node.parentPage.slug}/${post.node.slug}/` : `/${post.node.slug}/`
           createPage({
-            path: `/${post.node.slug}/`,
+            path: path,
             component: detailPage,
             context: {
               slug: post.node.slug
