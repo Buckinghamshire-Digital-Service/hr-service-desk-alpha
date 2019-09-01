@@ -3,14 +3,14 @@
   background-color: $gray-200;
   padding: 1.5rem;
 
-  @include media-breakpoint-up(sm) {
+  @include from($tablet) {
     padding: 3rem;
   }
 
   &--padding-small {
     padding: 1rem;
 
-    @include media-breakpoint-up(md) {
+    @include from($desktop) {
       padding: 1.5rem;
     }
   }

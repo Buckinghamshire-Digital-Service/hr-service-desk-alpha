@@ -2,7 +2,7 @@
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
 
-  @include media-breakpoint-up(md) {
+  @include from($desktop) {
     padding-bottom: 3rem;
     padding-top: 3rem;
   }
@@ -12,7 +12,7 @@
     padding-top: 1rem;
     background-color: $white;
 
-    @include media-breakpoint-up(md) {
+    @include from($desktop) {
       padding-bottom: 1.5rem;
       padding-top: 1.5rem;
     }
@@ -45,7 +45,7 @@
   font-size: 1.6rem;
   margin-top: 1rem;
 
-  @include media-breakpoint-up(sm) {
+  @include from($tablet) {
     overflow: hidden;
     font-size: 1.8rem;
     margin-top: 0;
@@ -61,7 +61,7 @@
   z-index: 1;
   margin-top: -2rem;
 
-  @include media-breakpoint-up(sm) {
+  @include from($tablet) {
     margin-bottom: 4rem;
     margin-top: -6rem;
   }
@@ -81,7 +81,7 @@
   }
 
   & + .form {
-    @include media-breakpoint-up(sm) {
+    @include from($tablet) {
       margin-top: -2.5rem;
     }
   }
@@ -91,7 +91,7 @@
     margin-top: auto;
     background-color: $footer-warning;
 
-    @include media-breakpoint-up(sm) {
+    @include from($tablet) {
       padding-right: 6rem;
     }
   }
@@ -106,7 +106,7 @@
     }
   }
 
-  @include media-breakpoint-up(sm) {
+  @include from($tablet) {
     margin-left: 2rem;
     margin-right: 2rem;
 
@@ -128,7 +128,7 @@
   background-position: center left;
   position: relative;
 
-  @include media-breakpoint-up(sm) {
+  @include from($tablet) {
     float: left;
 
     &::after {

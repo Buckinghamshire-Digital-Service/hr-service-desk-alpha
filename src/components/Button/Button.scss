@@ -10,35 +10,6 @@
   cursor: pointer;
 }
 
-
-.has-icon {
-  .link__text,
-  .btn__text {
-    border-bottom: 1px dashed;
-    border-bottom-color: $white;
-    display: inline-block;
-    margin-left: 1rem;
-    padding-bottom: .2em;
-
-    &.link__text--right {
-      color: $text-dark-blue;
-      margin-left: auto;
-      margin-right: 1rem;
-      border-bottom-color: $pink;
-    }
-
-    .has-hover & {
-      &:hover {
-        border-bottom-style: solid;
-      }
-    }
-
-    .icon {
-      margin-left: -4px;
-    }
-  }
-}
-
 .btn--link {
   &:active,
   &:focus {
@@ -90,7 +61,7 @@
   border-bottom: 0;
   font-size: 1.5rem;
 
-  @include media-breakpoint-up(sm) {
+  @include from($tablet) {
     font-size: 1.8rem;
   }
 }
@@ -120,7 +91,7 @@
     top: .1em;
   }
 
-  @include media-breakpoint-up(md) {
+  @include from($desktop) {
     font-size: 2.4rem;
   }
 
@@ -147,13 +118,13 @@
 .btn--small {
   font-size: 1.5rem;
 
-  @include media-breakpoint-up(lg) {
+  @include from(lg) {
     font-size: 1.8rem;
   }
 }
 
 .btn--full-width {
-  @include media-breakpoint-up(sm) {
+  @include from($tablet) {
     display: block;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -190,7 +161,7 @@
     }
   }
 
-  @include media-breakpoint-up(md) {
+  @include from($desktop) {
     display: none;
   }
 }
@@ -237,7 +208,7 @@
     top: .5rem;
     right: 0;
 
-    @include media-breakpoint-up(md) {
+    @include from($desktop) {
       top: 2.2rem;
     }
 
