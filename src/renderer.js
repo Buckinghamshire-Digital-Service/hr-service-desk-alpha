@@ -22,12 +22,16 @@ const options = {
         const rand = Math.floor((Math.random() * 10000) + 1)
         const fields = node.data.target.fields
 
+        if (fields.content) {
+          fields.content = fields.content['en-US'] !== undefined ? fields.content['en-US'] : fields.content 
+          fields.content = marked(fields.content)
+        }
+
         switch (type) {
           case 'heading':
             reactComponent = <Heading {...fields} key={system.id + rand} />
             break
           case 'text':
-
             reactComponent = <Text {...fields} key={system.id + rand} />
             break
           case 'callout':
@@ -37,8 +41,6 @@ const options = {
             reactComponent = <List {...fields} key={system.id + rand} />
             break
           case 'collapsible':
-            fields.content = fields.content['en-US'] !== undefined ? fields.content['en-US'] : fields.content 
-            fields.content = marked(fields.content)
             reactComponent = <Collapsible {...fields} key={system.id + rand} />
             break
           case 'blockquote':

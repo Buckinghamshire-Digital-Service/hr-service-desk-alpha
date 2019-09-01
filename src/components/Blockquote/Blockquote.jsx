@@ -6,6 +6,7 @@ const Blockquote = props => {
   return (
     <section className={classes}>
       <div className={`wrapper ${props.modifier || ''}`}>
+      BLOCQUIOOTE
         {props.children}
       </div>
     </section>

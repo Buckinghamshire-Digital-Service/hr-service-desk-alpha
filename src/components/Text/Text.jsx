@@ -4,9 +4,7 @@ const Text = props => {
   let classes = `${props.className}`
   
   return (
-    <>
-      <div dangerouslySetInnerHTML={{__html: props.content}}  className={classes}/>
-    </>
+    <div dangerouslySetInnerHTML={{__html: props.content}}  className={classes}/>
   )
 }
 

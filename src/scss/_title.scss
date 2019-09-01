@@ -116,15 +116,15 @@ h2,
 h3,
 .h3,
 %h3 {
-  font-size: 2.8rem;
+  font-size: $size-6;
 
 
   @include from($tablet) {
-    font-size: 3.2rem;
+    font-size: $size-5;
   }
 
   @include from($desktop) {
-    font-size: 3.8rem;
+    font-size: $size-4;
   }
 }
 
@@ -140,8 +140,8 @@ h4,
 .h4,
 %lead,
 %h4 {
-  margin-bottom: 1rem;
-  font-size: 2.3rem;
+  margin-bottom: 1em;
+  font-size: $size-5;
 }
 
 .lead {

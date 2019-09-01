@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Container from '../Container/Container.jsx'
-import Navigation from '../Navigation/Navigation.jsx'
+import Masthead from '../Masthead/Masthead.jsx'
 
 class Layout extends React.PureComponent {
   render() {
@@ -15,7 +15,7 @@ class Layout extends React.PureComponent {
 
     return (
       <Container>
-        <Navigation location={location}/>
+        <Masthead location={location}/>
         {children}
       </Container>
     )

@@ -6,6 +6,7 @@ const Accent = props => {
   return (
     <section className={classes}>
       <div className={`wrapper ${props.modifier || ''}`}>
+      ACCENT
         {props.children}
       </div>
     </section>

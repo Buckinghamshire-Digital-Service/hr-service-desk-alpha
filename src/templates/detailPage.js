@@ -12,6 +12,7 @@ class PageTemplate extends React.PureComponent {
 
   render() {
     const post = get(this.props, 'data.contentfulPage')
+  
     return (
       <Layout location={this.props.location} >
         <Helmet title={post.metaTitle} description={post.metaDescription}/>

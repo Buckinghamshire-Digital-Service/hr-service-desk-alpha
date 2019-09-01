@@ -1,14 +1,15 @@
 import React from 'react'
 import classNames from 'classnames'
-import Logo from '../Logo/component.jsx'
-import Button from '../Button/component.jsx'
-import ButtonGroup from '../ButtonGroup/component.jsx'
-import FormGroupAutocomplete from '../FormGroupAutocomplete/component.jsx'
-import Form from '../Form/component.jsx'
-import Nav from '../Nav/component.jsx'
-import CookieBar from '../CookieBar/component.jsx'
-import Icon from '../Icon/component.jsx'
-import Anchor from '../Anchor/component.jsx'
+import Logo from '../Logo/Logo.jsx'
+import Button from '../Button/Button.jsx'
+import ButtonGroup from '../ButtonGroup/ButtonGroup.jsx'
+import Form from '../Form/Form.jsx'
+import Navigation from '../Navigation/Navigation.jsx'
+import CookieBar from '../CookieBar/CookieBar.jsx'
+import Icon from '../Icon/Icon.jsx'
+import Anchor from '../Anchor/Anchor.jsx'
+import { primary } from '../../fixtures/navigation.js'
+import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 
 export default class Masthead extends React.PureComponent {
   constructor () {
@@ -46,18 +47,17 @@ export default class Masthead extends React.PureComponent {
   }
 
   render () {
-    // @joel @refactor - remove this into container
     let icon = {
       label: 'search',
-      url: '/ui/svg/magnifying.svg'
+      url: '/svg/magnifying.svg'
     }
     let iconSubmit = {
       label: 'Submit search',
-      url: '/ui/svg/magnifying-pink.svg'
+      url: '/svg/magnifying-pink.svg'
     }
     let iconClose = {
       label: 'close',
-      url: '/ui/svg/cross.svg'
+      url: '/svg/cross.svg'
     }
     let navClasses = classNames('navbar-primary navbar-expand-md', {
       'd-none': !this.state.mobileMenuOpen
@@ -66,7 +66,7 @@ export default class Masthead extends React.PureComponent {
 
     return (
       <header className='masthead'>
-        <span className='visually-hidden'>Talk to Frank - Honest information about drugs</span>
+        <span className='visually-hidden'>Buckinghamshire Council HR desk service</span>
         <CookieBar />
         <div className='masthead__inner'>
           <section className='navigation-wrapper'>
@@ -80,12 +80,12 @@ export default class Masthead extends React.PureComponent {
                 {this.state.mobileMenuOpen ? 'Close' : 'Menu'}
               </Button>
             </ViewportDefault>
-            <Logo url='/ui/svg/logo-frank--alt.svg' alt=''/>
+            <Logo url='/svg/logo-frank--alt.svg' alt=''/>
             <ViewportMobile>
-              <Nav className={navClasses} menu-open={this.state.mobileMenuOpen} id='navigation-primary' navigation={primary} current={current} aria-label='Main Menu' role='menubar' type='nav'/>
+              <Navigation className={navClasses} menu-open={this.state.mobileMenuOpen} id='navigation-primary' navigation={primary} current={current} aria-label='Main Menu' role='menubar' type='nav'/>
             </ViewportMobile>
             <ViewportDefault>
-              <Nav className={navClasses} hasPopup={true} menu-open={true} id='navigation-primary' navigation={primary} current={current} aria-label='Main Menu' role='menubar' type='nav'/>
+              <Navigation className={navClasses} hasPopup={true} menu-open={true} id='navigation-primary' navigation={primary} current={current} aria-label='Main Menu' role='menubar' type='nav'/>
             </ViewportDefault>
           </section>
           <ButtonGroup className='button-group--static'>
@@ -96,18 +96,7 @@ export default class Masthead extends React.PureComponent {
         {this.state.takeover && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
             <Form className='form--search' role='search'>
-              <FormGroupAutocomplete
-                button='true'
-                modifiers='form-control--search'
-                className='input-group-autocomplete'
-                id='search-masthead'
-                label='Search for any drug'
-                labelHidden='true'
-                focus='true'
-                showContent={false}
-                placeholder='Enter drug name (e.g. Mandy)'
-                ref={input => { this.formAutocomplete = input }}
-              />
+
               <Button className='btn--flat submit' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconSubmit}/></Button>
             </Form>
             <Button className='btn--flat close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>

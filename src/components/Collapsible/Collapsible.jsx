@@ -35,7 +35,6 @@ export default class Collapsible extends React.PureComponent {
   }
 
   render () {
-    
     let title = this.props.title['en-US']
     const id = this.returnId()
 
