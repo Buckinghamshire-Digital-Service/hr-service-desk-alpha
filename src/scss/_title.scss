@@ -24,51 +24,6 @@ $subtitle-line-height: 1.25 !default
 $subtitle-strong-color: $gray-800 !default
 $subtitle-negative-margin: -1.25rem !default
 
-.title,
-.subtitle {
-  @extend %block;
-  word-break: break-word;
-  font-family: $body-family-bold;
-
-  em,
-  span {
-    font-weight: inherit;
-  }
-
-  sub,
-  sup {
-    font-size: 1.2rem;
-  }
-
-  .tag {
-    vertical-align: middle;
-  }
-  
-}
-
-.title {
-  color: $black;
-  font-size: $title-size;
-  line-height: $title-line-height;
-
-  & + .highlight {
-    margin-top: -0.75rem;
-  }
-
-  &:not(.is-spaced) + .subtitle {
-    margin-top: $subtitle-negative-margin;
-  }
-}
-
-.subtitle {
-  color: $gray-800;
-  font-size: $subtitle-size;
-  line-height: $subtitle-line-height;
-
-  &:not(.is-spaced) + .title {
-    margin-top: $subtitle-negative-margin;
-  }
-}
 
 
 h1,
@@ -87,7 +42,8 @@ h1,
 .h1,
 %h1 {
   font-size: $size-3;
-  line-height: (90px / 86px);
+  line-height: 1.2;
+  margin-top: .5em;
 
   @include from($tablet) {
     font-size: $size-2;
@@ -118,7 +74,6 @@ h3,
 %h3 {
   font-size: $size-6;
 
-
   @include from($tablet) {
     font-size: $size-5;
   }
@@ -138,14 +93,31 @@ h3,
 
 h4,
 .h4,
-%lead,
 %h4 {
   margin-bottom: 1em;
   font-size: $size-5;
 }
 
+
+p {
+  font-size: $size-6;
+  margin-bottom: 1em;
+
+  @include from($desktop) {
+    font-size: $size-5;
+  }
+
+  a {
+    @include link;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
 .lead {
-  @extend %lead;
+  @extend %h4;
 }
 
 strong,
@@ -245,46 +217,4 @@ b {
       counter-increment: counter;
     }
   }
-
-
-  &--indented {
-    @include from($tablet) {
-      h2,
-      h3,
-      h4,
-      p:not(.lead) {
-        margin-left: 4rem;
-      }
-
-      li {
-        &::before {
-          left: 4rem !important;
-        }
-      }
-    }
-  }
 }
-
-p {
-  a {
-    @include link;
-  }
-}
-
-.long-form ol,
-.long-form ul,
-.has-unordered ul {
-  margin-bottom: 2.5rem;
-}
-
-.page-title {
-  @extend %h2;
-  margin: 3rem 2rem 1rem 0;
-
-  @include from($tablet) {
-    margin-left: 2rem;
-    margin-bottom: 3rem;
-  }
-}
-
-

@@ -20,7 +20,7 @@
 
   &--loud {
     color: $white;
-    background-color: $pinkAccess;
+    background-color: $brand-green;
   }
 
 
@@ -54,7 +54,6 @@
 
 .accent__content {
   color: $white;
-  font-family: $font-family-heavy;
   background-color: $gray-900;
   padding: 1.5rem 2rem;
   position: relative;
@@ -96,7 +95,7 @@
     }
   }
 
-  @include media-breakpoint-down(sm) {
+  @include until($tablet) {
     margin-left: 0;
     margin-right: 0;
 

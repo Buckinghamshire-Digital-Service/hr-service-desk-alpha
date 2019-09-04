@@ -7,16 +7,23 @@ export default class Collapsible extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = {
-      visible: this.props.open['en-US'] === 'Yes' || this.props.className === 'collapsible_trigger--active'
+      visible: this.props.open['en-US'] === false || this.props.className === 'collapsible_trigger--active',
+      height: 0,
+      dir: 'down'      
     }
   }
 
   toggle (event) {
     event.preventDefault()
-    this.setState({ visible: !this.state.visible })
+    this.setState({
+      visible: !this.state.visible,
+      dir: !this.state.visible ? 'up' : 'down',
+      height: !this.state.visible ? this.panel.clientHeight : 0
+    })
 
     if (this.props.history) {
       if ('replaceState' in history) {
+        console.log(event.target.getAttribute('data-target'), this.props.history.pathname, event.target.href)
         let path = (window.location.hash === event.target.getAttribute('data-target')) ? this.props.history.pathname : event.target.href
         window.history.replaceState({}, document.title, path)
       }
@@ -24,11 +31,14 @@ export default class Collapsible extends React.PureComponent {
   }
 
   componentDidMount () {
-    // if (this.props.history.hash === '#' + returnId(this.props.title['en-US'])) {
-    //   this.setState({ visible: true })
-    //   scrollIntoView(this.node)
-    // }
+    console.log(this.props.history)
+    this.setState({height: this.state.visible ? this.panel.clientHeight : 0})
+    if (this.props.history && (this.props.history.hash === '#' + returnId(this.props.title['en-US']))) {
+      this.setState({ visible: true })
+      scrollIntoView(this.node)
+    }
   }
+
 
   returnId () {
     return returnId(this.props.title['en-US'])
@@ -38,7 +48,7 @@ export default class Collapsible extends React.PureComponent {
     let title = this.props.title['en-US']
     const id = this.returnId()
 
-    let classes = classNames('collapsible', this.props.className, {
+    let classes = classNames('collapsible collapsible--chevron', this.props.className, {
       'collapsible--active': this.state.visible
     })
     let contentClasses = classNames('collapsible__content', {
@@ -52,16 +62,16 @@ export default class Collapsible extends React.PureComponent {
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
-
-        <h2 className='h4'>
+        <h2 className='collapsible__title'>
           <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || title}>
           {title}
           </a>
         </h2>
-        <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`}>
-          <Text content={this.props.content}/>
+        <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
+          <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
+            <Text content={this.props.content}/>
+          </div>        
         </div>
-
       </div>
     )
   }

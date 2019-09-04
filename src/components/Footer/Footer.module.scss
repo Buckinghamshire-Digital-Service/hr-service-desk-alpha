@@ -1,0 +1,24 @@
+
+.footer {
+  color: $white;
+  @include padding-small;
+  background-color: $gray-900;
+
+  .navbar-item,
+  .navbar {
+    background-color: transparent;
+  }
+
+  .navbar-item {
+    color: $white;
+  }
+
+  @include from($tablet) {
+    margin-top: 12rem;
+  }
+
+}
+
+.footer__inner {
+  padding-bottom: 3rem;
+}

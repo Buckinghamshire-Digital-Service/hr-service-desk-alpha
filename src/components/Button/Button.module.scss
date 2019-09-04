@@ -1,11 +1,8 @@
-
 .btn {
   border-radius: 0;
   font-size: 2rem;
   line-height: 1;
   padding: 1rem;
-  font-family: $font-family-heavy;
-  margin-right: 1.5em;
   color: inherit;
   cursor: pointer;
 }
@@ -13,13 +10,13 @@
 .btn--link {
   &:active,
   &:focus {
-    color: $pinkAccess;
+    color: $brand-green;
     text-decoration: underline;
   }
 
   .has-hover & {
     &:hover {
-      color: $pinkAccess;
+      color: $brand-green;
       text-decoration: underline;
     }
   }
@@ -48,11 +45,11 @@
   padding-left: 0;
   padding-right: 0;
   box-shadow: none;
-  border-bottom: 2px dashed $pink;
+  border-bottom: 2px dashed $brand-green;
 
   .has-hover & {
     &:hover {
-      color: $pinkAccess;
+      color: $brand-green;
     }
   }
 }
@@ -69,7 +66,7 @@
 .btn--secondary,
 .btn--primary {
   color: $white;
-  background-color: $pink;
+  background-color: $brand-green;
   text-decoration: none;
   cursor: pointer;
   text-align: center;
@@ -97,13 +94,13 @@
 
   .has-hover & {
     &:hover {
-      background-color: $pinkAccess;
+      background-color: $brand-green;
     }
   }
 }
 
 .btn--secondary {
-  color: $pinkAccess;
+  color: $brand-green;
   background-color: $white;
   display: inline-block;
 
@@ -118,7 +115,7 @@
 .btn--small {
   font-size: 1.5rem;
 
-  @include from(lg) {
+  @include from($desktop) {
     font-size: 1.8rem;
   }
 }
@@ -172,7 +169,7 @@
 
 // this pops a cheeky beak on it - @refactor could use a rename
 .active {
-  @include media-breakpoint-down(md) {
+  @include until($tablet) {
     &::before {
       border-width: 0 15px 15px;
       content: '';

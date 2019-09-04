@@ -8,9 +8,12 @@ import List from './components/List/List.jsx'
 import Progress from './components/Progress/Progress.jsx'
 import Callout from './components/Callout/Callout.jsx'
 import Collapsible from './components/Collapsible/Collapsible.jsx'
+import Table from './components/Table/Table.jsx'
 import marked from 'marked'
 
-const options = {
+let history
+
+let options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node) => {
 
@@ -32,23 +35,26 @@ const options = {
             reactComponent = <Heading {...fields} key={system.id + rand} />
             break
           case 'text':
-            reactComponent = <Text {...fields} key={system.id + rand} />
+            reactComponent = <Text {...fields} key={system.id + rand} className='long-form'/>
             break
           case 'callout':
             reactComponent = <Callout {...fields} key={system.id + rand} />
             break
           case 'list':
-            reactComponent = <List {...fields} key={system.id + rand} />
+            reactComponent = <List className='simple bullet' {...fields} key={system.id + rand} />
             break
           case 'collapsible':
-            reactComponent = <Collapsible {...fields} key={system.id + rand} />
+            reactComponent = <Collapsible {...fields} key={system.id + rand} history={history}/>
             break
           case 'blockquote':
             reactComponent = <Blockquote {...fields} key={system.id + rand} />
             break             
           case 'progress':
             reactComponent = <Progress {...fields} key={system.id + rand} />
-            break              
+            break
+          case 'table':
+            reactComponent = <Table {...fields} key={system.id + rand} />
+            break           
           default:
             console.error('Could not match ' + type)
             //continue
@@ -60,10 +66,10 @@ const options = {
   }
 }
 
+const renderer = (data, location) => {
 
-const renderer = (data) => {
+  history = location
   return documentToReactComponents(data, options)
 }
-
 
 export default renderer

@@ -2,14 +2,15 @@ import React from 'react'
 import classNames from 'classnames'
 import Logo from '../Logo/Logo.jsx'
 import Button from '../Button/Button.jsx'
-import ButtonGroup from '../ButtonGroup/ButtonGroup.jsx'
 import Form from '../Form/Form.jsx'
-import Navigation from '../Navigation/Navigation.jsx'
 import CookieBar from '../CookieBar/CookieBar.jsx'
 import Icon from '../Icon/Icon.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
+import Field from '../Field/Field.jsx'
+import { Link } from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
 import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
+import styles from '../../scss/_settings.scss'
 
 export default class Masthead extends React.PureComponent {
   constructor () {
@@ -53,50 +54,61 @@ export default class Masthead extends React.PureComponent {
     }
     let iconSubmit = {
       label: 'Submit search',
-      url: '/svg/magnifying-pink.svg'
+      url: '/svg/magnifying.svg'
     }
     let iconClose = {
       label: 'close',
       url: '/svg/cross.svg'
     }
-    let navClasses = classNames('navbar-primary navbar-expand-md', {
+    let navClasses = classNames('navbar', {
       'd-none': !this.state.mobileMenuOpen
     })
+
     let current = this.props.path ? this.props.path.pathname : ''
 
     return (
       <header className='masthead'>
-        <span className='visually-hidden'>Buckinghamshire Council HR desk service</span>
+        <span className='is-sr-only'>Buckinghamshire Council HR desk service</span>
         <CookieBar />
         <div className='masthead__inner'>
           <section className='navigation-wrapper'>
-            <ViewportMobile>
-              <Button aria-hidden='false' className={this.state.mobileMenuOpen ? 'navbar-toggler active' : 'navbar-toggler'} aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)}>
-                {this.state.mobileMenuOpen ? 'Close' : 'Menu'}
-              </Button>
-            </ViewportMobile>
-            <ViewportDefault>
-              <Button aria-hidden='true' className={this.state.mobileMenuOpen ? 'navbar-toggler active' : 'navbar-toggler'} aria-controls='navigation' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)}>
-                {this.state.mobileMenuOpen ? 'Close' : 'Menu'}
-              </Button>
-            </ViewportDefault>
-            <Logo url='/svg/logo-frank--alt.svg' alt=''/>
-            <ViewportMobile>
-              <Navigation className={navClasses} menu-open={this.state.mobileMenuOpen} id='navigation-primary' navigation={primary} current={current} aria-label='Main Menu' role='menubar' type='nav'/>
-            </ViewportMobile>
-            <ViewportDefault>
-              <Navigation className={navClasses} hasPopup={true} menu-open={true} id='navigation-primary' navigation={primary} current={current} aria-label='Main Menu' role='menubar' type='nav'/>
-            </ViewportDefault>
+            <nav className='navbar' role='navigation' aria-label='main navigation'>
+              <div className='navbar-brand'>
+                <Logo url='/svg/logo.svg' alt='' className='navbar-item'/>
+
+                <Button aria-hidden='false' type='a' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
+                  <span aria-hidden='true'></span>
+                  <span aria-hidden='true'></span>
+                  <span aria-hidden='true'></span>
+                </Button>                  
+                
+                <Button className='btn--flat btn--small is-hidden-tablet' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon {...icon}/></Button>
+              </div>
+
+              <div id='nav-primary' className={`navbar-menu ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>
+                <div className='navbar-end'>
+                  <Link to='/' className='navbar-item is-hidden-tablet'>
+                    Home
+                  </Link>
+                  <Link to='/downloads' className='navbar-item'>
+                    Downloads
+                  </Link>
+                  <Link to='/about' className='navbar-item' >
+                    About us
+                  </Link>
+                </div>
+              </div>
+
+              <div className='navbar-end is-hidden-mobile'>
+                <Button className='btn--flat btn--small' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon {...icon}/></Button>
+              </div>              
+            </nav>
           </section>
-          <ButtonGroup className='button-group--static'>
-            <Button className='btn--flat btn--small' clickHandler={this.handleSearchClick.bind(this)}><span className='hidden--md'>Search </span><Icon {...icon}/></Button>
-            <Anchor className='btn btn--link btn--small hidden--rg link-text' label='Call Frank on 0300 1236600' href='tel:03001236600'><span className='nav-link'>0300 1236600</span></Anchor>
-          </ButtonGroup>
         </div>
         {this.state.takeover && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
             <Form className='form--search' role='search'>
-
+              <Field />
               <Button className='btn--flat submit' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconSubmit}/></Button>
             </Form>
             <Button className='btn--flat close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>

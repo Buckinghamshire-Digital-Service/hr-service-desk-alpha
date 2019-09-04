@@ -1,6 +1,7 @@
 
 @mixin link {
   margin-bottom: .2em;
+  color: $brand-green;
 
   .has-hover & {
     &:active,

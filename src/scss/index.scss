@@ -3,7 +3,7 @@
 @import "settings";
 @import "fonts";
 
-$link: $pink;
+$link: $brand-green;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 
@@ -17,20 +17,36 @@ $body-family: 'OpenSans', sans-serif;
 $body-family-bold: 'OpenSans-Bold', sans-serif;
 
 // Bulma styles
+// overwriting the nav breakpoint
+@import "~bulma/sass/utilities/initial-variables.sass";
+$navbar-breakpoint: $tablet;
+
+// all other utilities
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
 @import "~bulma/sass/elements/button.sass";
-@import "~bulma/sass/elements/container.sass";
 @import "~bulma/sass/form/_all.sass";
-//@import "~bulma/sass/components/navbar.sass";
+@import "~bulma/sass/components/navbar.sass";
 @import "~bulma/sass/layout/hero.sass";
 @import "~bulma/sass/layout/section.sass";
 
 
 // components and ting
+// but v local
 @import "_mixins";
 @import "title";
+@import "utilities";
+@import "_padding";
 @import "panel";
 
+// modules - will move these back in to be required by the components themselves
+@import "../components/Collapsible/Collapsible.module.scss";
+@import "../components/Button/Button.module.scss";
+@import "../components/Masthead/Masthead.module.scss";
+@import "../components/Container/Container.module.scss";
+@import "../components/LinkList/LinkList.module.scss";
+@import "../components/PageTitle/PageTitle.module.scss";
+@import "../components/Footer/Footer.module.scss";
+@import "../components/Divider/Divider.module.scss";
+@import "../components/Main/Main.module.scss";
 
-@import "../components/Collapsible/Collapsible.module.scss"

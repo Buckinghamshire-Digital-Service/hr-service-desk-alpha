@@ -1,0 +1,8 @@
+.page-header {
+  display: block;
+  @include padding-small;
+}
+
+.page-title {
+  margin: 0;
+}

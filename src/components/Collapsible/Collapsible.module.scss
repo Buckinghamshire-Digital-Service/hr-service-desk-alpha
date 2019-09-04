@@ -1,73 +1,48 @@
 
-$dims: 2rem;
+$dims: 1.4rem;
 
 .collapsible-wrapper {
   margin-bottom: 5rem;
 }
 
+.collapsible__inner {
+  &::before {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    position: relative;
+  }
+}
+
 .collapsible {
   background-color: $gray-100;
-
-  h2 {
-    margin-bottom: 0;
-  }
-
-  @include until($tablet) {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+  transition: background-color .3s linear;
+  @include padding-small;
 
   &--active {
     background-color: transparent;
   }
 
-  .collapsible__content,
-  .collapsible__trigger {
-    .section--has-toggle & {
-      padding-left: ($dims * 2);
-    }
-  }
-
   .collapsible__content {
-    display: none;
+    //display: none;
+    overflow: hidden;
+    position: relative;
+    transition: height .15s ease-in-out;
 
     &.collapsible__content--active {
-      display: block;
-      padding-bottom: 3rem;
-    }
+      padding-bottom: 1.5rem;
 
-    .section--has-toggle & {
-      @include until($tablet) {
-        padding-left: 0;
+      &::after {
+        display: none;
       }
-    }
-
-    h3,
-    h5 {
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .long-form + h3,
-    .long-form + h5 {
-      margin-top: 3rem;
-    }
-  }
-
-  .bordered {
-    border-bottom: 1px solid $gray-300;
-  }
-
-  &.collapsible--first  {
-    .bordered {
-      border-top: 1px solid $gray-300;
     }
   }
 
   .collapsible__trigger {
     display: block;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     line-height: 1.2;
 
     .has-hover & {
@@ -75,7 +50,7 @@ $dims: 2rem;
       &:active {
         color: inherit;
         text-decoration: underline;
-        text-decoration-color: $pink;
+        text-decoration-color: $brand-green;
       }
     }
   }
@@ -83,55 +58,48 @@ $dims: 2rem;
   &.collapsible--chevron {
     .collapsible__trigger {
       position: relative;
+      padding-right: 3rem;
 
       &::before {
         content: '';
         position: absolute;
         width: $dims;
         height: $dims;
-        left: 0;
-        top: 2.6rem;
+        right: 0;
         display: block;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        background-image: url('/svg/plus.svg');
+        background-image: url('/svg/arrow-down.svg');
+        transition: all 0.25s .1s;
+        transform: rotate(0);
       }
     }
 
     .collapsible__trigger--active {
       &::before {
-        background-image: url('/svg/minus.svg');
+        transform: rotate(180deg);
       }
     }
+  }
+
+  .collapsible__title {
+    margin-bottom: 0;
+
+    @include from($tablet) {
+      font-size: $size-4;
+    }
+
+    @include from($desktop) {
+      font-size: $size-3;
+    }    
   }
 
   strong {
     display: inline-block;
   }
 
-  // slightly smelly - this is in place to negate the need for a really complex
-  // overhaul of Contentful. The rules will need to be written out for content editors
-
-  p,
-  .panel,
-  h3,
-  h4,
-  ul,
-  ol {
-    margin-left: 0;
-
-    @include from($tablet) {
-      margin-left: 2.5rem;
-    }
-  }
-
-  ul,
-  ol {
-    margin-top: 2.5rem;
-  }
-
-  .inverted {
-    margin-left: 0;
+  & + & {
+    border-top: 1px solid $gray-800;
   }
 }

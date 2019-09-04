@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Container from '../Container/Container.jsx'
 import Masthead from '../Masthead/Masthead.jsx'
+import Footer from '../Footer/Footer.jsx'
 
 class Layout extends React.PureComponent {
   render() {
@@ -14,10 +15,13 @@ class Layout extends React.PureComponent {
     }
 
     return (
-      <Container>
-        <Masthead location={location}/>
-        {children}
-      </Container>
+      <>
+        <Container>
+          <Masthead location={location}/>
+          {children}
+        </Container>
+        <Footer />
+      </>
     )
   }
 }

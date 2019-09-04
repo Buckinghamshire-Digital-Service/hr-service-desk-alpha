@@ -1,4 +1,3 @@
-
 //
 // Horizontal rules
 //
@@ -7,20 +6,9 @@
 hr {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  background-color: transparent;
   border: 0;
-  border-top: 1px solid $gray-900;
-
-  &--inverse {
-    margin-top: 2.5rem;
-    border-top-color: $teal;
-    margin-right: 2rem;
-    margin-left: 2rem;
-  }
-
-  &--muted {
-    margin-top: 0;
-    border-top-color: $gray-300;
-  }
+  border-top: 1px solid $gray-500;
 
   &--large {
     margin-top: 2rem;

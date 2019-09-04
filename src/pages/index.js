@@ -7,6 +7,9 @@ import Layout from '../components/Layout/Layout.jsx'
 import ListItem from '../components/ListItem/ListItem.jsx'
 import Heading from '../components/Heading/Heading.jsx'
 import Text from '../components/Text/Text.jsx'
+import LinkList from '../components/LinkList/LinkList.jsx'
+import Main from '../components/Main/Main.jsx'
+import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import { Link } from 'gatsby'
 
 import '../scss/index.scss'
@@ -16,39 +19,15 @@ class RootIndex extends React.PureComponent {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     let post = get(this, 'props.data.contentfulHomePage')
 
-console.log(post)
     return (
       <Layout location={this.props.location} >
-      
         <Helmet title={`${post.title} | ${siteTitle}`} description={post.metaDescription}/>
-
-        <div className='wrapper'>
-          <Heading text={post.title} type='h1'/>
-          {post.intro && <Text content={post.intro.childMarkdownRemark.html} />}
-          {post.childPages && <ul className='list list--raised'>
-            {post.childPages.map(v => {
-              
-              return (
-                <li key={v.slug} className='list__item'>
-                  <ListItem {...v}/>
-                </li>
-              )
-            })}
-          </ul>}
-          {post.childPagesSecondary && <ul className='list'>
-            {post.childPagesSecondary.map(v => {
-              
-              return (
-                <li key={v.slug} className='list__item'>
-                  <Link to={`/${v.slug}`}>
-                    <Heading text={v.title} className='list__title' type='h3'/>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>}
-
-        </div>
+        <Main className='muted'>
+          <PageTitle text={post.title}/>
+          {post.intro && <Text className='intro' content={post.intro.childMarkdownRemark.html} />}
+          {post.childPages && <LinkList items={post.childPages} className='raised'/>}
+          {post.childPagesSecondary && <><Heading type='h2' className='padding-small' text='Other areas' /><LinkList items={post.childPagesSecondary} simple className='simple'/></>}
+        </Main>
       </Layout>
     )
   }
@@ -57,31 +36,31 @@ console.log(post)
 export default RootIndex
 
 export const pageQuery = graphql`
-query HomeQuery {
-  site {
-    siteMetadata {
-      title
-    }
-  }
-  contentfulHomePage {
-    title
-    metaTitle
-    metaDescription
-    intro {
-      childMarkdownRemark {
-        html
+  query HomeQuery {
+    site {
+      siteMetadata {
+        title
       }
     }
-    childPages {
+    contentfulHomePage {
       title
-      slug
+      metaTitle
       metaDescription
-    }
-    childPagesSecondary {
-      title
-      slug
-      metaDescription
+      intro {
+        childMarkdownRemark {
+          html
+        }
+      }
+      childPages {
+        title
+        slug
+        metaDescription
+      }
+      childPagesSecondary {
+        title
+        slug
+        metaDescription
+      }
     }
   }
-}
 `
