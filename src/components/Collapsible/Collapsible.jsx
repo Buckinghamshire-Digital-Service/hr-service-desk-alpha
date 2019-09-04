@@ -6,8 +6,9 @@ import Text from '../Text/Text.jsx'
 export default class Collapsible extends React.PureComponent {
   constructor (props) {
     super(props)
+    this.title = this.props.title// !== undefined ? this.props.title : this.props.title
     this.state = {
-      visible: this.props.open['en-US'] === false || this.props.className === 'collapsible_trigger--active',
+      visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
       height: 0,
       dir: 'down'      
     }
@@ -23,7 +24,6 @@ export default class Collapsible extends React.PureComponent {
 
     if (this.props.history) {
       if ('replaceState' in history) {
-        console.log(event.target.getAttribute('data-target'), this.props.history.pathname, event.target.href)
         let path = (window.location.hash === event.target.getAttribute('data-target')) ? this.props.history.pathname : event.target.href
         window.history.replaceState({}, document.title, path)
       }
@@ -31,22 +31,15 @@ export default class Collapsible extends React.PureComponent {
   }
 
   componentDidMount () {
-    console.log(this.props.history)
     this.setState({height: this.state.visible ? this.panel.clientHeight : 0})
-    if (this.props.history && (this.props.history.hash === '#' + returnId(this.props.title['en-US']))) {
+    if (this.props.history && (this.props.history.hash === '#' + returnId(this.title))) {
       this.setState({ visible: true })
       scrollIntoView(this.node)
     }
   }
 
-
-  returnId () {
-    return returnId(this.props.title['en-US'])
-  }
-
   render () {
-    let title = this.props.title['en-US']
-    const id = this.returnId()
+    const id = returnId(this.title)
 
     let classes = classNames('collapsible collapsible--chevron', this.props.className, {
       'collapsible--active': this.state.visible
@@ -58,18 +51,18 @@ export default class Collapsible extends React.PureComponent {
       'collapsible__trigger--active': this.state.visible
     })
 
-    let label = this.props.ariaLabel['en-US'] !== undefined ? this.props.ariaLabel['en-US'] : this.props.ariaLabel
+    let label = this.props.ariaLabel 
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
         <h2 className='collapsible__title'>
-          <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || title}>
-          {title}
+          <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || this.title}>
+          {this.title}
           </a>
         </h2>
         <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
           <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
-            <Text content={this.props.content}/>
+            <Text content={this.props.content.childMarkdownRemark.html}/>
           </div>        
         </div>
       </div>

@@ -1,12 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-const Navigation = () => (
-  <nav class='navbar' role='navigation' aria-label='footer navigation'>
-
-
-  </nav>
-
+const Navigation = (props) => (
+  <>
+    {props.items && props.items.map((v, i) => <Link key={i} to={v.url} className={`navbar-item ${v.modifier}`} {...v.tracking} >{v.label}</Link>)}        
+  </>
 )
 
 export default Navigation

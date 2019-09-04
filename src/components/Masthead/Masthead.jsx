@@ -9,6 +9,7 @@ import Anchor from '../Anchor/Anchor.jsx'
 import Field from '../Field/Field.jsx'
 import { Link } from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
+import Navigation from '../Navigation/Navigation.jsx'
 import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 import styles from '../../scss/_settings.scss'
 
@@ -50,15 +51,15 @@ export default class Masthead extends React.PureComponent {
   render () {
     let icon = {
       label: 'search',
-      url: '/svg/magnifying.svg'
+      url: '../../../static/svg/magnifying.svg'
     }
     let iconSubmit = {
       label: 'Submit search',
-      url: '/svg/magnifying.svg'
+      url: '../../../static/svg/magnifying.svg'
     }
     let iconClose = {
       label: 'close',
-      url: '/svg/cross.svg'
+      url: '../../../static/svg/cross.svg'
     }
     let navClasses = classNames('navbar', {
       'd-none': !this.state.mobileMenuOpen
@@ -87,19 +88,11 @@ export default class Masthead extends React.PureComponent {
 
               <div id='nav-primary' className={`navbar-menu ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>
                 <div className='navbar-end'>
-                  <Link to='/' className='navbar-item is-hidden-tablet'>
-                    Home
-                  </Link>
-                  <Link to='/downloads' className='navbar-item'>
-                    Downloads
-                  </Link>
-                  <Link to='/about' className='navbar-item' >
-                    About us
-                  </Link>
+                  <Navigation items={primary} />
                 </div>
               </div>
 
-              <div className='navbar-end is-hidden-mobile'>
+              <div className='navbar-end is-hidden-mobile left-spaced'>
                 <Button className='btn--flat btn--small' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon {...icon}/></Button>
               </div>              
             </nav>

@@ -37,6 +37,7 @@ $dims: 1em;
 
   li {
     @extend %bullet;
+    margin-bottom: 1.2em;
   }
 }
 

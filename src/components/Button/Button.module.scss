@@ -129,43 +129,6 @@
   }
 }
 
-// Dropping it here for the moment as they are indeed buttons
-.navbar-toggler {
-  border-radius: 0;
-  margin-top: -.5rem;
-  font-size: 1.3rem;
-  position: absolute;
-  right: 3rem;
-
-  &::after {
-    content: '';
-    position: relative;
-    top: -.2rem;
-    margin-left: .3em;
-    display: inline-block;
-    vertical-align: middle;
-    width: 2.5rem;
-    height: 3rem;
-    background-image: url(../svg/menu.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  &.active {
-    &::after {
-      background-image: url(../svg/cross.svg);
-      background-size: 70%;
-    }
-  }
-
-  @include from($desktop) {
-    display: none;
-  }
-}
-
-.navbar-toggler-icon {
-  visibility: hidden;
-}
 
 // this pops a cheeky beak on it - @refactor could use a rename
 .active {

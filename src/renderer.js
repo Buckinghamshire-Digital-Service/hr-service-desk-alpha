@@ -16,7 +16,6 @@ let history
 let options = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node) => {
-
       let reactComponent = null
       const system = node.data.target.sys
 
@@ -24,6 +23,7 @@ let options = {
         const type = system.contentType.sys.id
         const rand = Math.floor((Math.random() * 10000) + 1)
         const fields = node.data.target.fields
+
 
         if (fields.content) {
           fields.content = fields.content['en-US'] !== undefined ? fields.content['en-US'] : fields.content 
@@ -67,7 +67,6 @@ let options = {
 }
 
 const renderer = (data, location) => {
-
   history = location
   return documentToReactComponents(data, options)
 }

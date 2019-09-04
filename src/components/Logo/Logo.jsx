@@ -1,6 +1,6 @@
 import React from 'react'
 import Svg from '../Svg/Svg.jsx'
-import logo from '../../svg/buckinghamshire-logo.svg'
+import logo from '../../../static/svg/buckinghamshire-logo.svg'
 
 const Logo = props => {
   return (

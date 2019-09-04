@@ -2,20 +2,29 @@ export const primary = [
   {
     label: 'Home',
     url: '/',
-    modifier: 'hidden--md-up',
+    modifier: 'is-hidden-tablet',
     tracking: {
       label: 'Home',
       action: 'Click',
-      category: 'Navigation'
+      category: 'Primary navigation'
     }
   },
   {
-    label: 'Something',
-    url: '/test',
+    label: 'About',
+    url: '/about',
     tracking: {
-      label: 'Get help',
+      label: 'About us',
       action: 'Click',
-      category: 'Navigation'
+      category: 'Primary navigation'
+    }
+  },  
+  {
+    label: 'Downloads',
+    url: '/downloads',
+    tracking: {
+      label: 'All downloads',
+      action: 'Click',
+      category: 'Primary navigation'
     }
   },
   {
@@ -24,7 +33,7 @@ export const primary = [
     tracking: {
       label: 'Contact Bucks',
       action: 'Click',
-      category: 'Navigation'
+      category: 'Primary navigation'
     }
   }
 ]
@@ -37,21 +46,9 @@ export const footer = [
     tracking: {
       label: 'Footer email contact',
       action: 'Click',
-      category: 'Navigation'
+      category: 'Footer navigation'
     }
   },
-  {
-    label: 'Feedback',
-    url: '/feedback',
-    tracking: {
-      label: 'Send feedback',
-      action: 'Click',
-      category: 'Navigation'
-    }
-  }
-]
-
-export const footerUtility = [
   {
     label: 'Privacy policy',
     url: '/privacy-policy',
@@ -69,14 +66,17 @@ export const footerUtility = [
       action: 'Click',
       category: 'Footer navigation'
     }
-  },
+  }
+]
+
+export const footerUtility = [
   {
     label: 'Disclaimer',
     url: '/disclaimer',
     tracking: {
       label: 'Disclaimer',
       action: 'Click',
-      category: 'Footer navigation'
+      category: 'Footer utility'
     }
   }
 ]
