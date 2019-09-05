@@ -10,7 +10,7 @@ const LinkList = props => {
       {items && items.map((v, i) => {
         const link = (v.parentPage && v.parentPage.slug) !== undefined ? `/${v.parentPage.slug}/${v.slug}/` : `/${v.slug}/`
         return (
-          <li className='list__item' key={i}>
+          <li className={`list__item ${props.isDouble === true ? 'column is-half-desktop' : ''}`} key={i}>
             <Link to={link} className='list-item__link'>
               <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
               {(v.metaDescription && !props.simple) && 

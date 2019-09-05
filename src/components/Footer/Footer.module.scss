@@ -13,10 +13,6 @@
     color: $white;
   }
 
-  @include from($tablet) {
-    margin-top: 12rem;
-  }
-
 }
 
 .footer__inner {
