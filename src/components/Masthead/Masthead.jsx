@@ -78,7 +78,7 @@ export default class Masthead extends React.PureComponent {
                   <span aria-hidden='true'></span>
                 </Button>                  
                 
-                <Button className='btn--flat btn--small is-hidden-tablet' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon {...icon}/></Button>
+                <Button className='btn--flat btn--small is-hidden-tablet' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon className='spaced-left' {...icon}/></Button>
               </div>
 
               <div id='nav-primary' className={`navbar-menu navbar-primary ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>
@@ -87,9 +87,9 @@ export default class Masthead extends React.PureComponent {
                 </div>
               </div>
 
-              <div className='navbar-end is-hidden-mobile left-spaced'>
-                <Button className='btn--flat btn--small' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon {...icon}/></Button>
-              </div>              
+              {this.props.hasSearch && <div className='navbar-end is-hidden-mobile left-spaced'>
+                <Button className='btn--flat btn--small' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon className='spaced-left' {...icon}/></Button>
+              </div>}        
             </nav>
           </section>
         </div>
@@ -102,7 +102,7 @@ export default class Masthead extends React.PureComponent {
             <Button className='btn--flat close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
           </div>
         </section>}
-        {this.state.takeover && <div className='takeover-bg' onClick={this.handleSearchClick.bind(this)}/>}
+        {(this.state.takeover && this.props.hasSearch) && <div className='takeover-bg' onClick={this.handleSearchClick.bind(this)}/>}
       </header>
     )
   }

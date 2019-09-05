@@ -18,7 +18,7 @@ class PageTemplate extends React.PureComponent {
   render() {
     const post = get(this.props, 'data.contentfulPage')
     return (
-      <Layout location={this.props.location} >
+      <Layout location={this.props.location} hasSearch>
         <Helmet title={post.metaTitle} description={post.metaDescription}/>
         {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage}/>}
         <Main>
