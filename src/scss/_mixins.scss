@@ -1,0 +1,26 @@
+
+@mixin link {
+  margin-bottom: .2em;
+  color: $brand-green;
+
+  .has-hover & {
+    &:active,
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      border-bottom-style: solid;
+    }
+  }
+}
+
+@mixin break-word {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  // hyphens: auto;
+}
+
+@mixin vertical-align {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

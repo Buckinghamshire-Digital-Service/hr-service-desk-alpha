@@ -1,0 +1,119 @@
+$dims: 1em;
+
+%bullet {
+  padding-left: 1.5rem;
+  position: relative;
+
+  &:before {
+    content: '';
+    left: 0;
+    top: $dims / 2;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: $dims;
+    background-color: $black;
+  }      
+}
+
+.long-form,
+.intro {
+  @include padding-small;
+}
+
+.list {
+  &.simple { 
+    @include padding-small;
+  }
+}
+
+
+.long-form,
+.intro {
+  ul {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  li {
+    @extend %bullet;
+    margin-bottom: 1.2em;
+  }
+}
+
+.list__item {
+  margin: .6em 0;
+  
+  .raised & {
+    @include padding-small;
+    background-color: $white;
+    margin-left: $gap / 4;
+    margin-right: $gap / 4; 
+    box-shadow: 0 3px 2px 0 rgba($black, 0.1);
+
+    @include from($tablet) {
+      margin-left: $gap / 2;
+      margin-right: $gap / 2;         
+    }
+  }
+
+  .simple & {
+    margin: .75em 0;    
+    background-color: $gray-100;
+
+    .list-item__title {
+      font-size: $size-6;
+      font-family: $body-family;
+    }
+  }
+
+  .bullet & {
+    @extend %bullet;
+  }
+}
+
+.list__link { 
+  display: block;
+}
+
+.has-chevron {
+  position: relative;
+  margin-top: .3em;
+  margin-bottom: .5em;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: $dims;
+    height: $dims;
+    background-image: url('/svg/arrow-right-thin.svg');
+    background-repeat: no-repeat;
+    background-position: center 100%;
+    top: 50%;
+    margin-top: -($dims / 2);
+    transition: background-position-x .1s ease-in-out;
+    padding-right: .2em;
+  }
+
+  .has-hover & {
+    &:hover {
+      &::after {
+        background-position-x: 102%;
+      }
+    }
+  }
+
+  &--reversed {
+    padding-left: 1.2em;
+    
+    &:after {
+      left: 0;
+      background-position: center left;
+      transform: rotate(180deg);
+    }    
+  }
+}
+
+.underlined {
+  text-decoration: underline;
+}

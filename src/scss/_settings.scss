@@ -1,0 +1,33 @@
+
+// Brand colors
+$brand-green: #0A6154;
+$brand-purple: #8A4D76;
+$brand-pink: #FA7C91;
+$brand-brown: #757763;
+$brand-beige-light: #D0D1CD;
+$brand-beige-lighter: #EFF0EB;
+
+// Greys
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #D8D8D8 !default;
+$gray-900: #434B51 !default;
+$black:    #000 !default;
+
+// Global variables
+
+$max-width: 1200px;
+$constrained-width: 700px;
+$gap: 64px !default
+$tablet: 769px !default
+$desktop: 960px + (2 * $gap) !default
+$widescreen: 1152px + (2 * $gap) !default
+$widescreen-enabled: true !default
+$fullhd: 1344px + (2 * $gap) !default
+$fullhd-enabled: true !default

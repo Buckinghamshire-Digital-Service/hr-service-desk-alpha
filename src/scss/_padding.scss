@@ -1,0 +1,25 @@
+$padding: $gap;
+
+@mixin padding {
+  padding: $padding / 2;
+
+  @include from($tablet) {
+    padding: $padding;
+  }  
+}
+
+@mixin padding-small {
+  padding: $padding / 4;
+
+  @include from($tablet) {
+    padding: $padding / 2;
+  }  
+}
+
+@mixin padding-vertical-small {
+  padding: ($padding / 7) ($padding / 4);
+
+  @include from($tablet) {
+    padding: ($padding / 4) ($padding / 2);
+  }  
+}

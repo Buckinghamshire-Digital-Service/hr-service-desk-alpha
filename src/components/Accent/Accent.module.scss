@@ -1,0 +1,118 @@
+.accent {
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+
+  @include from($desktop) {
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+  }
+
+  &--shallow {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    background-color: $white;
+
+    @include from($desktop) {
+      padding-bottom: 1.5rem;
+      padding-top: 1.5rem;
+    }
+  }
+
+  &--loud {
+    color: $white;
+    background-color: $brand-green;
+  }
+
+
+  &--muted {
+    background-color: $gray-100;
+  }
+
+  &--fixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 20;
+  }
+
+  &--bottom {
+    padding-bottom: 0;
+  }
+}
+
+.accent__text {
+  display: block;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+
+  @include from($tablet) {
+    overflow: hidden;
+    font-size: 1.8rem;
+    margin-top: 0;
+  }
+}
+
+.accent__content {
+  color: $white;
+  background-color: $gray-900;
+  padding: 1.5rem 2rem;
+  position: relative;
+  z-index: 1;
+  margin-top: -2rem;
+
+  @include from($tablet) {
+    margin-bottom: 4rem;
+    margin-top: -6rem;
+  }
+
+  .accent__link {
+    color: $white;
+    border-bottom-color: $white;
+
+    .has-hover & {
+      &:focus,
+      &:active,
+      &:hover {
+        color: $white;
+        border-bottom-color: $white;
+      }
+    }
+  }
+
+  & + .form {
+    @include from($tablet) {
+      margin-top: -2.5rem;
+    }
+  }
+
+  .accent--fixed & {
+    margin-bottom: 0;
+    margin-top: auto;
+    background-color: $gray-100;
+
+    @include from($tablet) {
+      padding-right: 6rem;
+    }
+  }
+
+  @include until($tablet) {
+    margin-left: 0;
+    margin-right: 0;
+
+    .wrapper--constant & {
+      margin-left: -2rem;
+      margin-right: -2rem;
+    }
+  }
+
+  @include from($tablet) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+    .wrapper--constant & {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
