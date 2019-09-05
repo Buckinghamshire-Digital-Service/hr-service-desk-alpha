@@ -65,6 +65,7 @@ export const pageQuery = graphql`
         open
         link {
           id
+          title
           slug
           parentPage {
             slug
@@ -73,6 +74,55 @@ export const pageQuery = graphql`
           }
         }
       }
+
+      references {
+        ... on ContentfulText {
+          content {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+        ... on ContentfulList {
+          title
+          items
+          type
+          modifiers
+        }
+        ... on ContentfulCollapsible {
+          title
+          ariaLabel
+          content {
+            childMarkdownRemark {
+              html
+            }
+          }
+          open
+          link {
+            id
+            title
+            slug
+            parentPage {
+              slug
+              title
+              metaDescription
+            }
+          }
+        }
+        ... on ContentfulCallout {
+          title
+          text {
+            childMarkdownRemark {
+              html
+            }
+          }
+          modifiers
+        }
+      }
+
+
+
+
     }
   }
 `

@@ -51,22 +51,17 @@ export default class Masthead extends React.PureComponent {
   render () {
     let icon = {
       label: 'search',
-      url: '../../../static/svg/magnifying.svg'
+      url: '../../../svg/magnifying.svg'
     }
     let iconSubmit = {
       label: 'Submit search',
-      url: '../../../static/svg/magnifying.svg'
+      url: '../../../svg/magnifying.svg'
     }
     let iconClose = {
       label: 'close',
-      url: '../../../static/svg/cross.svg'
+      url: '../../../svg/cross.svg'
     }
-    let navClasses = classNames('navbar', {
-      'd-none': !this.state.mobileMenuOpen
-    })
-
-    let current = this.props.path ? this.props.path.pathname : ''
-
+    
     return (
       <header className='masthead'>
         <span className='is-sr-only'>Buckinghamshire Council HR desk service</span>

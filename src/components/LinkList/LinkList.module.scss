@@ -46,12 +46,20 @@ $dims: 1em;
   
   .raised & {
     @include padding-small;
-    background-color: $gray-100;
+    background-color: $white;
+    margin-left: $gap / 4;
+    margin-right: $gap / 4; 
     box-shadow: 0 3px 2px 0 rgba($black, 0.1);
+
+    @include from($tablet) {
+      margin-left: $gap / 2;
+      margin-right: $gap / 2;         
+    }
   }
 
   .simple & {
-    margin: .75em 0;
+    margin: .75em 0;    
+    background-color: $gray-100;
 
     .list-item__title {
       font-size: $size-6;
