@@ -1,13 +1,12 @@
 import React from 'react'
 import Img from 'gatsby-image'
 
-const Hero = ({ data }) => (
-  <div className={styles.hero}>
-    <Img alt={data.name} fluid={data.heroImage.fluid} />
+const Hero = (props) => (
+  <div className='hero'>
+    <Img alt={props.headline} fluid={props.image[0].file.url} />
     <div>
-      <h3>{data.name}</h3>
-      <p>{data.title}</p>
-      <p>{data.shortBio.shortBio}</p>
+      <h3>{props.headline}</h3>
+      <p>{props.subHeading}</p>
     </div>
   </div>
 )

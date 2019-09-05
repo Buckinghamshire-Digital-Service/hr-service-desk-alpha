@@ -6,6 +6,7 @@ import Layout from '../components/Layout/Layout.jsx'
 import LinkList from '../components/LinkList/LinkList.jsx'
 import Main from '../components/Main/Main.jsx'
 import Text from '../components/Text/Text.jsx'
+//import Hero from '../components/Hero/Hero.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Collapsible from '../components/Collapsible/Collapsible.jsx'
@@ -16,12 +17,12 @@ import marked from 'marked'
 class PageTemplate extends React.PureComponent {
   render() {
     const post = get(this.props, 'data.contentfulPage')
-    console.log(post.collapsibleLinks)
     return (
       <Layout location={this.props.location} >
         <Helmet title={post.metaTitle} description={post.metaDescription}/>
         {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage}/>}
         <Main>
+          {/*{post.hero && <Hero {...post.hero}/>}*/}
           <PageTitle text={post.title}/>
           <Text className='intro' content={post.intro.childMarkdownRemark.html} />
 
@@ -54,6 +55,28 @@ export const pageQuery = graphql`
           html
         }
       }
+
+      hero {
+        headline
+        subHeading
+        image {
+          title
+          description
+          file {
+            details {
+              size
+              image {
+                width
+                height
+              }
+            }
+            fileName
+            contentType
+            url
+          }
+        }
+      }
+
       collapsibleLinks {
         title
         ariaLabel
@@ -75,50 +98,50 @@ export const pageQuery = graphql`
         }
       }
 
-      references {
-        ... on ContentfulText {
-          content {
-            childMarkdownRemark {
-              html
-            }
-          }
-        }
-        ... on ContentfulList {
-          title
-          items
-          type
-          modifiers
-        }
-        ... on ContentfulCollapsible {
-          title
-          ariaLabel
-          content {
-            childMarkdownRemark {
-              html
-            }
-          }
-          open
-          link {
-            id
-            title
-            slug
-            parentPage {
-              slug
-              title
-              metaDescription
-            }
-          }
-        }
-        ... on ContentfulCallout {
-          title
-          text {
-            childMarkdownRemark {
-              html
-            }
-          }
-          modifiers
-        }
-      }
+#      references {
+#        ... on ContentfulText {
+#          content {
+#            childMarkdownRemark {
+#              html
+#            }
+#          }
+#        }
+#        ... on ContentfulList {
+#          title
+#          items
+#          type
+#          modifiers
+#        }
+#        ... on ContentfulCollapsible {
+#          title
+#          ariaLabel
+#          content {
+#            childMarkdownRemark {
+#              html
+#            }
+#          }
+#          open
+#          link {
+#            id
+#            title
+#            slug
+#            parentPage {
+#              slug
+#              title
+#              metaDescription
+#            }
+#          }
+#        }
+#        ... on ContentfulCallout {
+#          title
+#          text {
+#            childMarkdownRemark {
+#              html
+#            }
+#          }
+#          modifiers
+#        }
+#      }
 
 
 

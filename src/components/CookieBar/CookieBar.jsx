@@ -1,15 +1,18 @@
 import React from 'react'
-// import {Cookies} from 'react-cookie'
 import Accent from '../Accent/Accent'
-import Svg from '../Svg/Svg'
+import Icon from '../Icon/Icon'
 import Anchor from '../Anchor/Anchor'
 import { ClientOnly } from '../ClientOnly/ClientOnly'
 import { getCookie, setCookie } from '../../lib/cookie.js'
 
-export default class CookieBar extends React.Component {
-  componentWillMount() {
+export default class CookieBar extends React.PureComponent {
+  constructor (props) {
+    super(props)
     let cookieValue = getCookie('bucks-hr-cookies')
-    this.setState({visible: !cookieValue})
+    console.log(cookieValue)
+    this.state = {
+      visible: (cookieValue === undefined || cookieValue !== 1) ? true : false
+    }
   }
 
   closeMessage() {
@@ -20,6 +23,11 @@ export default class CookieBar extends React.Component {
   }
 
   render() {
+    let iconClose = {
+      label: 'close',
+      url: '../../../svg/cross.svg'
+    }
+
     return (
       <ClientOnly>
        {this.state.visible &&
@@ -30,7 +38,7 @@ export default class CookieBar extends React.Component {
              className='btn btn--flat btn--static spacing-left'
              aria-label='Close cookie bar panel'
              onClick={this.closeMessage.bind(this)}>
-             <Svg url='/svg/cross-red.svg' alt='Close' />
+             <Icon {...iconClose} />
           </button>
         </p>
        </Accent>

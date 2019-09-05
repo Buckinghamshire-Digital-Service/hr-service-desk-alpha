@@ -88,7 +88,7 @@
   .accent--fixed & {
     margin-bottom: 0;
     margin-top: auto;
-    background-color: $footer-warning;
+    background-color: $gray-100;
 
     @include from($tablet) {
       padding-right: 6rem;
@@ -116,28 +116,3 @@
   }
 }
 
-.accent__warning {
-  font-size: 2.2rem;
-  padding-left: 4rem;
-  margin-top: -.2rem;
-  background-repeat: no-repeat;
-  margin-right: 2.1rem;
-  padding-right: 2rem;
-  background-image: url('/ui/svg/warning-red.svg');
-  background-position: center left;
-  position: relative;
-
-  @include from($tablet) {
-    float: left;
-
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      top: 0;
-      width: 1px;
-      background-color: rgba($white, .2);
-    }
-  }
-}
