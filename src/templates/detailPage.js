@@ -29,7 +29,7 @@ class PageTemplate extends React.PureComponent {
           {post.collapsibleLinks && post.collapsibleLinks.map((v, i) => {
             return <Collapsible key={i} history={this.props.location} {...v}/>
           })}
-          {post.bodyContent && renderer(post.bodyContent.json, this.props.location)}
+          {/*{post.bodyContent && renderer(post.bodyContent.json, this.props.location)}*/}
 
           {post.related && <LinkList items={post.related} className='raised' />}
         </Main>
