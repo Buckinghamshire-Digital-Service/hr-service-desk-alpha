@@ -9,9 +9,8 @@ export default class CookieBar extends React.PureComponent {
   constructor (props) {
     super(props)
     let cookieValue = getCookie('bucks-hr-cookies')
-    console.log(cookieValue)
     this.state = {
-      visible: (cookieValue === undefined || cookieValue !== 1) ? true : false
+      visible: (parseInt(cookieValue) === 1 ? false : true)
     }
   }
 
