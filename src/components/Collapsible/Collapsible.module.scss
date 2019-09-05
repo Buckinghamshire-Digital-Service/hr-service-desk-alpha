@@ -6,6 +6,9 @@ $dims: 1.4rem;
 }
 
 .collapsible__inner {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
   &::before {
     content: '';
     display: block;
@@ -31,7 +34,6 @@ $dims: 1.4rem;
     transition: height .15s ease-in-out;
 
     &.collapsible__content--active {
-      padding-bottom: 1.5rem;
 
       &::after {
         display: none;
