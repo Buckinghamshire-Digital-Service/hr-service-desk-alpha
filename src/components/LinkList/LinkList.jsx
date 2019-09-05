@@ -12,7 +12,7 @@ const LinkList = props => {
         return (
           <li className='list__item' key={i}>
             <Link to={link} className='list-item__link'>
-              <Heading text={v.title} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
+              <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
               {(v.metaDescription && !props.simple) && 
               <><p>{v.metaDescription}</p>
                 <p className='has-chevron'><span className='underlined'>Find out more</span>
@@ -28,7 +28,8 @@ const LinkList = props => {
 }
 
 LinkList.defaultProps = {
-  className: ''
+  className: '',
+  type: 'h2'
 }
 
 export default LinkList

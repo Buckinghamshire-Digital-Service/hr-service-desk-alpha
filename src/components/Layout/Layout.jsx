@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import Container from '../Container/Container.jsx'
 import Masthead from '../Masthead/Masthead.jsx'
 import Footer from '../Footer/Footer.jsx'
+import Skiplinks from '../Skiplinks/Skiplinks.jsx'
 
 class Layout extends React.PureComponent {
   render() {
@@ -16,6 +17,7 @@ class Layout extends React.PureComponent {
 
     return (
       <>
+        <Skiplinks />
         <Container>
           <Masthead location={location}/>
           {children}

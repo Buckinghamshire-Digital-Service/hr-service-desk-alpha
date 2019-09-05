@@ -70,3 +70,53 @@
     }
   }
 }
+
+.navbar-primary {
+  &.is-active {
+    @include until($tablet) {
+      background-color: $brand-green;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding-top: 5rem;
+
+      .navbar-item {
+        color: $white;
+        text-align: right;
+        padding-right: 2rem;
+
+        .has-hover & {
+          &:hover {
+            background-color: $gray-900;
+          }
+        }       
+      }
+    }
+  }
+}
+
+.navbar-burger {
+  &.is-active {
+    position: fixed;
+    right: 1rem;
+    z-index: 1000;
+
+    span {
+      background-color: $white;
+    }
+  }
+
+  .has-hover & {
+    &:hover {
+      background-color: $gray-100;
+
+      span {
+        background-color: $black;
+      }
+    }
+  }
+}
+
+
