@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Hero from '../components/Hero/Hero.jsx'
+import HeroSearch from '../components/Hero/HeroSearch.jsx'
 import Layout from '../components/Layout/Layout.jsx'
 import ListItem from '../components/ListItem/ListItem.jsx'
 import Heading from '../components/Heading/Heading.jsx'
@@ -27,10 +27,10 @@ class RootIndex extends React.PureComponent {
       <Layout location={this.props.location} >
         <Helmet title={`${post.title} | ${siteTitle}`} description={post.metaDescription}/>
         <Main className='muted'>
-          {post.hero && <Hero {...post.hero}/>}
+          {post.hero && <HeroSearch {...post.hero}/>}
           <PageTitle text={post.title}/>
           {post.intro && <Text className='intro' content={post.intro.childMarkdownRemark.html} />}
-          {post.childPages && <LinkList isDouble items={post.childPages} className='columns raised'/>}
+          {post.childPages && <LinkList isDouble items={post.childPages} className='raised'/>}
           <div className='panel panel--flat panel--padding-small panel--has-heading'><Link to='/downloads'><Icon {...icon}/><span className='spaced-left'>Downloads</span></Link></div>
           {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small'><Heading className='h3' text='Other areas' /><LinkList type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
         </Main>
@@ -48,6 +48,7 @@ export const pageQuery = graphql`
         title
       }
     }
+
     contentfulHomePage {
       title
       metaTitle
@@ -57,6 +58,28 @@ export const pageQuery = graphql`
           html
         }
       }
+
+      hero {
+        headline
+        subHeading
+        image {
+          title
+          description
+          file {
+            details {
+              size
+              image {
+                width
+                height
+              }
+            }
+            fileName
+            contentType
+            url
+          }
+        }
+      }
+
       childPages {
         title
         slug

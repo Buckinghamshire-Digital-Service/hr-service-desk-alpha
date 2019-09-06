@@ -28,7 +28,12 @@ $dims: 1em;
 
   &.simple--flat { 
     padding-left: 0;
-  }  
+  }
+
+  &.columns {
+    margin: 0;
+    flex-wrap: wrap;
+  }
 }
 
 
@@ -124,4 +129,8 @@ $dims: 1em;
 
 .underlined {
   text-decoration: underline;
+}
+
+.text-link {
+  margin-top: 2rem;
 }
