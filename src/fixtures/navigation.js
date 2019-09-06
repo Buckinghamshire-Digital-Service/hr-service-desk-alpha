@@ -11,7 +11,7 @@ export const primary = [
   },
   {
     label: 'About',
-    url: '/about',
+    url: '#',
     tracking: {
       label: 'About us',
       action: 'Click',
@@ -20,7 +20,7 @@ export const primary = [
   },  
   {
     label: 'Downloads',
-    url: '/downloads',
+    url: '#',
     tracking: {
       label: 'All downloads',
       action: 'Click',
@@ -29,7 +29,7 @@ export const primary = [
   },
   {
     label: 'Contact',
-    url: '/contact',
+    url: '#',
     tracking: {
       label: 'Contact Bucks',
       action: 'Click',
@@ -42,7 +42,7 @@ export const primary = [
 export const footer = [
   {
     label: 'Email',
-    url: '/contact',
+    url: '#',
     tracking: {
       label: 'Footer email contact',
       action: 'Click',
@@ -51,7 +51,7 @@ export const footer = [
   },
   {
     label: 'Privacy policy',
-    url: '/privacy-policy',
+    url: '#',
     tracking: {
       label: 'Privacy policy',
       action: 'Click',
@@ -60,7 +60,7 @@ export const footer = [
   },
   {
     label: 'Cookie policy',
-    url: '/cookie-policy',
+    url: '#',
     tracking: {
       label: 'Cookie policy',
       action: 'Click',
@@ -72,7 +72,7 @@ export const footer = [
 export const footerUtility = [
   {
     label: 'Disclaimer',
-    url: '/disclaimer',
+    url: '#',
     tracking: {
       label: 'Disclaimer',
       action: 'Click',
