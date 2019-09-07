@@ -15,8 +15,9 @@ $dims: 1em;
     background-color: $black;
   }      
 }
+
 .intro {
-  font-size: 120%;
+  max-width: 50rem;
 }
 
 .long-form,
@@ -50,6 +51,7 @@ $dims: 1em;
 
   li {
     @extend %bullet;
+    @include standardText;
     margin-bottom: 1em;
   }
 }

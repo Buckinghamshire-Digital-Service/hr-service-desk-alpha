@@ -98,15 +98,18 @@ h4,
   font-size: $size-5;
 }
 
-
-p {
-  font-size: $size-6;
-  margin-bottom: 1em;
+@mixin standardText {
+  font-size: $size-6;  
 
   @include from($desktop) {
     font-size: $size-5;
   }
+}
 
+p {
+  @include standardText;
+  margin-bottom: 1em;
+  
   a {
     @include link;
   }
