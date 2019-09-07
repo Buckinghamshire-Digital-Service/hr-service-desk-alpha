@@ -1,12 +1,12 @@
 $dims: 1em;
 
 %bullet {
-  padding-left: 1.5rem;
+  padding-left: 1.75rem;
   position: relative;
 
   &:before {
     content: '';
-    left: 0;
+    left: .2rem;
     top: $dims / 2;
     position: absolute;
     width: 6px;
@@ -14,6 +14,9 @@ $dims: 1em;
     border-radius: $dims;
     background-color: $black;
   }      
+}
+.intro {
+  font-size: 120%;
 }
 
 .long-form,
@@ -36,17 +39,18 @@ $dims: 1em;
   }
 }
 
-
+.collapsible__inner,
 .long-form,
 .intro {
   ul {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
   }
 
   li {
     @extend %bullet;
-    margin-bottom: 1.2em;
+    margin-bottom: 1em;
   }
 }
 

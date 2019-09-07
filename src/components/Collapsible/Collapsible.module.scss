@@ -16,6 +16,13 @@ $dims: 1.4rem;
     height: 0;
     position: relative;
   }
+
+
+  h2, 
+  h3 {
+    margin-top: 1.75em;
+    margin-bottom: 1em;
+  }  
 }
 
 .collapsible {
@@ -39,6 +46,7 @@ $dims: 1.4rem;
         display: none;
       }
     }
+
   }
 
   .collapsible__trigger {
