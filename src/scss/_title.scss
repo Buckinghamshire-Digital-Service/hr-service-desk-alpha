@@ -99,7 +99,7 @@ h4,
   margin-bottom: 1em;
   font-size: $large-body-m;  
 
-  @include from($desktop) {
+  @include from($tablet) {
     font-size: $large-body;
   }
 }
@@ -107,7 +107,7 @@ h4,
 @mixin standardText {
   font-size: $medium-body-m;  
 
-  @include from($desktop) {
+  @include from($tablet) {
     font-size: $medium-body;
   }
 }

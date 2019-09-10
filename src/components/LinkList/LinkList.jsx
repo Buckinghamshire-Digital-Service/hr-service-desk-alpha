@@ -11,17 +11,21 @@ const LinkList = props => {
     <ul className={`list ${props.className}`}>
       {items && items.map((v, i) => {
         const link = (v.parentPage && v.parentPage.slug) !== undefined ? `/${v.parentPage.slug}/${v.slug}/` : `/${v.slug}/`
+        
         return (
-          <li className={`list__item`} key={i}>
-            <Link to={link} className='list-item__link'>
-              <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/></Link>
-            {(v.metaDescription && !props.simple) && <><p>{v.metaDescription}</p>
+          <li className='column is-half-tablet' key={i}>
+            <div className='list__item'>
+              <Link to={link} className='list-item__link'>
+                <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
+              </Link>
+              {v.metaDescription && <p>{v.metaDescription}</p>}
               <ButtonGroup>
-                <Button href={link} className='btn--primary'>
+                <Button url={link} className='btn--primary'>
                   Find out more
                   <span className='is-sr-only'> about {v.title}</span>
                 </Button>
-              </ButtonGroup></>}
+              </ButtonGroup>
+            </div>
           </li>
         )
       }

@@ -33,7 +33,7 @@ export default class Button extends React.PureComponent {
 
     let id = this.props.id ? {'id': [this.props.id]} : null
     let disabled = !!this.props.disabled
-
+    
     if (url || type === 'a') {
       component = (
         <Link to={url}

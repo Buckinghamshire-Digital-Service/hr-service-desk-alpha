@@ -24,7 +24,7 @@ class PageTemplate extends React.PureComponent {
         <Main>
           {/*{post.hero && <Hero {...post.hero}/>}*/}
           <PageTitle text={post.title}/>
-          <Text className='intro' content={post.intro.childMarkdownRemark.html} />
+          <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
 
           {post.collapsibleLinks && post.collapsibleLinks.map((v, i) => {
             return <Collapsible key={i} history={this.props.location} {...v}/>
