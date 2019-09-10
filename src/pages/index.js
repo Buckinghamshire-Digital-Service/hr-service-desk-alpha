@@ -19,10 +19,6 @@ class RootIndex extends React.PureComponent {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     let post = get(this, 'props.data.contentfulHomePage')
-    let icon = {
-      label: 'Downloads',
-      url: '../../../svg/download.svg'
-    }
 
     return (
       <Layout location={this.props.location} >
@@ -32,7 +28,7 @@ class RootIndex extends React.PureComponent {
           <PageTitle text={post.title}/>
           {post.intro && <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />}
           {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
-          <div className='panel panel--flat panel--padding-small panel--has-heading'><Link to='/downloads'><Icon {...icon}/><span className='spaced-left'>Downloads</span></Link></div>
+          <div className='panel panel--flat panel--padding-small panel--has-heading'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>
           {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
         </Main>
       </Layout>

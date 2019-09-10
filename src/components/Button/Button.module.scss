@@ -3,7 +3,7 @@
   font-size: $medium-body-m;
   font-family: $body-family-bold;
   line-height: 1;
-  padding: .6em 1em .7em;
+  padding: .7em 1em .8em;
   color: inherit;
   cursor: pointer;
   border: 0;
@@ -21,6 +21,11 @@
   &:active,
   &:focus {
     text-decoration: underline;
+  }
+
+  &:active {
+    padding-top: .8em;
+    padding-bottom: .7em;
   }
 
   .has-hover & {
@@ -75,3 +80,13 @@
     font-size: 1.8rem;
   }
 }
+
+.btn--full-width {
+  display: block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+

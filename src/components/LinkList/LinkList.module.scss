@@ -33,8 +33,40 @@ $dims: 1em;
   }
 
   &.columns {
-    margin: 0;
     flex-wrap: wrap;
+    margin-bottom: $gap / 2;
+    margin-top: $gap / 2; 
+
+    @include from($tablet) {
+      margin-bottom: $gap;
+      margin-top: $gap; 
+    }
+  }
+
+  .column {
+    padding: 0;
+
+    @include from($tablet) {
+      &:nth-child(odd) {
+        .list__item {
+          margin-left: $gap / 2;
+          margin-right: 10px;        
+        }
+
+      }
+
+      &:nth-child(even) {
+        .list__item {
+          margin-right: $gap / 2;
+          margin-left: 10px;         
+        }
+      }      
+    } 
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
@@ -60,14 +92,11 @@ $dims: 1em;
   .raised & {
     @include padding-small;
     background-color: $white;
-    margin-left: $gap / 4;
-    margin-right: $gap / 4; 
+    margin-left: $gap / 2;
+    margin-right: $gap / 2; 
     box-shadow: 0 3px 2px 0 rgba($black, 0.1);
-
-    @include from($tablet) {
-      margin-left: $gap / 2;
-      margin-right: $gap / 2;         
-    }
+    border-radius: 5px;
+    margin-bottom: 1em;
   }
 
   .simple & {
@@ -138,3 +167,8 @@ $dims: 1em;
 .text-link {
   margin-top: 2rem;
 }
+
+
+
+
+
