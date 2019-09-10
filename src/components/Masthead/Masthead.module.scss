@@ -76,6 +76,11 @@
 
 .navbar {
   background-color: transparent;
+
+  .navbar-item {
+    color: $white;
+    font-family: $body-family-bold;
+  }
 }
 
 .navbar-primary {
@@ -105,13 +110,15 @@
 }
 
 .navbar-burger {
+  background-color: $white;
+
   &.is-active {
     position: fixed;
     right: 1rem;
     z-index: 1000;
 
     span {
-      background-color: $white;
+      background-color: $black;
     }
   }
 

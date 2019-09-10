@@ -17,18 +17,20 @@ class PageTemplate extends React.PureComponent {
   render() {
     const post = get(this.props, 'data.contentfulPage')
     return (
-      <Layout location={this.props.location} hasSearch>
+      <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero}>
         <Helmet title={post.metaTitle} description={post.metaDescription}/>
-        {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage}/>}
-        <Main>
-          <PageTitle text={post.title}/>
-          <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
-
+        {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
+        <Main className='full-width'>
+          <div className='container'>
+            <PageTitle text={post.title}/>
+            <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
+          </div>
           {post.collapsibleLinks && post.collapsibleLinks.map((v, i) => {
             return <Collapsible key={i} history={this.props.location} {...v}/>
           })}
 
-          {post.related && <LinkList items={post.related} className='raised' />}
+          {post.related && <LinkList items={post.related} className='container raised' />}
+          <div className='panel panel--flat panel--padding-small panel--has-heading'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>
         </Main>
       </Layout>
     )

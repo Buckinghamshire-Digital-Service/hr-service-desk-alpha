@@ -45,7 +45,7 @@ export default class Collapsible extends React.PureComponent {
     let classes = classNames('collapsible collapsible--chevron', this.props.className, {
       'collapsible--active': this.state.visible
     })
-    let contentClasses = classNames('collapsible__content', {
+    let contentClasses = classNames('collapsible__content container', {
       'collapsible__content--active': this.state.visible
     })
     let toggleClass = classNames('collapsible__trigger', {
@@ -56,7 +56,7 @@ export default class Collapsible extends React.PureComponent {
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
-        <h2 className='collapsible__title'>
+        <h2 className='collapsible__title container'>
           <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || this.title}>
           {this.title}
           </a>

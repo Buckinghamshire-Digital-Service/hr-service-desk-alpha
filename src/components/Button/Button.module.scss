@@ -1,5 +1,4 @@
 .btn {
-  border-radius: 10px;
   font-size: $medium-body-m;
   font-family: $body-family-bold;
   line-height: 1;
@@ -11,7 +10,11 @@
 
   @include from($tablet) {
     font-size: $medium-body;
-  }  
+  }
+
+  &--has-radius {
+    border-radius: 10px;
+  }
 }
 
 .btn--primary {
