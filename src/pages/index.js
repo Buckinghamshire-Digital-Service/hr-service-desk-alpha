@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import HeroSearch from '../components/Hero/HeroSearch.jsx'
 import Layout from '../components/Layout/Layout.jsx'
 import ListItem from '../components/ListItem/ListItem.jsx'
 import Heading from '../components/Heading/Heading.jsx'
@@ -21,10 +20,9 @@ class RootIndex extends React.PureComponent {
     let post = get(this, 'props.data.contentfulHomePage')
 
     return (
-      <Layout location={this.props.location} >
+      <Layout location={this.props.location} className='muted full-width' hero={post.hero}>
         <Helmet title={`${post.title} | ${siteTitle}`} description={post.metaDescription}/>
-        <Main className='muted'>
-          {post.hero && <HeroSearch {...post.hero}/>}
+        <Main className='container'>
           <PageTitle text={post.title}/>
           {post.intro && <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />}
           {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}

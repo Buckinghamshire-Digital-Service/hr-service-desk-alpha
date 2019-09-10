@@ -3,8 +3,11 @@
 .masthead {
   position: relative;
   z-index: 100;
-  background-color: $white;
   width: 100%;
+}
+
+.masthead__inner {
+  @include max-width;
 }
 
 .masthead__takeover__inner,
@@ -35,7 +38,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba($black, .4);
+  background-color: rgba($black, .5);
 }
 
 .form--search {
@@ -69,6 +72,10 @@
       right: 0;
     }
   }
+}
+
+.navbar {
+  background-color: transparent;
 }
 
 .navbar-primary {

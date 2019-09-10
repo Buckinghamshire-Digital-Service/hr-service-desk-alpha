@@ -6,7 +6,6 @@ import Layout from '../components/Layout/Layout.jsx'
 import LinkList from '../components/LinkList/LinkList.jsx'
 import Main from '../components/Main/Main.jsx'
 import Text from '../components/Text/Text.jsx'
-//import Hero from '../components/Hero/Hero.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Collapsible from '../components/Collapsible/Collapsible.jsx'
@@ -22,14 +21,12 @@ class PageTemplate extends React.PureComponent {
         <Helmet title={post.metaTitle} description={post.metaDescription}/>
         {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage}/>}
         <Main>
-          {/*{post.hero && <Hero {...post.hero}/>}*/}
           <PageTitle text={post.title}/>
           <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
 
           {post.collapsibleLinks && post.collapsibleLinks.map((v, i) => {
             return <Collapsible key={i} history={this.props.location} {...v}/>
           })}
-          {/*{post.bodyContent && renderer(post.bodyContent.json, this.props.location)}*/}
 
           {post.related && <LinkList items={post.related} className='raised' />}
         </Main>
