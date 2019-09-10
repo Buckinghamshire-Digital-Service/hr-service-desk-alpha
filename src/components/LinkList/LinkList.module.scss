@@ -22,16 +22,14 @@ $dims: 1em;
 
 .long-form,
 .intro {
-  @include padding-small;
+  @include spacing-small;
 }
 
 .list {
-  &.simple { 
-    @include padding-small;
-  }
 
   &.simple--flat { 
     padding-left: 0;
+    margin-top: 1.5em;
   }
 
   &.columns {

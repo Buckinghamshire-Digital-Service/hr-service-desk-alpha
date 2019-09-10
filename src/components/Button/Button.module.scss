@@ -1,10 +1,33 @@
 .btn {
-  border-radius: 0;
-  font-size: 2rem;
+  border-radius: 10px;
+  font-size: $medium-body-m;
   line-height: 1;
-  padding: 1rem;
+  padding: .6em 1em .7em;
   color: inherit;
   cursor: pointer;
+  border: 0;
+  background-color: transparent;
+
+  @include from($tablet) {
+    font-size: $medium-body;
+  }  
+}
+
+.btn--primary {
+  background-color: $brand-green;
+  color: $white;
+
+  &:active,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  .has-hover & {
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+  }
 }
 
 .btn--link {

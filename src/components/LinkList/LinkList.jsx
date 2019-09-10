@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Heading from '../Heading/Heading.jsx'
+import Button from '../Button/Button.jsx'
+import ButtonGroup from '../ButtonGroup/ButtonGroup.jsx'
 
 const LinkList = props => {
   const items = props.items['en-US'] !== undefined ? props.items['en-US'] : props.items
@@ -12,13 +14,14 @@ const LinkList = props => {
         return (
           <li className={`list__item`} key={i}>
             <Link to={link} className='list-item__link'>
-              <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
-              {(v.metaDescription && !props.simple) && 
-              <><p>{v.metaDescription}</p>
-                <p className='has-chevron'><span className='underlined'>Find out more</span>
-                <span className='is-sr-only'> about {v.title}</span></p>
-              </>}
-            </Link>
+              <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/></Link>
+            {(v.metaDescription && !props.simple) && <><p>{v.metaDescription}</p>
+              <ButtonGroup>
+                <Button href={link} className='btn--primary'>
+                  Find out more
+                  <span className='is-sr-only'> about {v.title}</span>
+                </Button>
+              </ButtonGroup></>}
           </li>
         )
       }

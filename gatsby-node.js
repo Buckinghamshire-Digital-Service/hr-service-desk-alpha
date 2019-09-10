@@ -1,5 +1,6 @@
 const Promise = require('bluebird')
 const path = require('path')
+// const fs = require('fs')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -14,6 +15,7 @@ exports.createPages = ({ graphql, actions }) => {
           allContentfulPage {
             edges {
               node {
+                id
                 slug
                 title
                 metaDescription

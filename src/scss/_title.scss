@@ -8,6 +8,20 @@ $size-5: 1.25rem !default
 $size-6: 1rem !default
 $size-7: 0.75rem !default
 
+$size-h1:       56px;
+$size-h1-m:     30px;
+$size-h2:       36px;
+$size-h2-m:     22px;
+$size-h3:       32px;
+$size-h3-m:     18px;
+$large-body:    24px;
+$large-body-m:  16px;
+$medium-body:   18px;
+$medium-body-m: 16px;   
+$small-body:    15px;
+$small-body-m:  12px;
+
+
 $title-color: $black !default
 $title-family: false !default
 $title-size: $size-3 !default
@@ -41,16 +55,12 @@ h4,
 h1,
 .h1,
 %h1 {
-  font-size: $size-3;
+  font-size: $size-h1-m;
   line-height: 1.2;
   margin-top: .5em;
 
   @include from($tablet) {
-    font-size: $size-2;
-  }
-
-  @include from($desktop) {
-    font-size: $size-1;
+    font-size: $size-h1;
   }
 }
 
@@ -58,28 +68,20 @@ h2,
 .h2,
 %h2 {
   line-height: 1;
-  font-size: $size-5;
+  font-size: $size-h2-m;
 
   @include from($tablet) {
-    font-size: $size-4;
-  }
-
-  @include from($desktop) {
-    font-size: $size-3;
+    font-size: $size-h2;
   }
 }
 
 h3,
 .h3,
 %h3 {
-  font-size: $size-6;
+  font-size: $size-h3-m;
 
   @include from($tablet) {
-    font-size: $size-5;
-  }
-
-  @include from($desktop) {
-    font-size: $size-4;
+    font-size: $size-h3;
   }
 }
 
@@ -95,19 +97,22 @@ h4,
 .h4,
 %h4 {
   margin-bottom: 1em;
-  font-size: $size-5;
+  font-size: $large-body-m;  
+
+  @include from($desktop) {
+    font-size: $large-body;
+  }
 }
 
 @mixin standardText {
-  font-size: $size-6;  
+  font-size: $medium-body-m;  
 
   @include from($desktop) {
-    font-size: $size-5;
+    font-size: $medium-body;
   }
 }
 
 p {
-  @include standardText;
   margin-bottom: 1em;
   
   a {

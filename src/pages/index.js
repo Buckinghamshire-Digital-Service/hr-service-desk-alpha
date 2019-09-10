@@ -29,7 +29,7 @@ class RootIndex extends React.PureComponent {
         <Main className='muted'>
           {post.hero && <HeroSearch {...post.hero}/>}
           <PageTitle text={post.title}/>
-          {post.intro && <Text className='intro' content={post.intro.childMarkdownRemark.html} />}
+          {post.intro && <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />}
           {post.childPages && <LinkList isDouble items={post.childPages} className='raised'/>}
           <div className='panel panel--flat panel--padding-small panel--has-heading'><Link to='/downloads'><Icon {...icon}/><span className='spaced-left'>Downloads</span></Link></div>
           {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small'><Heading className='h3' text='Other areas' /><LinkList type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
