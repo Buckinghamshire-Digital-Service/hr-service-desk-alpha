@@ -1,10 +1,42 @@
 .btn {
-  border-radius: 0;
-  font-size: 2rem;
+  font-size: $medium-body-m;
+  font-family: $body-family-bold;
   line-height: 1;
-  padding: 1rem;
+  padding: .7em 1em .8em;
   color: inherit;
   cursor: pointer;
+  border: 0;
+  background-color: transparent;
+
+  @include from($tablet) {
+    font-size: $medium-body;
+  }
+
+  &--has-radius {
+    border-radius: 10px;
+  }
+}
+
+.btn--primary {
+  background-color: $brand-green;
+  color: $white;
+
+  &:active,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:active {
+    padding-top: .8em;
+    padding-bottom: .7em;
+  }
+
+  .has-hover & {
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+  }
 }
 
 .btn--link {
@@ -46,8 +78,24 @@
 .btn--flat {
   border-bottom: 0;
   font-size: 1.5rem;
+  background-color: $gray-200;
+  margin-left: .5em;
+  display: block;
+  height: 3.25rem;
+  position: relative;
+  width: 3.25rem;
 
   @include from($tablet) {
     font-size: 1.8rem;
   }
 }
+
+.btn--full-width {
+  display: block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+

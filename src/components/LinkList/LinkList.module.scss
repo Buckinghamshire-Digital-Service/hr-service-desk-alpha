@@ -1,12 +1,12 @@
 $dims: 1em;
 
 %bullet {
-  padding-left: 1.5rem;
+  padding-left: 1.75rem;
   position: relative;
 
   &:before {
     content: '';
-    left: 0;
+    left: .2rem;
     top: $dims / 2;
     position: absolute;
     width: 6px;
@@ -16,37 +16,74 @@ $dims: 1em;
   }      
 }
 
+.intro {
+  max-width: 50rem;
+  margin-bottom: 5rem;
+}
+
 .long-form,
 .intro {
-  @include padding-small;
+  @include spacing-small;
 }
 
 .list {
-  &.simple { 
-    @include padding-small;
-  }
 
   &.simple--flat { 
     padding-left: 0;
+    margin-top: 1.5em;
   }
 
   &.columns {
-    margin: 0;
     flex-wrap: wrap;
+    margin-bottom: $gap / 2;
+    margin-top: $gap / 2; 
+
+    @include from($tablet) {
+      margin-bottom: $gap;
+      margin-top: $gap; 
+    }
+  }
+
+  .column {
+    padding: 0;
+
+    @include from($tablet) {
+      &:nth-child(odd) {
+        .list__item {
+          margin-left: $gap / 2;
+          margin-right: 10px;        
+        }
+
+      }
+
+      &:nth-child(even) {
+        .list__item {
+          margin-right: $gap / 2;
+          margin-left: 10px;         
+        }
+      }      
+    } 
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
-
+.collapsible__inner,
 .long-form,
 .intro {
   ul {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
   }
 
   li {
     @extend %bullet;
-    margin-bottom: 1.2em;
+    @include standardText;
+    margin-bottom: 1em;
   }
 }
 
@@ -56,14 +93,11 @@ $dims: 1em;
   .raised & {
     @include padding-small;
     background-color: $white;
-    margin-left: $gap / 4;
-    margin-right: $gap / 4; 
+    margin-left: $gap / 2;
+    margin-right: $gap / 2; 
     box-shadow: 0 3px 2px 0 rgba($black, 0.1);
-
-    @include from($tablet) {
-      margin-left: $gap / 2;
-      margin-right: $gap / 2;         
-    }
+    border-radius: 5px;
+    margin-bottom: 1em;
   }
 
   .simple & {
@@ -132,5 +166,11 @@ $dims: 1em;
 }
 
 .text-link {
-  margin-top: 2rem;
+  display: block;
+  margin-top: 1.5rem;
 }
+
+
+
+
+

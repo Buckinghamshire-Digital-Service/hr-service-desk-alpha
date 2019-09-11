@@ -28,7 +28,7 @@ $navbar-breakpoint: $tablet;
 @import "~bulma/sass/grid/_all.sass";
 @import "~bulma/sass/form/_all.sass";
 @import "~bulma/sass/components/navbar.sass";
-// @import "~bulma/sass/layout/hero.sass";
+//@import "~bulma/sass/layout/hero.sass";
 @import "~bulma/sass/layout/section.sass";
 
 
@@ -42,6 +42,7 @@ $navbar-breakpoint: $tablet;
 
 // modules - will move these back in to be required by the components themselves
 @import "../components/Collapsible/Collapsible.module.scss";
+@import "../components/Breadcrumb/Breadcrumb.module.scss";
 @import "../components/Button/Button.module.scss";
 @import "../components/Masthead/Masthead.module.scss";
 @import "../components/Container/Container.module.scss";
@@ -54,3 +55,5 @@ $navbar-breakpoint: $tablet;
 @import "../components/Panel/Panel.module.scss";
 @import "../components/Skiplinks/Skiplinks.module.scss";
 @import "../components/Hero/Hero.module.scss";
+@import "../components/ButtonGroup/ButtonGroup.module.scss";
+@import "../components/Icon/Icon.module.scss";

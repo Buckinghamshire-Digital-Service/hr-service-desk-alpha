@@ -9,7 +9,7 @@ const Footer = props => {
   return (
     <footer className='footer'>
       <div className='container'>
-        <Heading text='Need to get in touch?'/>
+        <Heading text='Need to get in touch?' className='h3'/>
       </div>
       <Divider />
       <nav className='navbar container' role='navigation' aria-label='Footer navigation'>
