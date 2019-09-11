@@ -85,7 +85,7 @@ export default class Masthead extends React.PureComponent {
                     <span aria-hidden='true'></span>
                   </Button>                  
                   
-                  {this.props.hasSearch && <Button className='btn--flat btn--small is-hidden-tablet' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon className='spaced-left' {...icon}/></Button>}
+                  {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon {...icon}/></Button>}
                 </div>
 
                 <div id='nav-primary' className={`navbar-menu navbar-primary ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>
@@ -95,11 +95,15 @@ export default class Masthead extends React.PureComponent {
                 </div>
 
                 {this.props.hasSearch && <div className='navbar-end is-hidden-mobile left-spaced'>
-                  <Button className='btn--flat btn--small' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon className='spaced-left' {...icon}/></Button>
+                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)}><span className='is-sr-only'>Search </span><Icon className='spaced-left' {...icon}/></Button>
                 </div>}        
               </nav>
             </section>
           </div>
+          {!this.props.hasSearch && <Form className='form--search' role='search'>
+            <Field />
+            <Button className='btn--flat submit'><Icon {...iconSubmit}/></Button>
+          </Form>}
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>

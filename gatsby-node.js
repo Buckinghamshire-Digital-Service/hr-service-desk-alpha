@@ -7,6 +7,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const detailPage = path.resolve('./src/templates/detailPage.js')
+    const secondaryPage = path.resolve('./src/templates/secondaryPage.js')
 
     resolve(
       graphql(
@@ -25,6 +26,17 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          allContentfulSecondaryPage {
+            edges {
+              node {
+                id
+                slug
+                metaTitle
+                metaDescription
+                title
+              }
+            }
+          }
         }
         `
       ).then(result => {
@@ -34,9 +46,10 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const posts = result.data.allContentfulPage.edges
+        const secondaryPosts = result.data.allContentfulSecondaryPage.edges
+
         posts.forEach((post, index) => {
           let path = post.node.parentPage !== null ? `/${post.node.parentPage.slug}/${post.node.slug}/` : `/${post.node.slug}/`
-          // let path = `/${post.node.slug}/`
 
           createPage({
             path: path,
@@ -46,6 +59,19 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
+
+        secondaryPosts.forEach((post, index) => {
+          let path = `/${post.node.slug}/`
+
+          createPage({
+            path: path,
+            component: secondaryPage,
+            context: {
+              slug: post.node.slug
+            },
+          })
+        })
+
       })
     )
   })

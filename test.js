@@ -248,7 +248,7 @@ thirdLevel.forEach((post, index) => {
     return post.parent === v.slug
   })
 
-// console.log(post.fullSlug)
+console.log(post.fullSlug, post.parent)
 
   // g.map(v => {
     
@@ -258,7 +258,8 @@ thirdLevel.forEach((post, index) => {
   //   return v
   // })
 
-  console.log(g)
+
+  // console.log(g)
 
   // xxxx.push(g)
 })
