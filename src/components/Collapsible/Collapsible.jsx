@@ -34,7 +34,10 @@ export default class Collapsible extends React.PureComponent {
   componentDidMount () {
     this.setState({height: this.state.visible ? this.panel.clientHeight : 0})
     if (this.props.history && (this.props.history.hash === '#' + returnId(this.title))) {
-      this.setState({ visible: true })
+      this.setState({ 
+        visible: true,
+        height: this.panel.clientHeight 
+      })
       scrollIntoView(this.node)
     }
   }
