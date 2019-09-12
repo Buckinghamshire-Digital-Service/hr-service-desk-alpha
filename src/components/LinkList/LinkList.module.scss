@@ -72,8 +72,7 @@ $dims: 1em;
 }
 
 .collapsible__inner,
-.long-form,
-.intro {
+.long-form {
   ul {
     margin-top: 1.5rem;
     margin-bottom: 2rem;
@@ -84,6 +83,26 @@ $dims: 1em;
     @extend %bullet;
     @include standardText;
     margin-bottom: 1em;
+  }
+}
+
+.intro {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  @include from($tablet) {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  li {
+    font-size: $intro-ul-m;
+    @extend %bullet;
+    margin-bottom: 1.2em;
+    
+    @include from($tablet) {
+      font-size: $intro-ul;
+    }
   }
 }
 

@@ -56,16 +56,18 @@ export default class Collapsible extends React.PureComponent {
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
-        <h2 className='collapsible__title'>
-          <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || this.title}>
-          {this.title}
-          </a>
-        </h2>
-        <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
-          <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
-            <Text content={this.props.content.childMarkdownRemark.html}/>
-            {this.props.link && <Anchor className='text-link' href={this.props.link.parentPage !== null ? `/${this.props.link.parentPage.slug}/${this.props.link.slug}/` : `/${this.props.link.slug}/`} label={this.props.link.title} text={`Read more about ${this.props.link.title}`}/>}
-          </div>        
+        <div className='collapsible__wrapper'>
+          <h2 className='collapsible__title'>
+            <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || this.title}>
+            {this.title}
+            </a>
+          </h2>
+          <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
+            <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
+              <Text content={this.props.content.childMarkdownRemark.html}/>
+              {this.props.link && <Anchor className='text-link' href={this.props.link.parentPage !== null ? `/${this.props.link.parentPage.slug}/${this.props.link.slug}/` : `/${this.props.link.slug}/`} label={this.props.link.title} text={`Read more about ${this.props.link.title}`}/>}
+            </div>        
+          </div>
         </div>
       </div>
     )

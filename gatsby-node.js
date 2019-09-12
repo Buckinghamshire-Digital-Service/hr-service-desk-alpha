@@ -30,10 +30,9 @@ exports.createPages = ({ graphql, actions }) => {
             edges {
               node {
                 id
-                slug
-                metaTitle
-                metaDescription
                 title
+                slug
+                metaDescription
               }
             }
           }

@@ -25,9 +25,9 @@ class PageTemplate extends React.PureComponent {
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
           </div>
-          {post.collapsibleLinks && post.collapsibleLinks.map((v, i) => {
+          {post.collapsibleLinks && <div className='body-content'>{post.collapsibleLinks.map((v, i) => {
             return <Collapsible key={i} history={this.props.location} {...v}/>
-          })}
+          })}</div>}
 
           {post.related && <LinkList items={post.related} className='container raised' />}
           <div className='panel panel--flat panel--padding-small panel--has-heading container'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>

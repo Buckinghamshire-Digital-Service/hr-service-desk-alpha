@@ -1,10 +1,6 @@
 
 $dims: 1.4rem;
 
-.collapsible-wrapper {
-  margin-bottom: 5rem;
-}
-
 .collapsible__inner {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -28,7 +24,6 @@ $dims: 1.4rem;
 .collapsible {
   background-color: $brand-beige-light;
   transition: background-color .3s linear;
-  @include padding-vertical-small;
 
   &--active {
     background-color: transparent;
@@ -106,9 +101,32 @@ $dims: 1.4rem;
   strong {
     display: inline-block;
   }
-
-  & + & {
-    border-top: 1px solid $gray-800;
-  }
-
 }
+
+.collapsible__wrapper {
+  @extend %container;
+  @include padding-vertical-small;
+  position: relative;
+  
+  &:after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    background-color: $gray-300;
+    bottom: -1px;
+    left: 0;
+  }
+}
+
+.collapsible {
+  &:last-of-type {
+
+    .collapsible__wrapper {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+

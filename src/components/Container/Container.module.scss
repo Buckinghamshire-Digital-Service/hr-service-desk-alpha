@@ -1,5 +1,6 @@
 @import "../../scss/_settings";
 
+%container,
 .container {
   @include max-width;
 

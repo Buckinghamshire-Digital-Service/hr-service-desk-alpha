@@ -45,6 +45,7 @@ export const pageQuery = graphql`
     }
 
     contentfulHomePage {
+      id
       title
       metaTitle
       metaDescription
@@ -80,6 +81,7 @@ export const pageQuery = graphql`
         slug
         metaDescription
       }
+
       childPagesSecondary {
         title
         slug
