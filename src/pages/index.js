@@ -77,12 +77,14 @@ export const pageQuery = graphql`
       }
 
       childPages {
+        id
         title
         slug
         metaDescription
       }
 
       childPagesSecondary {
+        id
         title
         slug
         metaDescription

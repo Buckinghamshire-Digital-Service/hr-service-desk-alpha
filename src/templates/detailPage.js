@@ -14,7 +14,9 @@ import marked from 'marked'
 // import renderer from '../renderer.js'
 
 class PageTemplate extends React.PureComponent {
+
   render() {
+    const map = this.props.pageContext.map
     const post = get(this.props, 'data.contentfulPage')
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero}>
@@ -26,7 +28,7 @@ class PageTemplate extends React.PureComponent {
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
           </div>
           {post.collapsibleLinks && <div className='body-content'>{post.collapsibleLinks.map((v, i) => {
-            return <Collapsible key={i} history={this.props.location} {...v}/>
+            return <Collapsible links={map} key={i} history={this.props.location} {...v}/>
           })}</div>}
 
           {post.related && <LinkList items={post.related} className='container raised' />}
@@ -90,6 +92,7 @@ export const pageQuery = graphql`
           title
           slug
           parentPage {
+            id
             slug
             title
             metaDescription

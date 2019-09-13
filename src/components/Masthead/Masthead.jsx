@@ -107,11 +107,15 @@ export default class Masthead extends React.PureComponent {
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
+            <Button className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
             <Form className='form--search' role='search'>
-              <Field />
-              <Button className='btn--flat submit' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
+              <div className='field'>
+                <div className='field has-addons is-marginless'>
+                  <input className='input is-large' type='text' placeholder='Your phone number'/>
+                  <Button clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
+                </div>
+              </div>
             </Form>
-            <Button className='btn--flat close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
           </div>
         </section>}
         {(this.state.takeover && this.props.hasSearch) && <div className='takeover-bg' onClick={this.handleSearchClick.bind(this)}/>}
@@ -119,3 +123,12 @@ export default class Masthead extends React.PureComponent {
     )
   }
 }
+
+
+
+
+
+
+
+
+
