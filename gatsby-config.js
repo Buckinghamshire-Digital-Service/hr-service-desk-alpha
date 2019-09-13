@@ -9,6 +9,9 @@ const contentfulConfig = {
   downloadLocal: true
 }
 
+const gaConfig {
+  id: 
+}
 const { spaceId, accessToken } = contentfulConfig
 
 if (!spaceId || !accessToken) {
