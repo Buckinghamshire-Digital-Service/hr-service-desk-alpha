@@ -1,0 +1,14 @@
+@import "../../scss/_settings";
+
+%container,
+.container {
+  @include max-width;
+
+  &.full-width {
+  	max-width: 100%;
+  }
+
+  &--constrained {
+  	max-width: 50rem;
+  }
+}

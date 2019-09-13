@@ -1,0 +1,132 @@
+
+$dims: 1.4rem;
+
+.collapsible__inner {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  max-width: 50rem;
+
+  &::before {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    position: relative;
+  }
+
+  h2, 
+  h3 {
+    margin-top: 1.75em;
+    margin-bottom: 1em;
+  }  
+}
+
+.collapsible {
+  background-color: $brand-beige-light;
+  transition: background-color .3s linear;
+
+  &--active {
+    background-color: transparent;
+  }
+
+  .collapsible__content {
+    overflow: hidden;
+    position: relative;
+    transition: height .15s ease-in-out;
+
+    &.collapsible__content--active {
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .collapsible__trigger {
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    line-height: 1.2;
+
+    .has-hover & {
+      &:hover,
+      &:active {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: $brand-green;
+      }
+    }
+  }
+
+  &.collapsible--chevron {
+    .collapsible__trigger {
+      position: relative;
+      padding-right: 3rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: $dims;
+        height: $dims;
+        right: 0;
+        display: block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url('/svg/arrow-down.svg');
+        transition: all 0.25s .1s;
+        transform: rotate(0);
+      }
+    }
+
+    .collapsible__trigger--active {
+      &::before {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .collapsible__title {
+    margin-bottom: 0;
+
+    @include from($tablet) {
+      font-size: $size-4;
+    }
+
+    @include from($desktop) {
+      font-size: $size-3;
+    }    
+  }
+
+  strong {
+    display: inline-block;
+  }
+}
+
+.collapsible__wrapper {
+  @extend %container;
+  @include padding-vertical-small;
+  position: relative;
+  
+  &:after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    background-color: $gray-300;
+    bottom: -1px;
+    left: 0;
+  }
+}
+
+.collapsible {
+  &:last-of-type {
+
+    .collapsible__wrapper {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+

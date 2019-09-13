@@ -1,0 +1,10 @@
+body:before {
+  content: 'mobile';
+  display: none; /* Prevent from displaying. */
+}
+
+@include from($desktop) {
+  body:before {
+    content: 'default';
+  }
+}

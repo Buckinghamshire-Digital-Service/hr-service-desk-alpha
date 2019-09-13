@@ -1,0 +1,19 @@
+
+
+/**
+ * Base panel styles
+ */
+.panel,
+%panel {
+  width: 100%;
+  background-color: $gray-100;
+  @include padding;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+}
+
+%panel--padding-small,
+.panel--padding-small {
+  @include padding-small;
+}

@@ -5,7 +5,8 @@ require('dotenv').config({
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST
+  host: process.env.CONTENTFUL_HOST,
+  downloadLocal: true
 }
 
 const { spaceId, accessToken } = contentfulConfig
@@ -18,9 +19,9 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Contentful starter',
+    title: 'Buckinghamshire HR service desk',
   },
-  pathPrefix: '/gatsby-contentful-starter',
+  pathPrefix: '/',
   plugins: [
     'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
@@ -45,7 +46,7 @@ module.exports = {
     },
     {
       resolve: "gatsby-plugin-stylelint",
-      options: { files: ["**/*.{js,jsx}"] }
+      options: { files: ["**/*.{js,jsx, scss}"] }
     }
   ],
 }

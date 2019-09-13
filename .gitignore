@@ -69,3 +69,4 @@ config.creds.yaml
 config.space.yaml
 .env*
 !.env.example
+/test.js

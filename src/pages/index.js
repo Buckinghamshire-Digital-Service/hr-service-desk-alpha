@@ -1,35 +1,34 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Hero from '../components/Hero/component.jsx'
-import Layout from '../components/Layout/component.jsx'
-import ArticlePreview from '../components/ArticlePreview/component.jsx'
-import './index.scss'
+import Layout from '../components/Layout/Layout.jsx'
+import ListItem from '../components/ListItem/ListItem.jsx'
+import Heading from '../components/Heading/Heading.jsx'
+import Text from '../components/Text/Text.jsx'
+import LinkList from '../components/LinkList/LinkList.jsx'
+import LinkListSimple from '../components/LinkList/LinkListSimple.jsx'
+import Main from '../components/Main/Main.jsx'
+import Icon from '../components/Icon/Icon.jsx'
+import PageTitle from '../components/PageTitle/PageTitle.jsx'
 
-class RootIndex extends React.Component {
+import '../scss/index.scss'
+
+class RootIndex extends React.PureComponent {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+    let post = get(this, 'props.data.contentfulHomePage')
 
     return (
-      <Layout location={this.props.location} >
-        <div>
-          <Helmet title={siteTitle} />
-          {/*<Hero data={author.node} />*/}
-          <div className='wrapper'>
-            <h2 className='section-headline'>Recent articles</h2>
-            <ul className='article-list'>
-              {posts && posts.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ArticlePreview article={node} />
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
+      <Layout location={this.props.location} className='muted full-width' hero={post.hero}>
+        <Helmet title={`${post.title} | ${siteTitle}`} description={post.metaDescription}/>
+        <Main className='container'>
+          <PageTitle text={post.title}/>
+          {post.intro && <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />}
+          {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
+          <div className='panel panel--flat panel--padding-small panel--has-heading'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>
+          {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
+        </Main>
       </Layout>
     )
   }
@@ -44,24 +43,51 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      edges {
-        node {
+
+    contentfulHomePage {
+      id
+      title
+      metaTitle
+      metaDescription
+      intro {
+        childMarkdownRemark {
+          html
+        }
+      }
+
+      hero {
+        headline
+        subHeading
+        image {
           title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-             ...GatsbyContentfulFluid_tracedSVG
+          description
+          file {
+            details {
+              size
+              image {
+                width
+                height
+              }
             }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
+            fileName
+            contentType
+            url
           }
         }
+      }
+
+      childPages {
+        id
+        title
+        slug
+        metaDescription
+      }
+
+      childPagesSecondary {
+        id
+        title
+        slug
+        metaDescription
       }
     }
   }

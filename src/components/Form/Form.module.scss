@@ -1,0 +1,9 @@
+
+
+.form--search {
+  .control {
+    @include padding-small;
+    padding-left: $gap / 4;
+    padding-right: $gap / 4;
+  }
+}

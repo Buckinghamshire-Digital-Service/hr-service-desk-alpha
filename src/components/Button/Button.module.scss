@@ -1,0 +1,100 @@
+.btn {
+  font-size: $medium-body-m;
+  font-family: $body-family-bold;
+  line-height: 1;
+  padding: .7em 1em .8em;
+  color: inherit;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+
+  @include from($tablet) {
+    font-size: $medium-body;
+  }
+
+  &--has-radius {
+    border-radius: 10px;
+  }
+}
+
+.btn--primary {
+  background-color: $brand-green;
+  color: $white;
+
+  &:active,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:active {
+    padding-top: .8em;
+    padding-bottom: .7em;
+  }
+
+  .has-hover & {
+    &:hover {
+      color: $white !important;
+      text-decoration: underline;
+    }
+  }
+}
+
+.btn--link {
+  &:active,
+  &:focus {
+    color: $brand-green;
+    text-decoration: underline;
+  }
+
+  .has-hover & {
+    &:hover {
+      color: $brand-green;
+      text-decoration: underline;
+    }
+  }
+}
+
+.btn--static {
+  position: absolute;
+}
+
+.btn--flat,
+.btn--link {
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration: none;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: none;
+  border-bottom: 2px dashed $brand-green;
+
+  .has-hover & {
+    &:hover {
+      color: $brand-green;
+    }
+  }
+}
+
+.btn--flat {
+  border-bottom: 0;
+  font-size: 1.5rem;
+  margin-left: .5em;
+  display: block;
+  height: 3.25rem;
+  position: relative;
+  width: 3.25rem;
+
+  @include from($tablet) {
+    font-size: 1.8rem;
+  }
+}
+
+.btn--full-width {
+  display: block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+

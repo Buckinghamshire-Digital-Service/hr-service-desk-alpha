@@ -1,0 +1,164 @@
+
+
+.masthead {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}
+
+.masthead__inner {
+  @include max-width;
+}
+
+.masthead__takeover__inner,
+.masthead__inner {
+  position: relative;
+  @include padding-small;
+}
+
+.masthead__takeover__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.masthead__takeover {
+  position: absolute;
+  z-index: 95;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $white;
+}
+
+.takeover-bg {
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba($black, .7);
+}
+
+.form--search {
+  flex-basis: 75%;
+  position: relative;
+
+  input[type='search'] {
+    width: 100%;
+    border: 0;
+  }
+
+  .btn--flat {
+    &.submit {
+      position: absolute;
+      left: 100%;
+      top: 4rem;
+      margin-left: 1rem;
+
+      img {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      @include from($tablet) {
+        top: 6.2rem;
+      }
+    }
+
+    &.btn--flat-right {
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
+.navbar {
+  background-color: transparent;
+
+  .navbar-item {
+    color: $white;
+    font-family: $body-family-bold;
+  }
+}
+
+.navbar-primary {
+  &.is-active {
+    @include until($tablet) {
+      background-color: $brand-green;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding-top: 5rem;
+
+      .navbar-item {
+        color: $white;
+        text-align: right;
+        padding-right: 2rem;
+
+        .has-hover & {
+          &:hover {
+            background-color: $gray-900;
+          }
+        }       
+      }
+    }
+  }
+}
+
+.navbar-burger {
+  background-color: transparent;
+
+  span {
+    background-color: $white;
+    width: 24px;
+    height: 2px;
+    left: calc(50% - 12px);    
+  }
+
+  span:nth-child(1) {
+    top: calc(50% - 8px);
+  }
+
+  span:nth-child(2) {
+    top: calc(50%);
+  }  
+
+  span:nth-child(3) {
+    top: calc(50% + 8px);
+  }
+
+  &.is-active {
+    position: fixed;
+    right: 1rem;
+    z-index: 1000;
+    background-color: $white;
+
+    span {
+      background-color: $black;
+    }
+
+    span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }    
+  }
+
+  .has-hover & {
+    &:hover {
+      background-color: $gray-100;
+
+      span {
+        background-color: $black;
+      }
+    }
+  }
+}
+
+
