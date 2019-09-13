@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import Anchor from '../Anchor/Anchor.jsx'
 import { scrollIntoView, returnId } from '../../utilities'
 import Text from '../Text/Text.jsx'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 export default class Collapsible extends React.PureComponent {
   constructor (props) {
@@ -29,6 +30,12 @@ export default class Collapsible extends React.PureComponent {
         window.history.replaceState({}, document.title, path)
       }
     }
+
+    Event({
+      category: 'Collapsible',
+      action: 'Collapsible toggle',
+      label: this.props.title
+    })
   }
 
   componentDidMount () {
@@ -56,6 +63,7 @@ export default class Collapsible extends React.PureComponent {
     })
 
     let label = this.props.ariaLabel 
+    // let hidden = {['hidden'] : !this.state.visible ? true : null}
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
@@ -68,7 +76,7 @@ export default class Collapsible extends React.PureComponent {
           <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
             <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
               <Text content={this.props.content.childMarkdownRemark.html}/>
-              {this.props.link && <Anchor className='text-link' href={this.props.links[this.props.link.id]} label={this.props.link.title} text={`Read more about ${this.props.link.title}`}/>}
+              {this.props.link && <Anchor className='text-link' href={`/${this.props.links[this.props.link.id]}`} label={this.props.link.title} text={`Read more about ${this.props.link.title}`}/>}
             </div>        
           </div>
         </div>

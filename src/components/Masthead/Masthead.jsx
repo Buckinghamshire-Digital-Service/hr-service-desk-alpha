@@ -79,7 +79,7 @@ export default class Masthead extends React.PureComponent {
                 <div className='navbar-brand'>
                   <Logo url={logo.url} alt={logo.label} className='navbar-item'/>
 
-                  <Button aria-hidden='false' type='a' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
+                  <Button aria-hidden='false' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
                     <span aria-hidden='true'></span>
                     <span aria-hidden='true'></span>
                     <span aria-hidden='true'></span>
@@ -95,15 +95,20 @@ export default class Masthead extends React.PureComponent {
                 </div>
 
                 {this.props.hasSearch && <div className='navbar-end is-hidden-mobile'>
-                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)}><Icon className='spaced-left' {...iconWhite}/></Button>
+                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>
                 </div>}        
               </nav>
             </section>
           </div>
-          {!this.props.hasSearch && <Form className='form--search container container--constrained is-grouped' role='search'>
-            <Field />
-            {/*<Button className='btn--flat submit'><Icon {...icon}/></Button>*/}
-          </Form>}
+          {!this.props.hasSearch && 
+            <Form className='form--search container container--constrained is-grouped' role='search'>
+              <div className='field'>
+                <div className='field has-addons is-marginless'>
+                  <input className='input is-large' type='text' placeholder='Your phone number'/>
+                  <Button className='btn--flat' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconWhite}/></Button>
+                </div>
+              </div>
+            </Form>}
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>

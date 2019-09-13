@@ -10,8 +10,42 @@
     background-color: transparent;
   }
 
+  .navbar {
+    margin-left: -.75em;
+  }
+
   .navbar-item {
     color: $white;
+    font-family: $body-family;
+    position: relative;
+    line-height: 1;
+
+    @include from($tablet) {
+      &:after {
+        content: '';
+        height: 1rem;
+        top: 50%;
+        margin-top: -.5rem;
+        right: 0;
+        position: absolute;
+        width: 1px;
+        background-color: $white;
+      }
+
+      &:last-child {
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    .has-hover & {
+      &:hover {
+        color: $white;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+    }
   }
 
 }

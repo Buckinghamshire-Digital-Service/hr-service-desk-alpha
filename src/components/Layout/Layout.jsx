@@ -7,6 +7,10 @@ import Skiplinks from '../Skiplinks/Skiplinks.jsx'
 import { PageView, initGA } from '../GoogleAnalytics/GoogleAnalytics'
 
 class Layout extends React.PureComponent {
+  constructor(props) {
+    super(props)
+  }  
+  
   componentDidMount() {
     initGA(this.props.ga)
     PageView()

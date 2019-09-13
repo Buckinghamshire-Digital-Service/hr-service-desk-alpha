@@ -31,28 +31,55 @@ export const primary = [
 
 export const footer = [
   {
-    label: 'Email',
-    url: '#',
+    label: 'About',
+    url: '/about',
     tracking: {
-      label: 'Footer email contact',
+      label: 'About us',
       action: 'Click',
       category: 'Footer navigation'
     }
   },
   {
-    label: 'Privacy policy',
-    url: '#',
+    label: 'Contacts',
+    url: '/contact',
     tracking: {
-      label: 'Privacy policy',
+      label: 'Contact us',
       action: 'Click',
       category: 'Footer navigation'
     }
   },
   {
-    label: 'Cookie policy',
-    url: '#',
+    label: 'Downloads',
+    url: '/downloads',
     tracking: {
-      label: 'Cookie policy',
+      label: 'Downloads',
+      action: 'Click',
+      category: 'Footer navigation'
+    }
+  },
+  {
+    label: 'Privacy',
+    url: '/privacy',
+    tracking: {
+      label: 'Privacy',
+      action: 'Click',
+      category: 'Footer navigation'
+    }
+  },
+  {
+    label: 'Cookies',
+    url: '/cookies',
+    tracking: {
+      label: 'Cookies',
+      action: 'Click',
+      category: 'Footer navigation'
+    }
+  },
+  {
+    label: 'Modern slavery statement',
+    url: '/modern-slavery-statement',
+    tracking: {
+      label: 'Modern slavery statement',
       action: 'Click',
       category: 'Footer navigation'
     }

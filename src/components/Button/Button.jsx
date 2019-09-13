@@ -24,7 +24,7 @@ export default class Button extends React.PureComponent {
       'loading': this.props.disabled && this.props.loading
     })
 
-    // list out data- and aria- attributes and stick em in
+    // list out aria- attributes and stick em in
     for (const prop in this.props) {
       if (/^aria-/.test(prop)) {
         data[prop] = this.props[prop]
