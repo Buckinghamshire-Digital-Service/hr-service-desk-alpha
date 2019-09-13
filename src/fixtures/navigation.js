@@ -26,23 +26,24 @@ export const primary = [
       action: 'Click',
       category: 'Primary navigation'
     }
-  },
-  {
-    label: 'Contact',
-    url: '/contact',
-    tracking: {
-      label: 'Contact Bucks',
-      action: 'Click',
-      category: 'Primary navigation'
-    }
   }
+  // ,
+  // {
+  //   label: 'Contact',
+  //   url: '#',
+  //   tracking: {
+  //     label: 'Contact Bucks',
+  //     action: 'Click',
+  //     category: 'Primary navigation'
+  //   }
+  // }
 ]
 
 
 export const footer = [
   {
     label: 'Email',
-    url: '/contact',
+    url: '#',
     tracking: {
       label: 'Footer email contact',
       action: 'Click',
@@ -51,7 +52,7 @@ export const footer = [
   },
   {
     label: 'Privacy policy',
-    url: '/privacy-policy',
+    url: '#',
     tracking: {
       label: 'Privacy policy',
       action: 'Click',
@@ -60,7 +61,7 @@ export const footer = [
   },
   {
     label: 'Cookie policy',
-    url: '/cookie-policy',
+    url: '#',
     tracking: {
       label: 'Cookie policy',
       action: 'Click',
@@ -72,7 +73,7 @@ export const footer = [
 export const footerUtility = [
   {
     label: 'Disclaimer',
-    url: '/disclaimer',
+    url: '#',
     tracking: {
       label: 'Disclaimer',
       action: 'Click',

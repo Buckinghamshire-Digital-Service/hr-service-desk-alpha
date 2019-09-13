@@ -2,7 +2,7 @@ import React from 'react'
 
 const Divider = props => {
   return (
-    <hr className={`hr ${props.className}`}/>
+    <hr className={`hr ${props.className}`} aria-hidden/>
   )
 }
 

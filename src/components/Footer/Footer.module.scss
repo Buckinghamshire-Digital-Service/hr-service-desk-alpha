@@ -3,6 +3,7 @@
   color: $white;
   @include padding-small;
   background-color: $gray-900;
+  border-top: 10px solid $brand-green;
 
   .navbar-item,
   .navbar {

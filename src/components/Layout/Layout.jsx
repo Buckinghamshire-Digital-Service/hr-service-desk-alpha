@@ -18,14 +18,19 @@ class Layout extends React.PureComponent {
     return (
       <>
         <Skiplinks />
-        <Container>
-          <Masthead location={location} hasSearch={this.props.hasSearch}/>
+        <Container className={this.props.className}>
+          <Masthead location={location} hasSearch={this.props.hasSearch} hero={this.props.hero}/>
           {children}
         </Container>
         <Footer />
       </>
     )
   }
+}
+
+Layout.defaultProps = {
+  className: '',
+  hero: null
 }
 
 export default Layout

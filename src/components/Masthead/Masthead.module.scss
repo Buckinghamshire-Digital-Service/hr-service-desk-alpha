@@ -3,8 +3,11 @@
 .masthead {
   position: relative;
   z-index: 100;
-  background-color: $white;
   width: 100%;
+}
+
+.masthead__inner {
+  @include max-width;
 }
 
 .masthead__takeover__inner,
@@ -35,7 +38,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba($black, .4);
+  background-color: rgba($black, .7);
 }
 
 .form--search {
@@ -71,6 +74,15 @@
   }
 }
 
+.navbar {
+  background-color: transparent;
+
+  .navbar-item {
+    color: $white;
+    font-family: $body-family-bold;
+  }
+}
+
 .navbar-primary {
   &.is-active {
     @include until($tablet) {
@@ -98,14 +110,44 @@
 }
 
 .navbar-burger {
+  background-color: transparent;
+
+  span {
+    background-color: $white;
+    width: 24px;
+    height: 2px;
+    left: calc(50% - 12px);    
+  }
+
+  span:nth-child(1) {
+    top: calc(50% - 8px);
+  }
+
+  span:nth-child(2) {
+    top: calc(50%);
+  }  
+
+  span:nth-child(3) {
+    top: calc(50% + 8px);
+  }
+
   &.is-active {
     position: fixed;
     right: 1rem;
     z-index: 1000;
+    background-color: $white;
 
     span {
-      background-color: $white;
+      background-color: $black;
     }
+
+    span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }    
   }
 
   .has-hover & {

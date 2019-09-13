@@ -23,3 +23,19 @@ $padding: $gap;
     padding: ($padding / 4) ($padding / 2);
   }  
 }
+
+@mixin spacing {
+  margin: $padding / 2;
+
+  @include from($tablet) {
+    margin: $padding;
+  }  
+}
+
+@mixin spacing-small {
+  margin: $padding / 4;
+
+  @include from($tablet) {
+    margin: $padding / 2;
+  }  
+}

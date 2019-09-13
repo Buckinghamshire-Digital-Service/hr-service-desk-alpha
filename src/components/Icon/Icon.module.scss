@@ -1,0 +1,40 @@
+
+.download {
+  position: relative;
+  background-color: $brand-green;
+  height: 30px;
+  width: 30px;
+  content: '';
+  display: inline-block;
+  border-radius: 100%;
+
+  background-image: url('/svg/download-arrow.svg');
+  background-position: center 35%;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    height: 3px;
+    width: 12px;
+    background-color: $white;
+    position: absolute;
+    left: 50%;
+    margin-left: -6px;
+    bottom: 5px;
+  }
+  
+  &:focus,
+  &:active {
+    background-position: center 45%;
+  }
+
+  .has-hover & {
+    &:hover {
+      background-position: center 45%;
+    }
+  }
+
+  span {
+    padding-left: 2.5rem;
+  }
+}
