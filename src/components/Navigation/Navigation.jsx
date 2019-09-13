@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import ReactGA from 'react-ga'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 const handleItemClick = (e) => {
-  ReactGA.event({
+  Event({
     category: e.category,
     action: e.action,
     label: e.label

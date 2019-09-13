@@ -9,9 +9,6 @@ const contentfulConfig = {
   downloadLocal: true
 }
 
-const gaConfig {
-  id: 
-}
 const { spaceId, accessToken } = contentfulConfig
 
 if (!spaceId || !accessToken) {
@@ -23,7 +20,10 @@ if (!spaceId || !accessToken) {
 module.exports = {
   siteMetadata: {
     title: 'Buckinghamshire HR service desk',
-  },
+    gaConfig: {
+      id: 'UA-129132977-3'
+    }
+  }, 
   pathPrefix: '/',
   plugins: [
     'gatsby-transformer-remark',

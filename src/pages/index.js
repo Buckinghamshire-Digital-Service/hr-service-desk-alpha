@@ -16,12 +16,12 @@ import '../scss/index.scss'
 
 class RootIndex extends React.PureComponent {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const site = get(this, 'props.data.site.siteMetadata')
     let post = get(this, 'props.data.contentfulHomePage')
 
     return (
-      <Layout location={this.props.location} className='muted full-width' hero={post.hero}>
-        <Helmet title={`${post.title} | ${siteTitle}`} description={post.metaDescription}/>
+      <Layout location={this.props.location} className='muted full-width' hero={post.hero} ga={site.gaConfig.id}>
+        <Helmet title={`${post.title} | ${site.title}`} description={post.metaDescription}/>
         <Main className='container'>
           <PageTitle text={post.title}/>
           {post.intro && <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />}
@@ -41,6 +41,9 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        gaConfig {
+          id
+        }        
       }
     }
 

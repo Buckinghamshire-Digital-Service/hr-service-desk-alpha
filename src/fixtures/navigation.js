@@ -1,15 +1,5 @@
 export const primary = [
   {
-    label: 'Home',
-    url: '/',
-    modifier: 'is-hidden-tablet',
-    tracking: {
-      label: 'Home',
-      action: 'Click',
-      category: 'Primary navigation'
-    }
-  },
-  {
     label: 'About',
     url: '/about',
     tracking: {
@@ -26,17 +16,16 @@ export const primary = [
       action: 'Click',
       category: 'Primary navigation'
     }
+  },
+  {
+    label: 'Contact',
+    url: '/contact',
+    tracking: {
+      label: 'Contact Buckinghamshire Council',
+      action: 'Click',
+      category: 'Primary navigation'
+    }
   }
-  // ,
-  // {
-  //   label: 'Contact',
-  //   url: '#',
-  //   tracking: {
-  //     label: 'Contact Bucks',
-  //     action: 'Click',
-  //     category: 'Primary navigation'
-  //   }
-  // }
 ]
 
 
