@@ -101,6 +101,12 @@ export const pageQuery = graphql`
           title
           slug
         }
+        mediaLink {
+          type
+          title
+          mediaLink
+          description
+        }
       }
 
     }
