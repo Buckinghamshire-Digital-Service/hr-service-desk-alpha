@@ -6,7 +6,7 @@ const Field = props => {
   return (
     <div className={classes}>
       <div className='control'>
-        <input className='input is-large' type='text' placeholder=''/>
+        <input className='input is-large' type='text' placeholder={props.placeholder}/>
       </div>
     </div>
   )
@@ -14,7 +14,7 @@ const Field = props => {
 
 Field.defaultProps = {
   className: '',
-  modifiers: ''
+  placeholder: 'How can we help?'
 }
 
 export default Field

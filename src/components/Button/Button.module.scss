@@ -33,7 +33,7 @@
 
   .has-hover & {
     &:hover {
-      color: $white;
+      color: $white !important;
       text-decoration: underline;
     }
   }
@@ -78,7 +78,6 @@
 .btn--flat {
   border-bottom: 0;
   font-size: 1.5rem;
-  background-color: $gray-200;
   margin-left: .5em;
   display: block;
   height: 3.25rem;

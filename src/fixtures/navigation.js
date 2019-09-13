@@ -11,7 +11,7 @@ export const primary = [
   },
   {
     label: 'About',
-    url: '#',
+    url: '/about',
     tracking: {
       label: 'About us',
       action: 'Click',
@@ -20,22 +20,23 @@ export const primary = [
   },  
   {
     label: 'Downloads',
-    url: '#',
+    url: '/downloads',
     tracking: {
       label: 'All downloads',
       action: 'Click',
       category: 'Primary navigation'
     }
-  },
-  {
-    label: 'Contact',
-    url: '#',
-    tracking: {
-      label: 'Contact Bucks',
-      action: 'Click',
-      category: 'Primary navigation'
-    }
   }
+  // ,
+  // {
+  //   label: 'Contact',
+  //   url: '#',
+  //   tracking: {
+  //     label: 'Contact Bucks',
+  //     action: 'Click',
+  //     category: 'Primary navigation'
+  //   }
+  // }
 ]
 
 

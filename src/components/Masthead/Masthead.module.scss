@@ -110,16 +110,44 @@
 }
 
 .navbar-burger {
-  background-color: $white;
+  background-color: transparent;
+
+  span {
+    background-color: $white;
+    width: 24px;
+    height: 2px;
+    left: calc(50% - 12px);    
+  }
+
+  span:nth-child(1) {
+    top: calc(50% - 8px);
+  }
+
+  span:nth-child(2) {
+    top: calc(50%);
+  }  
+
+  span:nth-child(3) {
+    top: calc(50% + 8px);
+  }
 
   &.is-active {
     position: fixed;
     right: 1rem;
     z-index: 1000;
+    background-color: $white;
 
     span {
       background-color: $black;
     }
+
+    span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }    
   }
 
   .has-hover & {
