@@ -20,7 +20,7 @@ const LinkList = props => {
               </Link>
               {v.metaDescription && <p>{v.metaDescription}</p>}
               <ButtonGroup>
-                <Button url={link} className='btn--has-radius btn--primary btn--full-width'>
+                <Button url={link} className='btn--has-radius btn--primary btn--full-width' aria-hidden>
                   Find out more
                   <span className='is-sr-only'> about {v.title}</span>
                 </Button>
