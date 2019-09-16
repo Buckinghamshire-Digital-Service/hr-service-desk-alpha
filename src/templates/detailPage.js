@@ -33,7 +33,9 @@ class PageTemplate extends React.PureComponent {
           })}</div>}
 
           {post.related && <LinkList items={post.related} className='container raised' />}
-          <div className='panel panel--flat panel--padding-small panel--has-heading container'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>
+          <div className='panel panel--flat panel--padding-small panel--has-heading'>
+            <div className='container'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>
+          </div>
         </Main>
       </Layout>
     )

@@ -49,6 +49,13 @@
       font-family: $body-family-bold;
       font-size: 1.1rem;
     }
+
+    .has-hover & {
+      &:hover {
+        color: $white;
+        background-color: $gray-900;
+      }
+    }      
   }
 }
 
