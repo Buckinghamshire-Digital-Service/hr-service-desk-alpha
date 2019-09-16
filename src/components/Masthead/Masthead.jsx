@@ -67,6 +67,7 @@ export default class Masthead extends React.PureComponent {
       url: '../../../svg/buckinghamshire-logo.svg'
     }
 
+    let ariaHidden = {'aria-hidden': this.state.takeover}
 
     return (
       <header className={`masthead ${this.props.hero && this.props.hero.image ? 'masthead--has-shadow' : ''}`}>
@@ -105,7 +106,7 @@ export default class Masthead extends React.PureComponent {
               <div className='field'>
                 <div className='field has-addons is-marginless'>
                   <input className='input is-large' type='text' placeholder='Your phone number'/>
-                  <Button className='btn--flat' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconWhite}/></Button>
+                  <Button {...ariaHidden} className='btn--flat' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconWhite}/></Button>
                 </div>
               </div>
             </Form>}

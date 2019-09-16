@@ -23,6 +23,7 @@
 
   &:active,
   &:focus {
+    color: $white;
     text-decoration: underline;
   }
 

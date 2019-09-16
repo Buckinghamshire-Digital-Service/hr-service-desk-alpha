@@ -53,7 +53,6 @@ $dims: 1em;
           margin-left: $gap / 2;
           margin-right: 10px;        
         }
-
       }
 
       &:nth-child(even) {
@@ -99,6 +98,10 @@ $dims: 1em;
     font-size: $intro-ul-m;
     @extend %bullet;
     margin-bottom: 1.2em;
+
+    a {
+      text-decoration: underline;
+    }
     
     @include from($tablet) {
       font-size: $intro-ul;
