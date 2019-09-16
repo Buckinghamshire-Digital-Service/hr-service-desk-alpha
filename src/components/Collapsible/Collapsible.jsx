@@ -12,6 +12,7 @@ export default class Collapsible extends React.PureComponent {
     this.state = {
       visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
       height: 0,
+      actualHidden: false,
       dir: 'down'      
     }
   }
@@ -50,6 +51,8 @@ export default class Collapsible extends React.PureComponent {
   }
 
   render () {
+    let label = this.props.ariaLabel
+    // let hidden
     const id = returnId(this.title)
 
     let classes = classNames('collapsible collapsible--chevron', this.props.className, {
@@ -62,8 +65,19 @@ export default class Collapsible extends React.PureComponent {
       'collapsible__trigger--active': this.state.visible
     })
 
-    let label = this.props.ariaLabel 
-    // let hidden = {['hidden'] : !this.state.visible ? true : null}
+
+    // if (timerid) {
+    //   clearTimeout(timerid)
+    // }
+
+    // let self = this
+    // let timerid = setTimeout(() => {
+    //   console.log('actual hidden')
+    //   this.setState({
+    //     actualHidden: !self.state.visible
+    //   })
+    // }, 300)
+
 
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
@@ -76,9 +90,7 @@ export default class Collapsible extends React.PureComponent {
           <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
             <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
               <Text content={this.props.content.childMarkdownRemark.html}/>
-              {this.props.mediaLink && <ul>{this.props.mediaLink.map(v => {
-                return <li><a key={v.id} className='text-link' href={v.mediaLink}>{`${v.title} - ${v.description} ${v.type}`}</a></li>
-              })}</ul>}
+              {this.props.mediaLink && <ul className='list list--no-bullet'>{this.props.mediaLink.map(v => <li key={v.id} className='list__item'><a className={`list__link text-link ${v.type}`} href={v.mediaLink}>{`${v.title} - ${v.description}`}</a></li>)}</ul>}
               {this.props.link && <Anchor className='text-link' href={`/${this.props.links[this.props.link.id]}`} label={this.props.link.title} text={`Read more about ${this.props.link.title}`}/>}
             </div>        
           </div>

@@ -102,6 +102,7 @@ export const pageQuery = graphql`
           slug
         }
         mediaLink {
+          id
           type
           title
           mediaLink
