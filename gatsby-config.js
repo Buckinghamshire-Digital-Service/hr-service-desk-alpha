@@ -48,6 +48,18 @@ module.exports = {
       }
     },
     {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: ['title', 'metaDescription', 'intro'],
+        resolvers: {
+          // For any node of type MarkdownRemark, list how to resolve the fields` values
+          MarkdownRemark: {
+            intro: node => node.frontmatter.intro
+          },
+        },
+      },
+    },    
+    {
       resolve: "gatsby-plugin-stylelint",
       options: { files: ["**/*.{js,jsx, scss}"] }
     }

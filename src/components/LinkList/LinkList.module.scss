@@ -16,6 +16,21 @@ $dims: 1em;
   }      
 }
 
+%nobullet {
+  padding-left: 0;
+
+  &:before {
+    content: '';
+    left: .2rem;
+    top: $dims / 2;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: $dims;
+    background-color: $black;
+  }      
+}
+
 .intro {
   max-width: 50rem;
   margin-bottom: 5rem;
