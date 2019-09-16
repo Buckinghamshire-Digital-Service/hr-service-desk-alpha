@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Index } from 'elasticlunr'
+import Button from '../Button/Button.jsx'
 
-// Search component
-export default class Search extends Component {
+export default class Search extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      query: ``,
+      query: '',
       results: [],
     }
   }
@@ -14,7 +14,7 @@ export default class Search extends Component {
   render() {
     return (
       <div>
-        <input type='text' value={this.state.query} onChange={this.search} />
+        <input className='input is-large' type='text' placeholder='What do you want to ask?' value={this.state.query} onChange={this.search.bind(this)}/>
         <ul>
           {this.state.results.map(page => (
             <li key={page.id}>
@@ -26,22 +26,28 @@ export default class Search extends Component {
       </div>
     )
   }
-  getOrCreateIndex = () =>
-    this.index
-      ? this.index
-      : // Create an elastic lunr index and hydrate with graphql query results
-        Index.load(this.props.searchIndex)
 
-  search = evt => {
+  getOrCreateIndex() {
+    return this.index
+      ? this.index
+      : Index.load(this.props.searchIndex)
+  }
+
+  search(evt) {
     const query = evt.target.value
     this.index = this.getOrCreateIndex()
+
+    console.log(Index || 'jsdfdf')
+
     this.setState({
       query,
       // Query the index with search string to get an [] of IDs
       results: this.index
-        .search(query, {})
-        // Map over each ID and return the full document
-        .map(({ ref }) => this.index.documentStore.getDoc(ref)),
+        .search(query, { expand: true })
+        .map(({ ref }) => {
+          console.log(ref)
+          this.index.documentStore.getDoc(ref)
+        }),
     })
   }
 }

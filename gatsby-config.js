@@ -52,8 +52,10 @@ module.exports = {
       options: {
         fields: ['title', 'metaDescription', 'intro'],
         resolvers: {
-          // For any node of type MarkdownRemark, list how to resolve the fields` values
+
           MarkdownRemark: {
+            title: node => node.title,
+            metaDescription: node => node.metaDescription,
             intro: node => node.frontmatter.intro
           },
         },

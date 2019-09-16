@@ -7,9 +7,10 @@ import Field from '../Field/Field.jsx'
 import CookieBar from '../CookieBar/CookieBar.jsx'
 import Icon from '../Icon/Icon.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
-import { Link } from 'gatsby'
+import { Link, StaticQuery, graphql } from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
 import Navigation from '../Navigation/Navigation.jsx'
+import Search from '../Search/Search.jsx'
 import Hero from '../Hero/Hero.jsx'
 import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 import styles from '../../scss/_settings.scss'
@@ -104,8 +105,21 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search container container--constrained is-grouped' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='Your phone number'/>
-                  <Button className='btn--flat' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconWhite}/></Button>
+                  <StaticQuery
+                    query={graphql`
+                      query SearchIndexQuery {
+                        siteSearchIndex {
+                          index
+                        }
+                      }
+                    `}
+                    render={data => (
+                      <header>
+                        <Search searchIndex={data.siteSearchIndex.index} />
+                      </header>
+                    )}
+                  />
+
                 </div>
               </div>
             </Form>}
@@ -116,7 +130,7 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='Your phone number'/>
+                  <input className='input is-large' type='text' placeholder='What do you want to ask?'/>
                   <Button clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
