@@ -41,39 +41,6 @@
   background-color: rgba($black, .7);
 }
 
-.form--search {
-  flex-basis: 75%;
-  position: relative;
-
-  input[type='search'] {
-    width: 100%;
-    border: 0;
-  }
-
-  .btn--flat {
-    &.submit {
-      position: absolute;
-      left: 100%;
-      top: 4rem;
-      margin-left: 1rem;
-
-      img {
-        width: 2.4rem;
-        height: 2.4rem;
-      }
-
-      @include from($tablet) {
-        top: 6.2rem;
-      }
-    }
-
-    &.btn--flat-right {
-      left: auto;
-      right: 0;
-    }
-  }
-}
-
 .navbar {
   background-color: transparent;
 

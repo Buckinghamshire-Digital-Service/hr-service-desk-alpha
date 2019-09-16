@@ -1,6 +1,12 @@
 
-
 .form--search {
+  padding: 0 2rem 2rem;
+
+  @include from($tablet) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
   .control {
     @include padding-small;
     padding-left: $gap / 4;

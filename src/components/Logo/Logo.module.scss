@@ -1,7 +1,10 @@
+$dims: 60px;
+
 .logo {
-	
+  width: $dims;
+  height: $dims;
 }
 
 .logo__link {
-	
+  display: block;
 }
