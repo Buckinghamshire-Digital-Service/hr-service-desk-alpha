@@ -72,7 +72,6 @@ export default class Masthead extends React.PureComponent {
     return (
       <header className={`masthead ${this.props.hero && this.props.hero.image ? 'masthead--has-shadow' : ''}`}>
         <Hero hero={this.props.hero}>
-          <span className='is-sr-only'>Buckinghamshire Council HR desk service</span>
           <CookieBar />
           <div className='masthead__inner'>
             <section className='navigation-wrapper'>
@@ -105,7 +104,7 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search container container--constrained is-grouped' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='Your phone number'/>
+                  <input className='input is-large' type='text' placeholder='How can we help?'/>
                   <Button {...ariaHidden} className='btn--flat' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconWhite}/></Button>
                 </div>
               </div>
@@ -117,7 +116,7 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='Your phone number'/>
+                  <input className='input is-large' type='text' placeholder='How can we help?'/>
                   <Button clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
