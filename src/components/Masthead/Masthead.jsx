@@ -114,9 +114,7 @@ export default class Masthead extends React.PureComponent {
                       }
                     `}
                     render={data => (
-                      <header>
-                        <Search searchIndex={data.siteSearchIndex.index} />
-                      </header>
+                      <Search searchIndex={data.siteSearchIndex.index} />
                     )}
                   />
 
