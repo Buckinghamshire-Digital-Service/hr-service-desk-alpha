@@ -1,5 +1,5 @@
 
-$dims: 1.4rem;
+$dims: 2.4rem;
 
 .collapsible__inner {
   padding-top: 1rem;
@@ -88,14 +88,11 @@ $dims: 1.4rem;
 
   .collapsible__title {
     margin-bottom: 0;
+    font-size: $size-h2-m;
 
     @include from($tablet) {
-      font-size: $size-4;
-    }
-
-    @include from($desktop) {
-      font-size: $size-3;
-    }    
+      font-size: $size-h3;
+    }  
   }
 
   strong {

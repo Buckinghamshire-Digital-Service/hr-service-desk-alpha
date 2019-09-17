@@ -117,7 +117,7 @@ export default class Masthead extends React.PureComponent {
               <div className='field'>
                 <div className='field has-addons is-marginless'>
                   <input className='input is-large' type='text' placeholder='How can we help?'/>
-                  <Button clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
+                  <Button className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
             </Form>
