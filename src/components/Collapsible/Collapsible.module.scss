@@ -4,7 +4,7 @@ $dims: 2.4rem;
 .collapsible__inner {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  max-width: 50rem;
+  max-width: 650px;
 
   &::before {
     content: '';
@@ -16,9 +16,17 @@ $dims: 2.4rem;
 
   h2, 
   h3 {
-    margin-top: 1.75em;
-    margin-bottom: 1em;
-  }  
+    margin-top: 1em;
+    margin-bottom: .5em;
+  }
+
+  h3 {
+    font-size: $size-6;
+
+    @include from($tablet) {
+      font-size: $size-5;
+    }
+  }    
 }
 
 .collapsible {
@@ -66,8 +74,8 @@ $dims: 2.4rem;
       &::before {
         content: '';
         position: absolute;
-        width: $dims;
-        height: $dims;
+        width: $dims / 2;
+        height: $dims / 2;
         right: 0;
         display: block;
         background-size: contain;
@@ -76,6 +84,11 @@ $dims: 2.4rem;
         background-image: url('/svg/arrow-down.svg');
         transition: all 0.25s .1s;
         transform: rotate(0);
+
+        @include from($tablet) {
+          width: $dims;
+          height: $dims;
+        }         
       }
     }
 
