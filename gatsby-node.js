@@ -8,6 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const detailPage = path.resolve('./src/templates/detailPage.js')
     const secondaryPage = path.resolve('./src/templates/secondaryPage.js')
+    const downloadPage = path.resolve('./src/templates/downloads.js')
 
     resolve(
       graphql(
@@ -136,7 +137,7 @@ exports.createPages = ({ graphql, actions }) => {
 
           createPage({
             path: path,
-            component: secondaryPage,
+            component: post.node.slug !== 'downloads' ? secondaryPage : downloadPage,
             context: {
               slug: post.node.slug
             },

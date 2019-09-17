@@ -7,7 +7,6 @@ import Main from '../components/Main/Main.jsx'
 import Text from '../components/Text/Text.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
-import marked from 'marked'
 
 // import renderer from '../renderer.js'
 

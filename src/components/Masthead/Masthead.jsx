@@ -24,14 +24,14 @@ export default class Masthead extends React.PureComponent {
   }
 
   handleSearchSubmit () {
-    const searchTerm = encodeURIComponent(
-      this.formAutocomplete.searchInput.input.value
-        .toLowerCase()
-        .trim()
-    )
-    if (searchTerm !== '') {
-      window.location = `/search/${searchTerm}`
-    }
+    // const searchTerm = encodeURIComponent(
+    //   this.formAutocomplete.searchInput.input.value
+    //     .toLowerCase()
+    //     .trim()
+    // )
+    // if (searchTerm !== '') {
+    //   window.location = `/search/${searchTerm}`
+    // }
   }
 
   handleSearchClick () {
@@ -112,7 +112,7 @@ export default class Masthead extends React.PureComponent {
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
-            <Button className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
+            <Button ref={node => { this.node = node }} className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
             <Form className='form--search' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>

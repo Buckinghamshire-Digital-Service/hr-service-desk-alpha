@@ -3,13 +3,18 @@
   padding: 0 2rem 2rem;
 
   @include from($tablet) {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    width: 100%;
   }
 
   .control {
     @include padding-small;
     padding-left: $gap / 4;
     padding-right: $gap / 4;
+  }
+
+  .masthead__takeover & {
+    @include vertical-align;
   }
 }
