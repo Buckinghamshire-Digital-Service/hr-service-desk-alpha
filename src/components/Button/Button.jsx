@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
 
 export default class Button extends React.PureComponent {
   onClick (event) {
@@ -36,13 +36,13 @@ export default class Button extends React.PureComponent {
     
     if (url || type === 'a') {
       component = (
-        <Link to={url}
+        <a href={url}
           className={classes}
           role='button'
           {...data}
           {...id}
           onClick={event => this.onClick(event)}>
-          {children}{label}</Link>
+          {children}{label}</a>
       )
     } else {
       component = (
