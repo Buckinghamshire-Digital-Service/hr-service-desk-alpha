@@ -24,17 +24,17 @@ export default class CookieBar extends React.PureComponent {
   render() {
     let iconClose = {
       label: 'close',
-      url: '../../../svg/cross.svg'
+      url: '../../../svg/cross-black.svg'
     }
 
     return (
       <ClientOnly>
        {this.state.visible &&
-       <Accent className='accent--muted accent--shallow' modifier='wrapper--tight'>
+       <Accent className='accent--muted accent--shallow'>
         <p className='has-icon'>
           This website uses cookies to make it simpler to use. <Anchor href='/cookies' text='Find out more about cookies'/>
           <button type='button'
-             className='btn btn--flat btn--static spacing-left'
+             className='btn btn--flat'
              aria-label='Close cookie bar panel'
              onClick={this.closeMessage.bind(this)}>
              <Icon {...iconClose} />
