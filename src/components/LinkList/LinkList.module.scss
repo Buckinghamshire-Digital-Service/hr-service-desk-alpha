@@ -26,6 +26,29 @@ $dims: 1em;
   @include spacing-small;
 }
 
+.list__header,
+.list__footer,
+.list--separated .list-item {  
+  @include padding-vertical-small;
+}
+
+.list__header,
+.list--separated .list-item {
+  border-bottom: 1px solid $gray-300;
+}
+
+.list__header {
+  padding-top: 0;
+
+  .h4 {
+    margin-bottom: .2em;
+  }
+}
+
+.list__footer {
+  padding-bottom: 0;
+}
+
 .list {
 
   &.simple--flat { 
@@ -122,6 +145,11 @@ $dims: 1em;
     margin-bottom: 1em;
   }
 
+  &--no-pad {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
   .simple & {
     margin: .75em 0;    
     background-color: $gray-100;
@@ -185,13 +213,29 @@ $dims: 1em;
 
 .underlined {
   text-decoration: underline;
+  margin-bottom: .3em;
 }
+
+
+.list-item-title--small {
+  font-size: $size-h3-m;
+}    
 
 .text-link {
   display: block;
   margin-top: 1.5rem;
   font-family: $body-family-bold;
   font-size: 120%;
+}
+
+.text-link--large {
+  display: block;
+  margin-top: .5rem;
+
+  @include from($tablet){
+    margin-top: 1rem;
+    font-size: 120%;
+  }
 }
 
 

@@ -14,13 +14,13 @@
 
   &::before {
     content: '';
-    height: 3px;
+    height: 2px;
     width: 12px;
     background-color: $white;
     position: absolute;
     left: 50%;
     margin-left: -6px;
-    bottom: 5px;
+    bottom: 6px;
   }
   
   &:focus,
