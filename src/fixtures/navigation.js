@@ -66,15 +66,15 @@ export const footer = [
       category: 'Footer navigation'
     }
   },
-  {
-    label: 'Cookies',
-    url: '/cookies',
-    tracking: {
-      label: 'Cookies',
-      action: 'Click',
-      category: 'Footer navigation'
-    }
-  },
+  // {
+  //   label: 'Cookies',
+  //   url: '/cookies',
+  //   tracking: {
+  //     label: 'Cookies',
+  //     action: 'Click',
+  //     category: 'Footer navigation'
+  //   }
+  // },
   {
     label: 'Modern slavery statement',
     url: '/modern-slavery-statement',
@@ -82,18 +82,6 @@ export const footer = [
       label: 'Modern slavery statement',
       action: 'Click',
       category: 'Footer navigation'
-    }
-  }
-]
-
-export const footerUtility = [
-  {
-    label: 'Disclaimer',
-    url: '#',
-    tracking: {
-      label: 'Disclaimer',
-      action: 'Click',
-      category: 'Footer utility'
     }
   }
 ]
