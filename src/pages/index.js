@@ -25,7 +25,7 @@ class RootIndex extends React.PureComponent {
         <Helmet title={`${post.title} | ${site.title}`} description={post.metaDescription}/>
         <Main  className='full-width'>
           <div className='container'>
-            <PageTitle text={post.title}/>
+            <PageTitle text={post.title} className='no-breadcrumb'/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
             {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
           </div>
