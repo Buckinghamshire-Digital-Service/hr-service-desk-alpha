@@ -15,12 +15,12 @@
     @include padding-small;
   }
 
-  &--has-heading {
-    margin-top: 3.5rem;
-  }
+//  &--has-heading {
+//    margin-top: 3.5rem;
+//  }
 
-  & + & {
-    border-top: 1px solid $gray-500;
-  }
+//  & + & {
+//    border-top: 1px solid $gray-500;
+//  }
 
 }

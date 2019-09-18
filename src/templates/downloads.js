@@ -33,7 +33,7 @@ class Downloads extends React.PureComponent {
             <PageTitle text={page.title}/>
             <Text className='intro lead' content={page.intro.childMarkdownRemark.html} />
           </div>
-          <div className='container container--constrained'>
+          <div className='container container--constrained downloads-container'>
             {result && result.map((v, i) => <DownloadBlock key={i} {...v}/>)}
           </div>
         </Main>

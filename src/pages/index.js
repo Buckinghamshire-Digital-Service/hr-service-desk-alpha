@@ -11,6 +11,7 @@ import LinkListSimple from '../components/LinkList/LinkListSimple.jsx'
 import Main from '../components/Main/Main.jsx'
 import Icon from '../components/Icon/Icon.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
+import Download from '../components/Download/Download.jsx'
 
 import '../scss/index.scss'
 
@@ -28,10 +29,9 @@ class RootIndex extends React.PureComponent {
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
             {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
           </div>
-          
+          <Download />
           <div className='panel panel--flat panel--padding-small panel--has-heading'>
             <div className='container'>
-              <Link to='/downloads' className='download'><span>Downloads</span></Link>
               {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small container'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
             </div>
           </div>
