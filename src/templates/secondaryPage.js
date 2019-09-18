@@ -13,7 +13,7 @@ class SecondaryPageTemplate extends React.PureComponent {
   render() {
     const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.contentfulSecondaryPage')
-    console.log(post.hero)
+    
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id}>
         <Helmet title={post.metaTitle} description={post.metaDescription}/>
