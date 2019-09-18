@@ -66,15 +66,15 @@ export const footer = [
       category: 'Footer navigation'
     }
   },
-  // {
-  //   label: 'Cookies',
-  //   url: '/cookies',
-  //   tracking: {
-  //     label: 'Cookies',
-  //     action: 'Click',
-  //     category: 'Footer navigation'
-  //   }
-  // },
+  {
+    label: 'Cookies',
+    url: '/cookies',
+    tracking: {
+      label: 'Cookies',
+      action: 'Click',
+      category: 'Footer navigation'
+    }
+  },
   {
     label: 'Modern slavery statement',
     url: '/modern-slavery-statement',
