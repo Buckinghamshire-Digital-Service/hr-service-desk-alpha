@@ -3,8 +3,13 @@ import { Link } from 'gatsby'
 
 const Download = props => {
   return (
-    <div className='panel panel--flat panel--padding-small panel--has-heading'>
-      <div className='container'><Link to='/downloads' className='lead lead--padded'>Go to download index <span className='download'></span></Link></div>
+    <div className={`panel panel--flat panel--padding-small ${props.flush ? 'panel--inverted' : 'panel--has-heading'}`}>
+      <div className='container container--padded'>
+        <Link to='/downloads' className='lead'>
+          <span>Go to download index</span>
+          <span className='download download--small spaced-left'></span>
+        </Link>
+      </div>
     </div>
   )
 }

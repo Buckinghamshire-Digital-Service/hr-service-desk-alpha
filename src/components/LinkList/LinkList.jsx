@@ -18,7 +18,7 @@ const LinkList = props => {
               <Link to={link} className='list-item__link'>
                 <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
               </Link>
-              {v.metaDescription && <p>{v.metaDescription}</p>}
+              {(v.summary || v.metaDescription) && <Heading type='p' text={v.summary.childMarkdownRemark.html || v.metaDescription} />}
               <ButtonGroup>
                 <Button url={link} className='btn--has-radius btn--primary btn--full-width' aria-hidden>
                   Find out more

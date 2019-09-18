@@ -12,6 +12,11 @@
   background-position: center 35%;
   background-repeat: no-repeat;
 
+  &--small {
+    position: relative;
+    top: 7px;  
+  }
+
   &::before {
     content: '';
     height: 2px;

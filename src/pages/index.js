@@ -29,8 +29,8 @@ class RootIndex extends React.PureComponent {
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
             {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
           </div>
-          <Download />
-          <div className='panel panel--flat panel--padding-small panel--has-heading'>
+          <Download flush/>
+          <div className='panel panel--flat panel--padding-small'>
             <div className='container'>
               {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small container'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
             </div>
@@ -44,61 +44,63 @@ class RootIndex extends React.PureComponent {
 export default RootIndex
 
 export const pageQuery = graphql`
-  query HomeQuery {
-    site {
-      siteMetadata {
-        title
-        gaConfig {
-          id
-        }        
+query HomeQuery {
+  site {
+    siteMetadata {
+      title
+      gaConfig {
+        id
       }
     }
-
-    contentfulHomePage {
+  }
+  contentfulHomePage {
+    id
+    title
+    metaTitle
+    metaDescription
+    intro {
+      childMarkdownRemark {
+        html
+      }
+    }
+    hero {
+      headline
+      subHeading
+      image {
+        title
+        description
+        file {
+          details {
+            size
+            image {
+              width
+              height
+            }
+          }
+          fileName
+          contentType
+          url
+        }
+      }
+    }
+    childPages {
       id
       title
-      metaTitle
-      metaDescription
-      intro {
+      slug
+      summary {
         childMarkdownRemark {
           html
         }
       }
-
-      hero {
-        headline
-        subHeading
-        image {
-          title
-          description
-          file {
-            details {
-              size
-              image {
-                width
-                height
-              }
-            }
-            fileName
-            contentType
-            url
-          }
-        }
-      }
-
-      childPages {
-        id
-        title
-        slug
-        metaDescription
-      }
-
-      childPagesSecondary {
-        id
-        title
-        slug
-        metaDescription
-      }
+      metaDescription
+    }
+    childPagesSecondary {
+      id
+      title
+      slug
+      metaDescription
     }
   }
+}
+
 `
