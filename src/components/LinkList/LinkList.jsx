@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
 import Heading from '../Heading/Heading.jsx'
 import Button from '../Button/Button.jsx'
 import ButtonGroup from '../ButtonGroup/ButtonGroup.jsx'
@@ -15,9 +15,9 @@ const LinkList = props => {
         return (
           <li className='column is-half-tablet' key={i}>
             <div className='list__item'>
-              <Link to={link} className='list-item__link'>
+              <a href={link} className='list-item__link'>
                 <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
-              </Link>
+              </a>
               {(v.summary || v.metaDescription) && <Heading type='p' text={v.summary.childMarkdownRemark.html || v.metaDescription} />}
               <ButtonGroup>
                 <Button url={link} className='btn--has-radius btn--primary btn--full-width' aria-hidden>
