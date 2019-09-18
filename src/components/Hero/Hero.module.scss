@@ -2,10 +2,14 @@
   position: relative;
   //height: calc(100vw - 300px);
   //max-height: 25vh;
-  min-height: 85px;
+  min-height: 160px;
   background-position: center;
   background-size: cover;
   background-color: $gray-900;
+
+  @include from($tablet) {
+    min-height: 250px;
+  }
 
   &--shallow {
     height: auto;

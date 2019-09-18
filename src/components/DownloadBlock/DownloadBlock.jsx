@@ -5,9 +5,8 @@ import Heading from '../Heading/Heading.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
 
 const LinkItem = props => {
-console.log(props)
   return (
-    <li className='list-item' target='_blank'>
+    <li className='list-item'>
       <a href={props.mediaLink} className='download-block'>
         <span className='download '><span className='is-sr-only'>Download</span></span>
         <h3 className={`lead underlined ${props.isLocked ? 'locked' : ''}`}>{props.title}</h3>
