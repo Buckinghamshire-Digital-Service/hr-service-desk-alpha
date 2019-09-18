@@ -24,6 +24,14 @@ $padding: $gap;
   }  
 }
 
+@mixin padding-vertical-flush {
+  padding: 0 ($padding / 4);
+
+  @include from($tablet) {
+    padding: 0 ($padding / 2);
+  }  
+}
+
 @mixin spacing {
   margin: $padding / 2;
 

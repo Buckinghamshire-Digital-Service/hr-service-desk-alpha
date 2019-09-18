@@ -1,4 +1,10 @@
-
+@mixin fixed {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;  
+}
 
 .masthead {
   position: relative;
@@ -12,7 +18,7 @@
 
 .masthead__takeover__inner,
 .masthead__inner {
-  position: relative;
+  // position: relative;
   @include padding-small;
 }
 
@@ -23,21 +29,13 @@
 }
 
 .masthead__takeover {
-  position: absolute;
   z-index: 95;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: $white;
+  @include fixed;
+  background-color: $brand-green;
 }
 
 .takeover-bg {
-  position: fixed;
-  z-index: 90;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  @include fixed;
   background-color: rgba($black, .7);
 }
 
@@ -46,7 +44,18 @@
 
   .navbar-item {
     color: $white;
-    font-family: $body-family-bold;
+
+    @include until($tablet) {
+      font-family: $body-family-bold;
+      font-size: 1.1rem;
+    }
+
+    .has-hover & {
+      &:hover {
+        color: $white;
+        background-color: $gray-900;
+      }
+    }      
   }
 }
 
@@ -54,17 +63,15 @@
   &.is-active {
     @include until($tablet) {
       background-color: $brand-green;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      @include fixed;
       padding-top: 5rem;
 
       .navbar-item {
         color: $white;
         text-align: right;
         padding-right: 2rem;
+        font-size: 28px;
+        font-family: $body-family;
 
         .has-hover & {
           &:hover {
@@ -102,10 +109,10 @@
     position: fixed;
     right: 1rem;
     z-index: 1000;
-    background-color: $white;
+    background-color: transparent;
 
     span {
-      background-color: $black;
+      background-color: $white;
     }
 
     span:nth-child(1) {

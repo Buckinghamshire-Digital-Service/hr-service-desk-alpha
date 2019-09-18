@@ -8,11 +8,11 @@ import { Link } from 'gatsby'
 const Footer = props => {
   return (
     <footer className='footer'>
-      <div className='container'>
+      <div className='footer__inner'>
         <Heading text='Need to get in touch?' className='h3'/>
       </div>
       <Divider />
-      <nav className='navbar container' role='navigation' aria-label='Footer navigation' role='contentinfo'>
+      <nav className='navbar footer__inner' role='navigation' aria-label='Footer navigation' role='contentinfo'>
         <Navigation items={footer} /> 
       </nav>
     </footer>

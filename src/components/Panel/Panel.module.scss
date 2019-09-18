@@ -11,6 +11,10 @@
     background-color: $white;
   }
 
+  &--inverted {
+    background-color: transparent;
+  }
+
   &--padding-small {
     @include padding-small;
   }
@@ -19,8 +23,8 @@
     margin-top: 3.5rem;
   }
 
-  & + & {
-    border-top: 1px solid $gray-500;
-  }
+//  & + & {
+//    border-top: 1px solid $gray-500;
+//  }
 
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Heading = props => {
   const Tag = `${props.type['en-US'] !== undefined ? props.type['en-US'] : props.type}`
-  const text = props.text['en-US'] || props.text
+  const text = props.text['en-US'] !== undefined ? props.text['en-US'] : props.text
 
   return (
     <Tag className={props.className} id={props.id || null} dangerouslySetInnerHTML={{__html: text}}></Tag>

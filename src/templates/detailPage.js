@@ -9,9 +9,7 @@ import Text from '../components/Text/Text.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Collapsible from '../components/Collapsible/Collapsible.jsx'
-import marked from 'marked'
-
-// import renderer from '../renderer.js'
+import Download from '../components/Download/Download.jsx'
 
 class PageTemplate extends React.PureComponent {
 
@@ -22,8 +20,8 @@ class PageTemplate extends React.PureComponent {
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id}>
         <Helmet title={post.metaTitle} description={post.metaDescription}/>
-        {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
         <Main className='full-width'>
+          {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
@@ -33,7 +31,7 @@ class PageTemplate extends React.PureComponent {
           })}</div>}
 
           {post.related && <LinkList items={post.related} className='container raised' />}
-          <div className='panel panel--flat panel--padding-small panel--has-heading container'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>
+          <Download />
         </Main>
       </Layout>
     )

@@ -24,14 +24,14 @@ export default class Masthead extends React.PureComponent {
   }
 
   handleSearchSubmit () {
-    const searchTerm = encodeURIComponent(
-      this.formAutocomplete.searchInput.input.value
-        .toLowerCase()
-        .trim()
-    )
-    if (searchTerm !== '') {
-      window.location = `/search/${searchTerm}`
-    }
+    // const searchTerm = encodeURIComponent(
+    //   this.formAutocomplete.searchInput.input.value
+    //     .toLowerCase()
+    //     .trim()
+    // )
+    // if (searchTerm !== '') {
+    //   window.location = `/search/${searchTerm}`
+    // }
   }
 
   handleSearchClick () {
@@ -67,11 +67,11 @@ export default class Masthead extends React.PureComponent {
       url: '../../../svg/buckinghamshire-logo.svg'
     }
 
+    let ariaHidden = {'aria-hidden': this.state.takeover}
 
     return (
       <header className={`masthead ${this.props.hero && this.props.hero.image ? 'masthead--has-shadow' : ''}`}>
         <Hero hero={this.props.hero}>
-          <span className='is-sr-only'>Buckinghamshire Council HR desk service</span>
           <CookieBar />
           <div className='masthead__inner'>
             <section className='navigation-wrapper'>
@@ -104,20 +104,20 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search container container--constrained is-grouped' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='Your phone number'/>
-                  <Button className='btn--flat' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...iconWhite}/></Button>
+                  <input className='input is-large' type='text' placeholder='How can we help?'/>
+                  <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
             </Form>}
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
-            <Button className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
+            <Button ref={node => { this.node = node }} className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
             <Form className='form--search' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='Your phone number'/>
-                  <Button clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
+                  <input className='input is-large' type='text' placeholder='How can we help?'/>
+                  <Button className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
             </Form>

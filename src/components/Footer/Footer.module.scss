@@ -1,9 +1,15 @@
 
 .footer {
   color: $white;
-  @include padding-small;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
   background-color: $gray-900;
   border-top: 10px solid $brand-green;
+
+  &__inner {
+    @include max-width;
+    @include padding-vertical-small;
+  }
 
   .navbar-item,
   .navbar {
@@ -11,7 +17,9 @@
   }
 
   .navbar {
-    margin-left: -.75em;
+    @include until($tablet) {
+      margin-left: -.75em;
+    }
   }
 
   .navbar-item {
@@ -48,8 +56,4 @@
     }
   }
 
-}
-
-.footer__inner {
-  padding-bottom: 3rem;
 }
