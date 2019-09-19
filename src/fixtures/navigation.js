@@ -85,15 +85,3 @@ export const footer = [
     }
   }
 ]
-
-export const footerUtility = [
-  {
-    label: 'Disclaimer',
-    url: '#',
-    tracking: {
-      label: 'Disclaimer',
-      action: 'Click',
-      category: 'Footer utility'
-    }
-  }
-]

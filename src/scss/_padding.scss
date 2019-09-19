@@ -24,6 +24,23 @@ $padding: $gap;
   }  
 }
 
+@mixin padding-vertical-flush {
+  padding: 0 ($padding / 4);
+
+  @include from($tablet) {
+    padding: 0 ($padding / 2);
+  }  
+}
+
+
+@mixin padding-horizontal-flush {
+  padding: ($padding / 4) 0;
+
+  @include from($tablet) {
+    padding: ($padding / 2) 0;
+  }  
+}
+
 @mixin spacing {
   margin: $padding / 2;
 
@@ -38,4 +55,8 @@ $padding: $gap;
   @include from($tablet) {
     margin: $padding / 2;
   }  
+}
+
+.padding--h-flush {
+  @include padding-horizontal-flush;
 }

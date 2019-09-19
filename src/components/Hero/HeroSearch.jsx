@@ -11,7 +11,6 @@ const Hero = props => {
   } 
   
   return (
-    //props.image[0].file.url 
     <div className='hero'>
       <Form className='form--search' role='search'>
         <div className='field has-addons'>

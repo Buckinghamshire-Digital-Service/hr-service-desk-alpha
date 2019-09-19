@@ -7,10 +7,9 @@ import Field from '../Field/Field.jsx'
 import CookieBar from '../CookieBar/CookieBar.jsx'
 import Icon from '../Icon/Icon.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
 import Navigation from '../Navigation/Navigation.jsx'
-import Search from '../Search/Search.jsx'
 import Hero from '../Hero/Hero.jsx'
 import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 import styles from '../../scss/_settings.scss'
@@ -25,14 +24,14 @@ export default class Masthead extends React.PureComponent {
   }
 
   handleSearchSubmit () {
-    const searchTerm = encodeURIComponent(
-      this.formAutocomplete.searchInput.input.value
-        .toLowerCase()
-        .trim()
-    )
-    if (searchTerm !== '') {
-      window.location = `/search/${searchTerm}`
-    }
+    // const searchTerm = encodeURIComponent(
+    //   this.formAutocomplete.searchInput.input.value
+    //     .toLowerCase()
+    //     .trim()
+    // )
+    // if (searchTerm !== '') {
+    //   window.location = `/search/${searchTerm}`
+    // }
   }
 
   handleSearchClick () {
@@ -68,11 +67,11 @@ export default class Masthead extends React.PureComponent {
       url: '../../../svg/buckinghamshire-logo.svg'
     }
 
+    let ariaHidden = {'aria-hidden': this.state.takeover}
 
     return (
       <header className={`masthead ${this.props.hero && this.props.hero.image ? 'masthead--has-shadow' : ''}`}>
         <Hero hero={this.props.hero}>
-          <span className='is-sr-only'>Buckinghamshire Council HR desk service</span>
           <CookieBar />
           <div className='masthead__inner'>
             <section className='navigation-wrapper'>
@@ -105,31 +104,20 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search container container--constrained is-grouped' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <StaticQuery
-                    query={graphql`
-                      query SearchIndexQuery {
-                        siteSearchIndex {
-                          index
-                        }
-                      }
-                    `}
-                    render={data => (
-                      <Search searchIndex={data.siteSearchIndex.index} />
-                    )}
-                  />
-
+                  <input className='input is-large' type='text' placeholder='How can we help?'/>
+                  <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
             </Form>}
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
-            <Button className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
+            <Button ref={node => { this.node = node }} className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
             <Form className='form--search' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='What do you want to ask?'/>
-                  <Button clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
+                  <input className='input is-large' type='text' placeholder='How can we help?'/>
+                  <Button className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
             </Form>

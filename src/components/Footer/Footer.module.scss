@@ -1,9 +1,15 @@
 
 .footer {
   color: $white;
-  @include padding-small;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
   background-color: $gray-900;
   border-top: 10px solid $brand-green;
+
+  &__inner {
+    @include max-width;
+    @include padding-vertical-small;
+  }
 
   .navbar-item,
   .navbar {
@@ -11,7 +17,13 @@
   }
 
   .navbar {
-    margin-left: -.75em;
+    @include until($tablet) {
+      margin-left: -.75em;
+    }
+
+    @include from($tablet) {
+      flex-wrap: wrap;
+    }
   }
 
   .navbar-item {
@@ -19,6 +31,11 @@
     font-family: $body-family;
     position: relative;
     line-height: 1;
+
+    &.active {
+      color: $black;
+      background-color: $white;
+    }
 
     @include from($tablet) {
       &:after {
@@ -48,8 +65,4 @@
     }
   }
 
-}
-
-.footer__inner {
-  padding-bottom: 3rem;
 }
