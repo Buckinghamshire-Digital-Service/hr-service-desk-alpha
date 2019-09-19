@@ -138,7 +138,14 @@ $dims: 1em;
 
 .list__item {
   margin: .6em 0;
-  height: calc(100% - 32px);
+
+  &--has-button {
+    display: flex;
+    flex-direction: column;
+    //height: 100%;    
+    position: relative;
+    height: calc(100% - 32px);
+  }
   
   .raised & {
     @include padding-small;
@@ -147,7 +154,7 @@ $dims: 1em;
     margin-right: $gap / 2; 
     box-shadow: 0 3px 2px 0 rgba($black, 0.1);
     border-radius: 5px;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
   }
 
   &--no-pad {
@@ -172,6 +179,7 @@ $dims: 1em;
   .bullet & {
     @extend %bullet;
   }
+
 }
 
 .list__link { 
