@@ -22,8 +22,8 @@ class SecondaryPageTemplate extends React.PureComponent {
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
+            <Download flush/>
           </div>
-          <Download />
         </Main>
       </Layout>
     )

@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Accent = props => {
-
   return (
     <section className={`accent ${props.className}`}>
       <div className={`container ${props.modifier}`}>
@@ -10,6 +9,7 @@ const Accent = props => {
     </section>
   )
 }
+
 Accent.defaultProps = {
 	className: '',
 	modifier: ''

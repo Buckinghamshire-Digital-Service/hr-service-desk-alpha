@@ -31,7 +31,9 @@ class PageTemplate extends React.PureComponent {
           })}</div>}
 
           {post.related && <LinkList items={post.related} className='container raised' />}
-          <Download />
+          <div className='container'>
+            <Download flush/>
+          </div>
         </Main>
       </Layout>
     )

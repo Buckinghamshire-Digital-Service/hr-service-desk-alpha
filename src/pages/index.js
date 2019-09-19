@@ -29,12 +29,11 @@ class RootIndex extends React.PureComponent {
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
             {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
           </div>
-          <Download flush/>
-          <div className='panel panel--flat panel--padding-small'>
-            <div className='container'>
-              {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small container'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
-            </div>
+
+          <div className='container'>
+            <Download flush/>
           </div>
+          {post.childPagesSecondary && <div className='panel panel--flat panel--flush'><div className='container panel--padding-small'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div></div>}
         </Main>
       </Layout>
     )
