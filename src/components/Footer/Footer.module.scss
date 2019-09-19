@@ -20,6 +20,10 @@
     @include until($tablet) {
       margin-left: -.75em;
     }
+
+    @include from($tablet) {
+      flex-wrap: wrap;
+    }
   }
 
   .navbar-item {
@@ -27,6 +31,11 @@
     font-family: $body-family;
     position: relative;
     line-height: 1;
+
+    &.active {
+      color: $black;
+      background-color: $white;
+    }
 
     @include from($tablet) {
       &:after {

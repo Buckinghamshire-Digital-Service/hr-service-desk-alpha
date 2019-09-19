@@ -32,7 +32,7 @@ export default class CookieBar extends React.PureComponent {
        {this.state.visible &&
        <Accent className='accent--muted accent--shallow'>
         <p className='has-icon'>
-          This website uses cookies to make it simpler to use. <Anchor href='/cookies' text='Find out more about cookies'/>
+          This website uses cookies to make it simpler to use  <Anchor href='/cookies' text='Find out more about cookies'/>
           <button type='button'
              className='btn btn--flat'
              aria-label='Close cookie bar panel'

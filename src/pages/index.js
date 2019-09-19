@@ -22,19 +22,22 @@ class RootIndex extends React.PureComponent {
 
     return (
       <Layout location={this.props.location} className='muted full-width' hero={post.hero} ga={site.gaConfig.id}>
-        <Helmet title={`${post.title} | ${site.title}`} description={post.metaDescription}/>
+        <Helmet>
+          <title>{`${post.title} | ${site.title}`}</title>
+          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
+          <meta name='description' content={post.metaDescription} />    
+        </Helmet>
         <Main  className='full-width'>
           <div className='container'>
-            <PageTitle text={post.title}/>
+            <PageTitle text={post.title} className='no-breadcrumb'/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
             {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
           </div>
-          <Download flush/>
-          <div className='panel panel--flat panel--padding-small'>
-            <div className='container'>
-              {post.childPagesSecondary && <div className='panel panel--flat panel--padding-small container'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div>}
-            </div>
+
+          <div className='container'>
+            <Download flush/>
           </div>
+          {post.childPagesSecondary && <div className='panel panel--flat panel--flush'><div className='container panel--padding-small'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div></div>}
         </Main>
       </Layout>
     )
@@ -48,6 +51,7 @@ query HomeQuery {
   site {
     siteMetadata {
       title
+      basePath
       gaConfig {
         id
       }

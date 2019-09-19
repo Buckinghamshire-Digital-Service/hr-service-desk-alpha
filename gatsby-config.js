@@ -20,6 +20,7 @@ if (!spaceId || !accessToken) {
 module.exports = {
   siteMetadata: {
     title: 'Buckinghamshire HR service desk',
+    basePath: 'https://bucks-temp-name.com',
     gaConfig: {
       id: 'UA-129132977-3'
     }

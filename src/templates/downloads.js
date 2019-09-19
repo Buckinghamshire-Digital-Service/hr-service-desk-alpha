@@ -8,7 +8,21 @@ import Text from '../components/Text/Text.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import DownloadBlock from '../components/DownloadBlock/DownloadBlock.jsx'
-import _ from 'lodash'
+
+import flow from 'lodash/fp/flow'
+import groupBy from 'lodash/fp/groupBy'
+import map from 'lodash/fp/map'
+
+// export const GatsbyQuery = graphql`
+//   {
+//     rickAndMorty {
+//       character(id: 1) {
+//         name
+//         image
+//       }
+//     }
+//   }
+// `
 
 class Downloads extends React.PureComponent {
   render() {
@@ -16,13 +30,13 @@ class Downloads extends React.PureComponent {
     const post = get(this.props, 'data.allContentfulMedia')
     const page = get(this.props, 'data.contentfulSecondaryPage')
     
-    let result = _(post.edges)
-      .groupBy(x => x.node.contentfulparent.slug)
-      .map((value, key) => ({
+    const result = flow(
+      groupBy(x => x.node.contentfulparent.slug),
+      map((value, key) => ({
         parent: key, 
         downloads: value
       }))
-      .value()
+    )(post.edges)
 
     return (
       <Layout location={this.props.location} hasSearch className='muted full-width' hero={page.hero} ga={site.gaConfig.id}>
@@ -50,6 +64,7 @@ export const donwloadPageQuery = graphql`
     site {
       siteMetadata {
         title
+        basePath
         gaConfig {
           id
         }

@@ -16,14 +16,18 @@ class SecondaryPageTemplate extends React.PureComponent {
     
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id}>
-        <Helmet title={post.metaTitle} description={post.metaDescription}/>
+        <Helmet>
+          <title>{`${post.title} | ${site.title}`}</title>
+          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
+          <meta name='description' content={post.metaDescription} />    
+        </Helmet>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
+            <Download flush/>
           </div>
-          <Download />
         </Main>
       </Layout>
     )
@@ -37,6 +41,7 @@ export const secondaryPageQuery = graphql`
     site {
       siteMetadata {
         title
+        basePath
         gaConfig {
           id
         }        
