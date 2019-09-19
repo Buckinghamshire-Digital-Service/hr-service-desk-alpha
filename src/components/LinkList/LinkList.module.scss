@@ -138,6 +138,7 @@ $dims: 1em;
 
 .list__item {
   margin: .6em 0;
+  height: calc(100% - 32px);
   
   .raised & {
     @include padding-small;

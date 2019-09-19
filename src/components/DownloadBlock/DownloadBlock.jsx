@@ -13,7 +13,7 @@ const LinkItem = props => {
         {props.description && <p>{props.description}</p>}
       </a>
     </li>
-  )
+  )    
 }
 
 const DownloadBlock = props => {

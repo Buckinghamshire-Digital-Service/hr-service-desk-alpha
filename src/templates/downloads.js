@@ -8,7 +8,6 @@ import Text from '../components/Text/Text.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import DownloadBlock from '../components/DownloadBlock/DownloadBlock.jsx'
-import axios from 'axios'
 
 import flow from 'lodash/fp/flow'
 import groupBy from 'lodash/fp/groupBy'
@@ -26,40 +25,6 @@ import map from 'lodash/fp/map'
 // `
 
 class Downloads extends React.PureComponent {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      loading: false,
-      error: false
-    }
-  }
-
-  componentDidMount() {
-    this.fetchDocs()
-  }
-
-  fetchDocs(url) {
-    this.setState({ 
-      loading: true 
-    })
-        
-    axios.get(url)
-      .then(response => {
-        console.log(response)
-
-        this.setState({
-          loading: false
-        })
-      })
-      .catch(error => {
-        this.setState({ 
-          loading: false, 
-          error 
-        })
-      })
-  }
-
   render() {
     const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.allContentfulMedia')
@@ -99,6 +64,7 @@ export const donwloadPageQuery = graphql`
     site {
       siteMetadata {
         title
+        basePath
         gaConfig {
           id
         }

@@ -17,9 +17,14 @@ class PageTemplate extends React.PureComponent {
     const map = this.props.pageContext.map
     const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.contentfulPage')
+    
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id}>
-        <Helmet title={post.metaTitle} description={post.metaDescription}/>
+        <Helmet>
+          <title>{`${post.title} | ${site.title}`}</title>
+          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
+          <meta name='description' content={post.metaDescription} />    
+        </Helmet>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
           <div className='container'>
@@ -47,6 +52,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        basePath
         gaConfig {
           id
         }        

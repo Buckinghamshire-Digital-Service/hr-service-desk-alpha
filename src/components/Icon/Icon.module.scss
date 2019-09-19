@@ -43,3 +43,12 @@
     padding-left: 2.5rem;
   }
 }
+
+
+.has-hover {
+  a:hover {
+    .download {
+      background-position: center 45%;      
+    }
+  }
+}

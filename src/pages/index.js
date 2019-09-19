@@ -22,7 +22,11 @@ class RootIndex extends React.PureComponent {
 
     return (
       <Layout location={this.props.location} className='muted full-width' hero={post.hero} ga={site.gaConfig.id}>
-        <Helmet title={`${post.title} | ${site.title}`} description={post.metaDescription}/>
+        <Helmet>
+          <title>{`${post.title} | ${site.title}`}</title>
+          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
+          <meta name='description' content={post.metaDescription} />    
+        </Helmet>
         <Main  className='full-width'>
           <div className='container'>
             <PageTitle text={post.title} className='no-breadcrumb'/>
@@ -47,6 +51,7 @@ query HomeQuery {
   site {
     siteMetadata {
       title
+      basePath
       gaConfig {
         id
       }
