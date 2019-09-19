@@ -1,3 +1,7 @@
 .button-group {
-  margin-top: $gap / 2;
+
+  &--fixed {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
 }
