@@ -19,9 +19,10 @@ class RootIndex extends React.PureComponent {
   render() {
     const site = get(this, 'props.data.site.siteMetadata')
     let post = get(this, 'props.data.contentfulHomePage')
+    const map = this.props.pageContext.map
 
     return (
-      <Layout location={this.props.location} className='muted full-width' hero={post.hero} ga={site.gaConfig.id}>
+      <Layout location={this.props.location} className='muted full-width' hero={post.hero} ga={site.gaConfig.id} map={map}>
         <Helmet>
           <title>{`${post.title} | ${site.title}`}</title>
           <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />

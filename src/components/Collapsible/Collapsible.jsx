@@ -65,7 +65,6 @@ export default class Collapsible extends React.PureComponent {
       'collapsible__trigger--active': this.state.visible
     })
 
-
     // if (timerid) {
     //   clearTimeout(timerid)
     // }

@@ -29,7 +29,7 @@ class Layout extends React.PureComponent {
       <>
         <Skiplinks />
         <Container className={this.props.className}>
-          <Masthead location={location} hasSearch={this.props.hasSearch} hero={this.props.hero}/>
+          <Masthead location={location} hasSearch={this.props.hasSearch} hero={this.props.hero} map={this.props.map}/>
           {children}
         </Container>
         <Footer />

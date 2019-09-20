@@ -2,6 +2,8 @@ const Promise = require('bluebird')
 const path = require('path')
 // const fs = require('fs')
 
+let urlMap = {}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -126,7 +128,7 @@ exports.createPages = ({ graphql, actions }) => {
           })
 
         path = path.concat(arr)
-        let urlMap = {}
+        
         path.map(v => {
           return urlMap[v.node.id] = v.node.path || v.node.slug
         })
@@ -167,17 +169,15 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreatePage = ({ page, actions }) => {
   if (page.path === '/') {
-    console.log('homeage')
+    const { createPage, deletePage } = actions
+    deletePage(page)
+    createPage({
+      ...page,
+      context: {
+        ...page.context,
+        map: urlMap
+      },
+    })    
   }
-  
-  // const { createPage, deletePage } = actions
-  // const oldPage = Object.assign({}, page)
-  // // Remove trailing slash unless page is /
-  // page.path = replacePath(page.path)
-  // if (page.path !== oldPage.path) {
-  //   // Replace new page with old page
-  //   deletePage(oldPage)
-  //   createPage(page)
-  // }
 }
 

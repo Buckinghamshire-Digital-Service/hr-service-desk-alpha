@@ -51,7 +51,7 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: [{name: 'title', boost: 12}, {name: 'metaDescription', boost: 7} /*, {name: 'content', boost: 5}*/],
+        fields: ['title','metaDescription'],
         resolvers: {
           ContentfulPage: {
             title: node => node.title,
@@ -63,11 +63,11 @@ module.exports = {
             metaDescription: node => node.metaDescription, 
             // content: node => node.intro___NODE
           },
-          ContentfulCollapsible: {
-            title: node => node.title,
-            metaDescription: node => node.title, 
-            // content: 
-          },
+          // ContentfulCollapsible: {
+          //   title: node => node.title,
+          //   metaDescription: node => node.title, 
+          //   // content: 
+          // },
           // MarkdownRemark: {
           //   content: node => node.frontmatter.title,
           //   tags: node => node.frontmatter.tags,
