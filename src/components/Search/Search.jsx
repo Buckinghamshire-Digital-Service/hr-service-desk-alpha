@@ -35,15 +35,26 @@ export default class Search extends React.PureComponent {
 
   search(evt) {
     const query = evt.target.value
-    this.index = this.getOrCreateIndex()
 
-    console.log(Index || 'jsdfdf')
+    console.log(this.props.searchIndex)
+
+    return
+
+    if (query.length < 3) {
+      this.setState({
+        query
+      })
+
+      return
+    }
+
+    this.index = this.getOrCreateIndex()
 
     this.setState({
       query,
       // Query the index with search string to get an [] of IDs
       results: this.index
-        .search(query, { expand: true })
+        .search(query, {})
         .map(({ ref }) => {
           console.log(ref)
           this.index.documentStore.getDoc(ref)

@@ -51,14 +51,28 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: ['id', 'title', 'metaDescription'],
+        fields: [
+          { name: 'title', attributes: { boost: 20 } },
+          { name: 'metaDescription', attributes: { boost: 10 } },
+          { name: 'slug', attributes: { boost: 15 } },
+          { name: 'intro', attributes: { boost: 5 } },
+          { name: 'content', attributes: { boost: 7 } }
+        ],
         resolvers: {
-          // allContentfulPage: {
-          //   title: node => {console.log(node); return node.title}
-          // }
-          MarkdownRemark: {
-            title: node => {console.log(node); return node.title}      
+          ContentfulPage: {
+            title: node => node.title,
+            metaDescription: node => node.metaDescription,
+            slug: node => node.slug
           },
+          ContentfulSecondaryPage: {
+            title: node => node.title,
+            metaDescription: node => node.metaDescription,
+            slug: node => node.slug
+          },
+          MarkdownRemark: {
+            content: node => node.frontmatter.content,
+            intro: node => node.frontmatter.intro
+          }
         },
       },
     },    
