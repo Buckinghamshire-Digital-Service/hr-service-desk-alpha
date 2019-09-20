@@ -42,6 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
               node {
                 id
                 title
+                ariaLabel
                 content {
                   childMarkdownRemark {
                     html
@@ -152,6 +153,8 @@ exports.createPages = ({ graphql, actions }) => {
             path: path,
             component: post.node.slug !== 'downloads' ? secondaryPage : downloadPage,
             context: {
+              id: post.node.id,
+              map: urlMap,              
               slug: post.node.slug
             },
           })
@@ -161,3 +164,20 @@ exports.createPages = ({ graphql, actions }) => {
     )
   })
 }
+
+exports.onCreatePage = ({ page, actions }) => {
+  if (page.path === '/') {
+    console.log('homeage')
+  }
+  
+  // const { createPage, deletePage } = actions
+  // const oldPage = Object.assign({}, page)
+  // // Remove trailing slash unless page is /
+  // page.path = replacePath(page.path)
+  // if (page.path !== oldPage.path) {
+  //   // Replace new page with old page
+  //   deletePage(oldPage)
+  //   createPage(page)
+  // }
+}
+

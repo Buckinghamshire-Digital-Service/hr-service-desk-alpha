@@ -1,5 +1,6 @@
 import React from 'react'
 import { Index } from 'elasticlunr'
+import { Link } from 'gatsby'
 import Button from '../Button/Button.jsx'
 
 export default class Search extends React.PureComponent {
@@ -19,7 +20,6 @@ export default class Search extends React.PureComponent {
           {this.state.results.map(page => (
             <li key={page.id}>
               <Link to={'/' + page.path}>{page.title}</Link>
-              {': ' + page.tags.join(`,`)}
             </li>
           ))}
         </ul>
@@ -36,8 +36,6 @@ export default class Search extends React.PureComponent {
   search(evt) {
     const query = evt.target.value
 
-    console.log(this.props.searchIndex)
-
     if (query.length < 3) {
       this.setState({
         query
@@ -50,13 +48,12 @@ export default class Search extends React.PureComponent {
 
     this.setState({
       query,
-      // Query the index with search string to get an [] of IDs
       results: this.index
-        .search(query, {})
+        .search(query, {expand: true})
         .map(({ ref }) => {
           console.log(ref)
-          this.index.documentStore.getDoc(ref)
-        }),
+          return this.index.documentStore.getDoc(ref)
+        })
     })
   }
 }

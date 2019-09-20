@@ -29,6 +29,7 @@ class Downloads extends React.PureComponent {
     const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.allContentfulMedia')
     const page = get(this.props, 'data.contentfulSecondaryPage')
+    const map = this.props.pageContext.map
     
     const result = flow(
       groupBy(x => x.node.contentfulparent.slug),

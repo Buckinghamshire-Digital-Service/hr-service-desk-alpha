@@ -13,6 +13,7 @@ class SecondaryPageTemplate extends React.PureComponent {
   render() {
     const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.contentfulSecondaryPage')
+    const map = this.props.pageContext.map
     
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id}>
@@ -26,6 +27,7 @@ class SecondaryPageTemplate extends React.PureComponent {
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
+            {post.content && <Text className='long-form' content={post.content.childMarkdownRemark.html} />}
             <Download flush/>
           </div>
         </Main>

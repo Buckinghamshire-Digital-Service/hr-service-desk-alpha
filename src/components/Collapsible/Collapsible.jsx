@@ -91,7 +91,7 @@ export default class Collapsible extends React.PureComponent {
             <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
               <Text content={this.props.content.childMarkdownRemark.html}/>
               {this.props.mediaLink && <ul className='list list--no-bullet'>{this.props.mediaLink.map(v => <li key={v.id} className='list__item'><a className={`list__link text-link ${v.type}`} href={v.mediaLink}>{`${v.title} - ${v.description}`}</a></li>)}</ul>}
-              {this.props.link && <Anchor className='text-link' href={`/${this.props.links[this.props.link.id]}`} label={this.props.link.title} text={`Read more about ${this.props.link.title}`}/>}
+              {this.props.link && <Anchor className='text-link' href={`/${this.props.links[this.props.link.id]}`} text={`Read more about ${this.props.link.title}`}/>}
             </div>        
           </div>
         </div>
