@@ -18,7 +18,7 @@ class Downloads extends React.PureComponent {
     const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.allContentfulMedia')
     const page = get(this.props, 'data.contentfulSecondaryPage')
-    const map = this.props.pageContext.map
+    const urlmap = this.props.pageContext.map
     
     const result = flow(
       groupBy(x => x.node.contentfulparent.slug),
@@ -29,7 +29,7 @@ class Downloads extends React.PureComponent {
     )(post.edges)
 
     return (
-      <Layout location={this.props.location} hasSearch className='muted full-width' hero={page.hero} ga={site.gaConfig.id} map={this.props.map}>
+      <Layout location={this.props.location} hasSearch className='muted full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
         <Helmet title={page.metaTitle} description={page.metaDescription}/>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
