@@ -55,8 +55,6 @@ module.exports = {
           { name: 'title', attributes: { boost: 20 } },
           { name: 'metaDescription', attributes: { boost: 10 } },
           { name: 'slug', attributes: { boost: 15 } },
-          { name: 'intro', attributes: { boost: 5 } },
-          { name: 'content', attributes: { boost: 7 } }
         ],
         resolvers: {
           ContentfulPage: {
@@ -68,10 +66,6 @@ module.exports = {
             title: node => node.title,
             metaDescription: node => node.metaDescription,
             slug: node => node.slug
-          },
-          MarkdownRemark: {
-            content: node => node.frontmatter.content,
-            intro: node => node.frontmatter.intro
           }
         },
       },

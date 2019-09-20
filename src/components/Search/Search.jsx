@@ -13,7 +13,7 @@ export default class Search extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <>
         <input className='input is-large' type='text' placeholder='What do you want to ask?' value={this.state.query} onChange={this.search.bind(this)}/>
         <ul>
           {this.state.results.map(page => (
@@ -23,7 +23,7 @@ export default class Search extends React.PureComponent {
             </li>
           ))}
         </ul>
-      </div>
+      </>
     )
   }
 
@@ -37,8 +37,6 @@ export default class Search extends React.PureComponent {
     const query = evt.target.value
 
     console.log(this.props.searchIndex)
-
-    return
 
     if (query.length < 3) {
       this.setState({
