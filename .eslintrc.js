@@ -10,7 +10,7 @@ module.exports = {
     "graphql": false,
   },
   "parserOptions": {
-      "ecmaVersion": 6,
+      "ecmaVersion": 9,
       "sourceType": "module",
       "ecmaFeatures": {
           "jsx": true
