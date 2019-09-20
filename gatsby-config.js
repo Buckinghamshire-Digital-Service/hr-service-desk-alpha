@@ -49,6 +49,28 @@ module.exports = {
       }
     },
     {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: [
+          { name: 'title', attributes: { boost: 20 } },
+          { name: 'metaDescription', attributes: { boost: 10 } },
+          { name: 'slug', attributes: { boost: 15 } },
+        ],
+        resolvers: {
+          ContentfulPage: {
+            title: node => node.title,
+            metaDescription: node => node.metaDescription,
+            slug: node => node.slug
+          },
+          ContentfulSecondaryPage: {
+            title: node => node.title,
+            metaDescription: node => node.metaDescription,
+            slug: node => node.slug
+          }
+        },
+      },
+    },    
+    {
       resolve: "gatsby-plugin-stylelint",
       options: { files: ["**/*.{js,jsx, scss}"] }
     }

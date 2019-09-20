@@ -7,12 +7,13 @@ import Field from '../Field/Field.jsx'
 import CookieBar from '../CookieBar/CookieBar.jsx'
 import Icon from '../Icon/Icon.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
-import { Link } from 'gatsby'
+import { Link, graphql, StaticQuery } from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
 import Navigation from '../Navigation/Navigation.jsx'
+import Search from '../Search/Search.jsx'
 import Hero from '../Hero/Hero.jsx'
-import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
-import styles from '../../scss/_settings.scss'
+//import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
+
 
 export default class Masthead extends React.PureComponent {
   constructor () {
@@ -104,7 +105,18 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search container container--constrained is-grouped' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='How can we help?'/>
+                    <StaticQuery
+                    query={graphql`
+                      query SearchIndexQuery {
+                        siteSearchIndex {
+                          index
+                        }
+                      }
+                    `}
+                    render={data => (
+                      <Search searchIndex={data.siteSearchIndex.index} />
+                    )}
+                  />
                   <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
