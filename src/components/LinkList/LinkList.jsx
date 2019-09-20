@@ -11,7 +11,6 @@ const LinkList = props => {
     <ul className={`list ${props.className}`}>
       {items && items.map((v, i) => {
         const link = (v.parentPage && v.parentPage.slug) !== undefined ? `/${v.parentPage.slug}/${v.slug}/` : `/${v.slug}/`
-        // const content = v.summary ? v.summary.childMarkdownRemark.html : v.metaDescription
         const content = v.metaDescription !== undefined ? v.metaDescription : null
         return (
           <li className='column is-half-tablet' key={i}>

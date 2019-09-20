@@ -114,7 +114,7 @@ export default class Masthead extends React.PureComponent {
                       }
                     `}
                     render={data => (
-                      <Search searchIndex={data.siteSearchIndex.index} />
+                      <Search searchIndex={data.siteSearchIndex.index} map={this.props.map}/>
                     )}
                   />
                   <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>

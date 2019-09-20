@@ -19,7 +19,7 @@ class PageTemplate extends React.PureComponent {
     const post = get(this.props, 'data.contentfulPage')
     
     return (
-      <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id}>
+      <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id} map={map}>
         <Helmet>
           <title>{`${post.title} | ${site.title}`}</title>
           <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />

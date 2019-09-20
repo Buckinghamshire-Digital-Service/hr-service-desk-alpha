@@ -2,6 +2,8 @@ const Promise = require('bluebird')
 const path = require('path')
 // const fs = require('fs')
 
+let urlMap = {}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -42,6 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
               node {
                 id
                 title
+                ariaLabel
                 content {
                   childMarkdownRemark {
                     html
@@ -125,7 +128,7 @@ exports.createPages = ({ graphql, actions }) => {
           })
 
         path = path.concat(arr)
-        let urlMap = {}
+        
         path.map(v => {
           return urlMap[v.node.id] = v.node.path || v.node.slug
         })
@@ -152,6 +155,8 @@ exports.createPages = ({ graphql, actions }) => {
             path: path,
             component: post.node.slug !== 'downloads' ? secondaryPage : downloadPage,
             context: {
+              id: post.node.id,
+              map: urlMap,              
               slug: post.node.slug
             },
           })
@@ -161,3 +166,18 @@ exports.createPages = ({ graphql, actions }) => {
     )
   })
 }
+
+exports.onCreatePage = ({ page, actions }) => {
+  if (page.path === '/') {
+    const { createPage, deletePage } = actions
+    deletePage(page)
+    createPage({
+      ...page,
+      context: {
+        ...page.context,
+        map: urlMap
+      },
+    })    
+  }
+}
+
