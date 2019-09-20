@@ -1,5 +1,6 @@
 $dims: 60px;
 
+.logo__link,
 .logo {
   width: $dims;
   height: $dims;
@@ -7,4 +8,9 @@ $dims: 60px;
 
 .logo__link {
   display: block;
+
+  img {
+  	max-width: 100%;
+  	width: auto;
+  }
 }
