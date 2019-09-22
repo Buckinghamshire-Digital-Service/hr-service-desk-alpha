@@ -19,7 +19,7 @@ export default class Search extends React.PureComponent {
         <ul>
           {this.state.results.map(page => (
             <li key={page.id}>
-              <Link to={'/' + page.path}>{page.title}</Link>
+              <Link to={`/${this.props.map[page.id]}`}>{page.title}</Link>
             </li>
           ))}
         </ul>
@@ -49,7 +49,16 @@ export default class Search extends React.PureComponent {
     this.setState({
       query,
       results: this.index
-        .search(query, {expand: true})
+        .search(query, {
+          fields: {
+              title: {boost: 5},
+              metaDescription: {boost: 3},
+              intro: {boost: 2},
+              content: {boost: 1}
+          },
+          bool: 'AND',
+          expand: true
+        })
         .map(({ ref }) => {
           console.log(ref)
           return this.index.documentStore.getDoc(ref)

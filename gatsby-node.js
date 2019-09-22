@@ -39,20 +39,6 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-          allContentfulCollapsible {
-            edges {
-              node {
-                id
-                title
-                ariaLabel
-                content {
-                  childMarkdownRemark {
-                    html
-                  }
-                }
-              }
-            }
-          }
         }
         `
       ).then(result => {

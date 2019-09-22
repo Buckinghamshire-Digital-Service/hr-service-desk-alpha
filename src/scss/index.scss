@@ -41,26 +41,26 @@ $navbar-breakpoint: $tablet;
 @import "panel";
 
 // modules - will move these back in to be required by the components themselves
-@import "../components/Collapsible/Collapsible.module.scss";
-@import "../components/Breadcrumb/Breadcrumb.module.scss";
-@import "../components/Button/Button.module.scss";
-@import "../components/Masthead/Masthead.module.scss";
-@import "../components/Container/Container.module.scss";
-@import "../components/LinkList/LinkList.module.scss";
-@import "../components/PageTitle/PageTitle.module.scss";
-@import "../components/Footer/Footer.module.scss";
-@import "../components/Divider/Divider.module.scss";
-@import "../components/Main/Main.module.scss";
-@import "../components/Accent/Accent.module.scss";
-@import "../components/Panel/Panel.module.scss";
-@import "../components/Skiplinks/Skiplinks.module.scss";
-@import "../components/Hero/Hero.module.scss";
-@import "../components/ButtonGroup/ButtonGroup.module.scss";
-@import "../components/Icon/Icon.module.scss";
-@import "../components/Form/Form.module.scss";
-@import "../components/Logo/Logo.module.scss";
-@import "../components/DownloadBlock/DownloadBlock.module.scss";
-@import "../components/Accent/Accent.module.scss";
+@import "../components/Collapsible/Collapsible.scss";
+@import "../components/Breadcrumb/Breadcrumb.scss";
+@import "../components/Button/Button.scss";
+@import "../components/Masthead/Masthead.scss";
+@import "../components/Container/Container.scss";
+@import "../components/LinkList/LinkList.scss";
+@import "../components/PageTitle/PageTitle.scss";
+@import "../components/Footer/Footer.scss";
+@import "../components/Divider/Divider.scss";
+@import "../components/Main/Main.scss";
+@import "../components/Accent/Accent.scss";
+@import "../components/Panel/Panel.scss";
+@import "../components/Skiplinks/Skiplinks.scss";
+@import "../components/Hero/Hero.scss";
+@import "../components/ButtonGroup/ButtonGroup.scss";
+@import "../components/Icon/Icon.scss";
+@import "../components/Form/Form.scss";
+@import "../components/Logo/Logo.scss";
+@import "../components/DownloadBlock/DownloadBlock.scss";
+@import "../components/Accent/Accent.scss";
 
 
 
