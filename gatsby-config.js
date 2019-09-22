@@ -59,7 +59,6 @@ module.exports = {
             intro: (node, getNode) => getNode(node.intro___NODE).intro,            
             content: (node, getNode) => node.collapsibleLinks___NODE && node.collapsibleLinks___NODE.map((v) => {
               let collapse = getNode(v)
-              console.log(getNode(collapse.content___NODE).content)
               return getNode(collapse.content___NODE).content
             })
           },
