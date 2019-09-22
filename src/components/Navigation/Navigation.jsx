@@ -3,11 +3,7 @@ import { Link } from 'gatsby'
 import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 const handleItemClick = (e) => {
-  Event({
-    category: e.category,
-    action: e.action,
-    label: e.label
-  })
+  Event(e.category,e.action,e.label)
 }
 
 const Navigation = (props) => (

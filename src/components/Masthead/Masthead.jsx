@@ -12,6 +12,7 @@ import { primary } from '../../fixtures/navigation.js'
 import Navigation from '../Navigation/Navigation.jsx'
 import Search from '../Search/Search.jsx'
 import Hero from '../Hero/Hero.jsx'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 //import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 
 
@@ -128,7 +129,7 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='How can we help?'/>
+                  <input className='input is-large' type='text' placeholder='Search'/>
                   <Button className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
