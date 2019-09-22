@@ -3,11 +3,12 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Heading from '../Heading/Heading.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 const LinkItem = props => {
   return (
     <li className='list-item'>
-      <a href={props.mediaLink} className='download-block'>
+      <a href={props.mediaLink} className='download-block' onClick={() => Event('Document download','Click',props.title)}>
         <span className='download '><span className='is-sr-only'>Download</span></span>
         <h3 className={`lead underlined ${props.isLocked ? 'locked' : ''}`}>{props.title}</h3>
         {props.description && <p>{props.description}</p>}

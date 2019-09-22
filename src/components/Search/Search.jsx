@@ -1,7 +1,6 @@
 import React from 'react'
 import { Index } from 'elasticlunr'
 import { Link } from 'gatsby'
-import Button from '../Button/Button.jsx'
 
 export default class Search extends React.PureComponent {
   constructor(props) {
@@ -14,7 +13,7 @@ export default class Search extends React.PureComponent {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <input className='input is-large' type='text' placeholder='What do you want to ask?' value={this.state.query} onChange={this.search.bind(this)}/>
         <ul>
           {this.state.results.map(page => (
@@ -23,7 +22,7 @@ export default class Search extends React.PureComponent {
             </li>
           ))}
         </ul>
-      </>
+      </React.Fragment>
     )
   }
 
@@ -60,7 +59,6 @@ export default class Search extends React.PureComponent {
           expand: true
         })
         .map(({ ref }) => {
-          console.log(ref)
           return this.index.documentStore.getDoc(ref)
         })
     })

@@ -12,7 +12,7 @@ export default class Collapsible extends React.PureComponent {
     this.state = {
       visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
       height: 0,
-      actualHidden: false,
+      // actualHidden: false,
       dir: 'down'      
     }
   }
@@ -32,11 +32,10 @@ export default class Collapsible extends React.PureComponent {
       }
     }
 
-    Event({
-      category: 'Collapsible',
-      action: 'Collapsible toggle',
-      label: this.props.title
-    })
+    // only send on opening 
+    if (!this.state.visible) {
+      Event('Collapsible','Open collapsible',this.props.title)      
+    }
   }
 
   componentDidMount () {
@@ -89,8 +88,8 @@ export default class Collapsible extends React.PureComponent {
           <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
             <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
               <Text content={this.props.content.childMarkdownRemark.html}/>
-              {this.props.mediaLink && <ul className='list list--no-bullet'>{this.props.mediaLink.map(v => <li key={v.id} className='list__item'><a className={`list__link text-link ${v.type}`} href={v.mediaLink}>{`${v.title} - ${v.description}`}</a></li>)}</ul>}
-              {this.props.link && <Anchor className='text-link' href={`/${this.props.links[this.props.link.id]}`} text={`Read more about ${this.props.link.title}`}/>}
+              {this.props.mediaLink && <ul className='list list--no-bullet'>{this.props.mediaLink.map(v => <li key={v.id} className='list__item'><a className={`list__link text-link ${v.type}`} href={v.mediaLink} onClick={() => Event('Media download link','Click',v.title) }>{`${v.title} - ${v.description}`}</a></li>)}</ul>}
+              {this.props.link && <Anchor className='text-link' href={`/${this.props.links[this.props.link.id]}`} text={`Read more about ${this.props.link.title}`} onClick={() => Event('Collapsible link','Click',this.props.link.title)}/>}
             </div>        
           </div>
         </div>
