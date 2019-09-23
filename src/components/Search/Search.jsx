@@ -1,7 +1,7 @@
 import React from 'react'
 import { Index } from 'elasticlunr'
 import { Link } from 'gatsby'
-import Button from '../Button/Button.jsx'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 export default class Search extends React.PureComponent {
   constructor(props) {
@@ -14,16 +14,17 @@ export default class Search extends React.PureComponent {
 
   render() {
     return (
-      <>
-        <input className='input is-large' type='text' placeholder='What do you want to ask?' value={this.state.query} onChange={this.search.bind(this)}/>
+      <React.Fragment>
+        <label htmlFor={this.props.id}>Search</label>
+        <input id={this.props.id} className='input is-large' type='text' placeholder='Search' value={this.state.query} onChange={this.search.bind(this)}/>
         <ul>
           {this.state.results.map(page => (
             <li key={page.id}>
-              <Link to={'/' + page.path}>{page.title}</Link>
+              <Link to={`/${this.props.map[page.id]}`}>{page.title}</Link>
             </li>
           ))}
         </ul>
-      </>
+      </React.Fragment>
     )
   }
 
@@ -49,9 +50,17 @@ export default class Search extends React.PureComponent {
     this.setState({
       query,
       results: this.index
-        .search(query, {expand: true})
+        .search(query, {
+          fields: {
+              title: {boost: 5},
+              metaDescription: {boost: 3},
+              intro: {boost: 2},
+              content: {boost: 1}
+          },
+          bool: 'AND',
+          expand: true
+        })
         .map(({ ref }) => {
-          console.log(ref)
           return this.index.documentStore.getDoc(ref)
         })
     })

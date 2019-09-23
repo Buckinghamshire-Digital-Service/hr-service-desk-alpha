@@ -13,7 +13,6 @@ import Icon from '../components/Icon/Icon.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Download from '../components/Download/Download.jsx'
 
-import '../scss/index.scss'
 
 class RootIndex extends React.PureComponent {
   render() {

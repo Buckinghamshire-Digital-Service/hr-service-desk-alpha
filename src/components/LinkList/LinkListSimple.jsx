@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Heading from '../Heading/Heading.jsx'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 const LinkListSimple = props => {
   const items = props.items['en-US'] !== undefined ? props.items['en-US'] : props.items
@@ -13,7 +14,7 @@ const LinkListSimple = props => {
         return (
           <li className='list__item' key={i}>
             <Link to={link} className='list-item__link'>
-              <Heading text={v.title} type={props.type} className='list-item__title has-chevron'/>
+              <Heading text={v.title} type={props.type} className='list-item__title has-chevron' onClick={() => Event('Homepage extra navigation','Click',v.title) }/>
             </Link>
           </li>
         )

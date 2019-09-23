@@ -1,7 +1,10 @@
 import ReactGA from 'react-ga'
 
-export const initGA = (trackingID) => {           
-  ReactGA.initialize(trackingID) 
+export const initGA = (trackingID) => {
+  if (typeof window !== 'undefined' && window.ga) {
+    return
+  }
+  ReactGA.initialize(trackingID)
 }
 
 export const PageView = () => {

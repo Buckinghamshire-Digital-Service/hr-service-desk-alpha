@@ -10,8 +10,8 @@ export default class Button extends React.PureComponent {
       return
     }
 
-    event.preventDefault()
-    event.stopPropagation()
+    // event.preventDefault()
+    // event.stopPropagation()
 
     const handler = clickHandler()
   }

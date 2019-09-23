@@ -7,12 +7,13 @@ import Field from '../Field/Field.jsx'
 import CookieBar from '../CookieBar/CookieBar.jsx'
 import Icon from '../Icon/Icon.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
-import { Link, graphql, StaticQuery } from 'gatsby'
+import { Link, graphql, StaticQuery, navigate } from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
 import Navigation from '../Navigation/Navigation.jsx'
 import Search from '../Search/Search.jsx'
 import Hero from '../Hero/Hero.jsx'
-//import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
+import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 
 
 export default class Masthead extends React.PureComponent {
@@ -24,15 +25,25 @@ export default class Masthead extends React.PureComponent {
     }
   }
 
-  handleSearchSubmit () {
-    // const searchTerm = encodeURIComponent(
-    //   this.formAutocomplete.searchInput.input.value
-    //     .toLowerCase()
-    //     .trim()
-    // )
-    // if (searchTerm !== '') {
-    //   window.location = `/search/${searchTerm}`
-    // }
+  handleSearchSubmit (e) {
+    let term = 'work life balance'
+    console.log(e, term)
+    e.preventDefault()
+
+    const searchTerm = encodeURIComponent(
+      term
+        .toLowerCase()
+        .trim()
+    )
+    if (searchTerm !== '') {
+      navigate('/search/',
+        {
+          state: { 
+            query: searchTerm 
+          },
+        }        
+      )
+    }
   }
 
   handleSearchClick () {
@@ -102,7 +113,7 @@ export default class Masthead extends React.PureComponent {
             </section>
           </div>
           {!this.props.hasSearch && 
-            <Form className='form--search container container--constrained is-grouped' role='search'>
+            <Form className='form--search container container--constrained is-grouped' role='search' onSubmit={event => this.handleSearchSubmit.bind(event, this)}>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
                     <StaticQuery
@@ -114,7 +125,7 @@ export default class Masthead extends React.PureComponent {
                       }
                     `}
                     render={data => (
-                      <Search searchIndex={data.siteSearchIndex.index} map={this.props.map}/>
+                      <Search searchIndex={data.siteSearchIndex.index} map={this.props.map} id='home-hero-search' />
                     )}
                   />
                   <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
@@ -128,7 +139,7 @@ export default class Masthead extends React.PureComponent {
             <Form className='form--search' role='search'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='How can we help?'/>
+                  <input className='input is-large' type='text' placeholder='Search'/>
                   <Button className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
