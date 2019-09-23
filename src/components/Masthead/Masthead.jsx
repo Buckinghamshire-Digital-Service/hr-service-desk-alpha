@@ -2,15 +2,13 @@ import React from 'react'
 import classNames from 'classnames'
 import Logo from '../Logo/Logo.jsx'
 import Button from '../Button/Button.jsx'
-import Form from '../Form/Form.jsx'
 import Field from '../Field/Field.jsx'
 import CookieBar from '../CookieBar/CookieBar.jsx'
 import Icon from '../Icon/Icon.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
-import { Link, graphql, StaticQuery, navigate } from 'gatsby'
+import { Link, graphql, navigate} from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
 import Navigation from '../Navigation/Navigation.jsx'
-import Search from '../Search/Search.jsx'
 import Hero from '../Hero/Hero.jsx'
 import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 //import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
@@ -22,22 +20,33 @@ export default class Masthead extends React.PureComponent {
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.state = {
       mobileMenuOpen: false,
-      takeover: false
+      takeover: false, 
+      query: ''
     }
   }
 
+  searchText(e) {
+    const query = e.target.value
+
+    this.setState({
+      query: query
+    })    
+  }
+
   handleSearchSubmit (e) {
-    alert(e)
-    let term = 'work life balance'
-    console.log(term)
+    e.preventDefault()
+
 
     const searchTerm = encodeURIComponent(
-      term
-        .toLowerCase()
-        .trim()
+      this.state.query.toLowerCase().trim()
     )
+
     if (searchTerm !== '') {
-      navigate('/search')
+      navigate('/search', {
+        state: {
+          query: this.state.query
+        }
+      })
     }
   }
 
@@ -108,41 +117,27 @@ export default class Masthead extends React.PureComponent {
             </section>
           </div>
           {!this.props.hasSearch && 
-            <Form className='form--search container container--constrained is-grouped' role='search' onSubmit={event => {
-                event.preventDefault()
-                // TODO: do something with form values
-                navigate('/search/')
-              }}>
+            <form autoComplete='off' className='form--search container container--constrained is-grouped' role='search' onSubmit={(e) => this.handleSearchSubmit(e)}>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                    <StaticQuery
-                    query={graphql`
-                      query SearchIndexQuery {
-                        siteSearchIndex {
-                          index
-                        }
-                      }
-                    `}
-                    render={data => (
-                      <Search searchIndex={data.siteSearchIndex.index} map={this.props.map} id='home-hero-search' />
-                    )}
-                  />
-                  <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit}><Icon {...icon}/></Button>
+                  <label htmlFor={this.props.id}>Search</label>
+                  <input id={this.props.id} className='input is-large' value={this.state.query} type='text' placeholder='Search' onChange={this.searchText.bind(this)}/>
+                  <Button {...ariaHidden} className='btn--flat offset-right'><Icon {...icon}/></Button>
                 </div>
               </div>
-            </Form>}
+            </form>}
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
             <Button ref={node => { this.node = node }} className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
-            <Form className='form--search' role='search'>
+            <form className='form--search' role='search' autoComplete='off'>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
                   <input className='input is-large' type='text' placeholder='Search'/>
                   <Button className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
                 </div>
               </div>
-            </Form>
+            </form>
           </div>
         </section>}
         {(this.state.takeover && this.props.hasSearch) && <div className='takeover-bg' onClick={this.handleSearchClick.bind(this)}/>}

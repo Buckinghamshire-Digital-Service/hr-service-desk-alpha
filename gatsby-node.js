@@ -11,6 +11,7 @@ exports.createPages = ({ graphql, actions }) => {
     const detailPage = path.resolve('./src/templates/detailPage.js')
     const secondaryPage = path.resolve('./src/templates/secondaryPage.js')
     const downloadPage = path.resolve('./src/templates/downloads.js')
+    const searchPage = path.resolve('./src/templates/search.js')
 
     resolve(
       graphql(
@@ -137,9 +138,21 @@ exports.createPages = ({ graphql, actions }) => {
         secondaryPosts.forEach((post, index) => {
           let path = `/${post.node.slug}/`
 
+          let template
+          switch(post.node.slug) {
+            case 'search':
+              template = searchPage
+              break
+            case 'downloads':
+              template = downloadPage
+              break
+            default:
+              template = secondaryPage
+            }
+
           createPage({
             path: path,
-            component: post.node.slug !== 'downloads' ? secondaryPage : downloadPage,
+            component: template,
             context: {
               id: post.node.id,
               map: urlMap,              

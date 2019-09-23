@@ -1,7 +1,6 @@
 import React from 'react'
 import { Index } from 'elasticlunr'
 import { Link } from 'gatsby'
-import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 export default class Search extends React.PureComponent {
   constructor(props) {
@@ -13,6 +12,7 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
+    
     return (
       <React.Fragment>
         <label htmlFor={this.props.id}>Search</label>
@@ -52,10 +52,10 @@ export default class Search extends React.PureComponent {
       results: this.index
         .search(query, {
           fields: {
-              title: {boost: 5},
-              metaDescription: {boost: 3},
-              intro: {boost: 2},
-              content: {boost: 1}
+            title: {boost: 5},
+            metaDescription: {boost: 3},
+            intro: {boost: 2},
+            content: {boost: 1}
           },
           bool: 'AND',
           expand: true
