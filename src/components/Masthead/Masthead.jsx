@@ -120,7 +120,7 @@ export default class Masthead extends React.PureComponent {
             <form autoComplete='off' className='form--search container container--constrained is-grouped' role='search' onSubmit={(e) => this.handleSearchSubmit(e)}>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
-                  <label htmlFor={this.props.id}>Search</label>
+                  <label htmlFor={this.props.id} className='is-sr-only'>Search</label>
                   <input id={this.props.id} className='input is-large' value={this.state.query} type='text' placeholder='Search' onChange={this.searchText.bind(this)}/>
                   <Button {...ariaHidden} className='btn--flat offset-right'><Icon {...icon}/></Button>
                 </div>

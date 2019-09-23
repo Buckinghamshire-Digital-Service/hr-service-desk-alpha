@@ -110,6 +110,11 @@ h4,
 
 p {
   margin-bottom: 1em;
+  font-size: $medium-body-m;    
+
+  @include from($tablet) {
+    font-size: $medium-body;
+  } 
   
   a {
     @include link;
@@ -117,7 +122,7 @@ p {
 
   &:last-of-type {
     margin-bottom: 0;
-  }
+  } 
 }
 
 .lead {

@@ -31,8 +31,12 @@ $dims: 1em;
   }      
 }
 
+.list__content,
 .intro {
-  max-width: 50rem;
+  max-width: 45rem;  
+}
+
+.intro {
   margin-bottom: 5rem;
 
   p:first-of-type() {
