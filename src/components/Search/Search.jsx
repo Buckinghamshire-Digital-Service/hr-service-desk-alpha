@@ -1,6 +1,7 @@
 import React from 'react'
 import { Index } from 'elasticlunr'
 import { Link } from 'gatsby'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 export default class Search extends React.PureComponent {
   constructor(props) {
@@ -14,7 +15,8 @@ export default class Search extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <input className='input is-large' type='text' placeholder='What do you want to ask?' value={this.state.query} onChange={this.search.bind(this)}/>
+        <label htmlFor={this.props.id}>Search</label>
+        <input id={this.props.id} className='input is-large' type='text' placeholder='Search' value={this.state.query} onChange={this.search.bind(this)}/>
         <ul>
           {this.state.results.map(page => (
             <li key={page.id}>
