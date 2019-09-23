@@ -13,12 +13,13 @@ import Navigation from '../Navigation/Navigation.jsx'
 import Search from '../Search/Search.jsx'
 import Hero from '../Hero/Hero.jsx'
 import { Event } from '../GoogleAnalytics/GoogleAnalytics'
-import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
+//import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 
 
 export default class Masthead extends React.PureComponent {
   constructor () {
     super()
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.state = {
       mobileMenuOpen: false,
       takeover: false
@@ -26,9 +27,9 @@ export default class Masthead extends React.PureComponent {
   }
 
   handleSearchSubmit (e) {
+    alert(e)
     let term = 'work life balance'
-    console.log(e, term)
-    e.preventDefault()
+    console.log(term)
 
     const searchTerm = encodeURIComponent(
       term
@@ -36,13 +37,7 @@ export default class Masthead extends React.PureComponent {
         .trim()
     )
     if (searchTerm !== '') {
-      navigate('/search/',
-        {
-          state: { 
-            query: searchTerm 
-          },
-        }        
-      )
+      navigate('/search')
     }
   }
 
@@ -113,7 +108,11 @@ export default class Masthead extends React.PureComponent {
             </section>
           </div>
           {!this.props.hasSearch && 
-            <Form className='form--search container container--constrained is-grouped' role='search' onSubmit={event => this.handleSearchSubmit.bind(event, this)}>
+            <Form className='form--search container container--constrained is-grouped' role='search' onSubmit={event => {
+                event.preventDefault()
+                // TODO: do something with form values
+                navigate('/search/')
+              }}>
               <div className='field'>
                 <div className='field has-addons is-marginless'>
                     <StaticQuery
@@ -128,7 +127,7 @@ export default class Masthead extends React.PureComponent {
                       <Search searchIndex={data.siteSearchIndex.index} map={this.props.map} id='home-hero-search' />
                     )}
                   />
-                  <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
+                  <Button {...ariaHidden} className='btn--flat offset-right' clickHandler={this.handleSearchSubmit}><Icon {...icon}/></Button>
                 </div>
               </div>
             </Form>}
