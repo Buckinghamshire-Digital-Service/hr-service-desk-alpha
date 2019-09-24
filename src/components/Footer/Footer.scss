@@ -35,6 +35,7 @@
     &.active {
       color: $black;
       background-color: $white;
+      margin-left: -1px;
     }
 
     @include from($tablet) {

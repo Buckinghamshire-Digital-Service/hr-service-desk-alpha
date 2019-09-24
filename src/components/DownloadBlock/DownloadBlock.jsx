@@ -10,7 +10,7 @@ const LinkItem = props => {
     <li className='list-item'>
       <a href={props.mediaLink} className='download-block' onClick={() => Event('Document download','Click',props.title)}>
         <span className='download '><span className='is-sr-only'>Download</span></span>
-        <h3 className={`lead underlined ${props.isLocked ? 'locked' : ''}`}>{props.title}</h3>
+        <p className={`lead underlined ${props.isLocked ? 'locked' : ''}`}><strong>{props.title}</strong></p>
         {props.description && <p>{props.description}</p>}
       </a>
     </li>
@@ -25,9 +25,7 @@ const DownloadBlock = props => {
     <div className='list raised'>
       <div className='list__item list__item--no-pad'>
         <header className='list__header'>
-          <Link to={`/${parent.slug}`} className='list-item__link'>
-            <Heading text={parent.title} className='h3'/>
-          </Link>
+          <Heading text={parent.title} className='h3'/>
         </header>
         {props.downloads && <ul className='list list--separated'>{props.downloads.map((v, i) => {
           return <LinkItem key={v.node.id} {...v.node}/>

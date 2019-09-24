@@ -15,14 +15,6 @@ class ErrorPage extends React.PureComponent {
   render() {
 
     const site = get(this.props, 'data.site.siteMetadata')
-    console.log(this.props.location)
-  // const { pathname } = props.location
-  // let path = pathname.split('/').filter(v => v !== '')
-  // path.pop()
-  // path = path.join('/')
-  // const title = props.parent && props.parent.title !== undefined ? props.parent.title : 'Homepage'
-
-
     
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={null} ga={site.gaConfig.id} map={null}>

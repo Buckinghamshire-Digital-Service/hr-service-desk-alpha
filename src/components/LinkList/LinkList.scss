@@ -234,8 +234,6 @@ $dims: 1em;
     background-image: url('/svg/arrow-right-thin.svg');
     background-repeat: no-repeat;
     background-position: center 100%;
-    top: 50%;
-    margin-top: -($dims / 2);
     transition: background-position-x .1s ease-in-out;
     padding-right: .2em;
   }
@@ -253,6 +251,7 @@ $dims: 1em;
     
     &:after {
       left: 0;
+      bottom: 3px;
       background-position: center left;
       transform: rotate(180deg);
     }    
@@ -282,7 +281,7 @@ $dims: 1em;
 
   @include from($tablet){
     margin-top: 1rem;
-    font-size: 120%;
+    font-size: $large-body;
   }
 }
 
