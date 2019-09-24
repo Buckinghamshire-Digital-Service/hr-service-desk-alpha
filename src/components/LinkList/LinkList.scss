@@ -203,6 +203,17 @@ $dims: 1em;
 
 .list__link { 
   display: block;
+  text-decoration: underline;
+
+  .has-hover & {
+    &:hover {
+      text-decoration: none;
+    }
+  } 
+  
+  .no-underline {
+    text-decoration: none;
+  }
 }
 
 .has-chevron {

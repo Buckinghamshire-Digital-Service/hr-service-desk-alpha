@@ -71,28 +71,25 @@ class SearchPage extends React.PureComponent {
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>
             <PageTitle text={page.title}/>
+
+            {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small'>
+              <Accent className='accent--loud accent--shallow'>
+                <p className='lead'>
+                  Sorry, the term "<strong>{this.state.searched}</strong>" returned no results : (
+                </p>                  
+              </Accent>
+              <p className='lead'>
+                To help you find what you are looking for, why not:
+              </p>                 
+              <ul className='list bullet'>
+                <li className='list__item'>Check your spelling</li>
+                <li className='list__item'>Use a different search term</li>
+                <li className='list__item'>Keep your search term short and simple</li>
+              </ul>
+            </div>}
             <Form id='search-page-search' submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
 
-              {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small'>
-                <Accent className='accent--loud accent--shallow'>
-                  <p className='lead'>
-                    Sorry, the term "<strong>{this.state.searched}</strong>" returned no results : (
-                  </p>                  
-                </Accent>
-                  <p className='lead'>
-                    To help you find what you are looking for, why not:
-                  </p>                 
-                <ul className='list bullet'>
-                  <li className='list__item'>Check your spelling</li>
-                  <li className='list__item'>Use a different search term</li>
-                  <li className='list__item'>Keep your search term short and simple</li>
-                </ul>
-              </div>}
-
-              {(this.state.results && this.state.results.length > 0) && <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>}
-            {/*<Text className='intro lead' content={page.intro.childMarkdownRemark.html} />*/}
-            
-            
+            {(this.state.results && this.state.results.length > 0) && <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>}
 
             {(this.state.results && this.state.results.length > 0) && <ul className='list list--separated is-last'>
               {this.state.results.map(page => (

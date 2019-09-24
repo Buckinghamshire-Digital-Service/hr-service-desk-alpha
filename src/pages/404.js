@@ -12,6 +12,15 @@ import Accent from '../components/Accent/Accent.jsx'
 
 class ErrorPage extends React.PureComponent {
   render() {
+
+  const { pathname } = props.location
+  let path = pathname.split('/').filter(v => v !== '')
+  path.pop()
+  path = path.join('/')
+  const title = props.parent && props.parent.title !== undefined ? props.parent.title : 'Homepage'
+
+
+    
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={page.hero} ga={site.gaConfig.id} map={null}>
         <Helmet title={page.metaTitle} description={page.metaDescription}/>
