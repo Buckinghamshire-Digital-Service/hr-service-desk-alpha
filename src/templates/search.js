@@ -12,6 +12,8 @@ import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Form from '../components/Form/Form.jsx'
 import Accent from '../components/Accent/Accent.jsx'
+import { isEmpty } from '../utilities'
+import queryString from 'query-string'
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -19,9 +21,12 @@ class SearchPage extends React.PureComponent {
     this.searchIndex = get(this.props, 'data.siteSearchIndex.index')
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.searchText = this.searchText.bind(this)
+
+    const parsed = queryString.parse(location.search)
+
     this.state = {
       query: '',
-      searched: (this.props.location.state && this.props.location.state.query) || '',
+      searched: ((!isEmpty(parsed.q) && parsed.q) || this.props.location.state && this.props.location.state.query) || '',
       results: [],
     }
   }
@@ -46,7 +51,13 @@ class SearchPage extends React.PureComponent {
 
     this.setState({
       searched: this.state.query
-    })     
+    })
+
+    if ('replaceState' in history) {
+      let parsed = { q: this.state.query}
+      let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
+      window.history.replaceState({}, document.title, path)
+    }
   }
 
   getOrCreateIndex() {
@@ -66,7 +77,7 @@ class SearchPage extends React.PureComponent {
 
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
-        <Helmet title={page.metaTitle} description={page.metaDescription}/>
+        <Helmet title={`${page.metaTitle} | ${site.title}`} description={page.metaDescription}/>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>

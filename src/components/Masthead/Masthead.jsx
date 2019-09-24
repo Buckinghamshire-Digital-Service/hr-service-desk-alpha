@@ -62,7 +62,6 @@ export default class Masthead extends React.PureComponent {
 
     setTimeout(() => {
       if (this.searchInput && this.searchInput.current) {
-        console.log(this.searchInput.current.focus())
         this.searchInput.current.focus()
       }
     }, 150)
