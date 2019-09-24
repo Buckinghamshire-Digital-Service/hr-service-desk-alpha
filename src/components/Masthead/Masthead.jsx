@@ -20,6 +20,7 @@ export default class Masthead extends React.PureComponent {
     super()
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.searchText = this.searchText.bind(this)
+    this.searchInput = React.createRef()
     this.state = {
       mobileMenuOpen: false,
       takeover: false, 
@@ -37,7 +38,6 @@ export default class Masthead extends React.PureComponent {
 
   handleSearchSubmit (e) {
     e.preventDefault()
-
 
     const searchTerm = encodeURIComponent(
       this.state.query.toLowerCase().trim()
@@ -59,6 +59,14 @@ export default class Masthead extends React.PureComponent {
     })
     // ugh add a class to the html element - redux doesn't reach this far up
     this.state.takeover ? el.remove('html-takeover') : el.add('html-takeover')
+
+    setTimeout(() => {
+      if (this.searchInput && this.searchInput.current) {
+        console.log(this.searchInput.current.focus())
+        this.searchInput.current.focus()
+      }
+    }, 150)
+
   }
 
   handleMenuClick () {
@@ -122,8 +130,8 @@ export default class Masthead extends React.PureComponent {
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
-            <Button ref={node => { this.node = node }} className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
-            <Form id={'takeover-search'} submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={ariaHidden} icon={icon} onChangeHandler={this.searchText}/>
+            <Button className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
+            <Form id={'takeover-search'} submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={ariaHidden} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
           </div>
         </section>}
         {(this.state.takeover && this.props.hasSearch) && <div className='takeover-bg' onClick={this.handleSearchClick.bind(this)}/>}

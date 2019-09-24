@@ -1,11 +1,5 @@
 .accent {
-  padding-bottom: 1.5rem;
-  padding-top: 1.5rem;
-
-  @include from($desktop) {
-    padding-bottom: 3rem;
-    padding-top: 3rem;
-  }
+  @include padding-vertical-small
 
   &--shallow {
     padding-bottom: 1rem;
@@ -19,10 +13,8 @@
   }
 
   &--loud {
-    color: $white;
-    background-color: $brand-green;
+    background-color: $brand-orange;
   }
-
 
   &--muted {
     background-color: $gray-100;
@@ -76,12 +68,6 @@
         color: $white;
         border-bottom-color: $white;
       }
-    }
-  }
-
-  & + .form {
-    @include from($tablet) {
-      margin-top: -2.5rem;
     }
   }
 

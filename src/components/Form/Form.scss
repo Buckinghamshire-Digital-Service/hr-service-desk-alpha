@@ -17,4 +17,8 @@
   .masthead__takeover & {
     @include vertical-align;
   }
+
+  .input {
+    border: 2px solid $gray-300;
+  }
 }

@@ -150,6 +150,8 @@ exports.createPages = ({ graphql, actions }) => {
               template = secondaryPage
             }
 
+          urlMap[post.node.id] = path
+
           createPage({
             path: path,
             component: template,
