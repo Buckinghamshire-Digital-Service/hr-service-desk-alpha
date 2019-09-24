@@ -64,19 +64,6 @@ export default class Collapsible extends React.PureComponent {
       'collapsible__trigger--active': this.state.visible
     })
 
-    // if (timerid) {
-    //   clearTimeout(timerid)
-    // }
-
-    // let self = this
-    // let timerid = setTimeout(() => {
-    //   console.log('actual hidden')
-    //   this.setState({
-    //     actualHidden: !self.state.visible
-    //   })
-    // }, 300)
-
-
     return (
       <div className={classes} id={id} ref={node => { this.node = node }}>
         <div className='collapsible__wrapper'>
