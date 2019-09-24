@@ -72,6 +72,7 @@ class SearchPage extends React.PureComponent {
           <div className='container'>
             <PageTitle text={page.title}/>
             <Text className='intro lead' content={page.intro.childMarkdownRemark.html} />
+            <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>            
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small'>
               <Accent className='accent--loud accent--shallow accent--separated'>
                 <p className='lead'>
@@ -87,7 +88,6 @@ class SearchPage extends React.PureComponent {
                 <li className='list__item'>Keep your search term short and simple</li>
               </ul>
             </div>}
-            <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
 
 
             {(this.state.results && this.state.results.length > 0) && 

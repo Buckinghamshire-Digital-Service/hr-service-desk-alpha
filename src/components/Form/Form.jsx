@@ -4,7 +4,7 @@ import Icon from '../Icon/Icon.jsx'
 
 const Form = props => {
   return (
-	<form autoComplete='off' className='form--search container container--constrained is-grouped' role='search' onSubmit={(e) => props.submitHandler(e)}>
+	<form autoComplete='off' className={`form--search ${props.simple ? 'form--narrow' : 'container container--constrained'} is-grouped`} role='search' onSubmit={(e) => props.submitHandler(e)}>
 	  <div className='field'>
 	    <div className='field has-addons is-marginless'>
 	      <label htmlFor={props.id} className='is-sr-only'>Search</label>
