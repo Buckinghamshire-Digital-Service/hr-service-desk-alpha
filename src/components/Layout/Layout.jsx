@@ -1,11 +1,22 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import Container from '../Container/Container.jsx'
 import Masthead from '../Masthead/Masthead.jsx'
 import Footer from '../Footer/Footer.jsx'
 import Skiplinks from '../Skiplinks/Skiplinks.jsx'
+import { PageView, initGA } from '../GoogleAnalytics/GoogleAnalytics'
+
+import '../../scss/index.scss'
 
 class Layout extends React.PureComponent {
+  constructor(props) {
+    super(props)
+  }  
+  
+  componentDidMount() {
+    initGA(this.props.ga)
+    PageView()
+  }
+
   render() {
     const { location, children } = this.props
     let header
@@ -19,7 +30,7 @@ class Layout extends React.PureComponent {
       <>
         <Skiplinks />
         <Container className={this.props.className}>
-          <Masthead location={location} hasSearch={this.props.hasSearch} hero={this.props.hero}/>
+          <Masthead location={location} hasSearch={this.props.hasSearch} hero={this.props.hero} map={this.props.map}/>
           {children}
         </Container>
         <Footer />

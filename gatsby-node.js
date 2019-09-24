@@ -2,12 +2,16 @@ const Promise = require('bluebird')
 const path = require('path')
 // const fs = require('fs')
 
+let urlMap = {}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     const detailPage = path.resolve('./src/templates/detailPage.js')
     const secondaryPage = path.resolve('./src/templates/secondaryPage.js')
+    const downloadPage = path.resolve('./src/templates/downloads.js')
+    const searchPage = path.resolve('./src/templates/search.js')
 
     resolve(
       graphql(
@@ -111,7 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
           })
 
         path = path.concat(arr)
-        let urlMap = {}
+        
         path.map(v => {
           return urlMap[v.node.id] = v.node.path || v.node.slug
         })
@@ -134,10 +138,26 @@ exports.createPages = ({ graphql, actions }) => {
         secondaryPosts.forEach((post, index) => {
           let path = `/${post.node.slug}/`
 
+          let template
+          switch(post.node.slug) {
+            case 'search':
+              template = searchPage
+              break
+            case 'downloads':
+              template = downloadPage
+              break
+            default:
+              template = secondaryPage
+            }
+
+          urlMap[post.node.id] = path
+
           createPage({
             path: path,
-            component: secondaryPage,
+            component: template,
             context: {
+              id: post.node.id,
+              map: urlMap,              
               slug: post.node.slug
             },
           })
@@ -147,3 +167,18 @@ exports.createPages = ({ graphql, actions }) => {
     )
   })
 }
+
+exports.onCreatePage = ({ page, actions }) => {
+  if (page.path === '/') {
+    const { createPage, deletePage } = actions
+    deletePage(page)
+    createPage({
+      ...page,
+      context: {
+        ...page.context,
+        map: urlMap
+      },
+    })    
+  }
+}
+

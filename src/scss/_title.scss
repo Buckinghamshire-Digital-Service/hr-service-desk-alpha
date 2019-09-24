@@ -21,7 +21,7 @@ $medium-body-m: 16px;
 $small-body:    15px;
 $small-body-m:  12px;
 $intro-ul:      28px;
-$intro-ul-m:    20px;
+$intro-ul-m:    18px;
 
 $title-color: $black !default
 $title-family: false !default
@@ -41,25 +41,16 @@ $subtitle-negative-margin: -1.25rem !default
 
 
 
-h1,
-h2,
-h3,
-h4,
-.h1,
-.h2,
-.h3,
-.h4 {
-  font-family: $body-family-bold;
-  margin-bottom: .5em;
-}
 
 h1,
 .h1,
 %h1 {
   font-size: $size-h1-m;
   line-height: 1.2;
-  margin-top: .5em;
-
+  margin-top: 1.2em;
+  margin-bottom: .5em;
+  font-family: $body-family-bold;
+  
   @include from($tablet) {
     font-size: $size-h1;
   }
@@ -70,6 +61,8 @@ h2,
 %h2 {
   line-height: 1;
   font-size: $size-h2-m;
+  font-family: $body-family-bold;
+  margin-bottom: .6em;
 
   @include from($tablet) {
     font-size: $size-h2;
@@ -80,6 +73,8 @@ h3,
 .h3,
 %h3 {
   font-size: $size-h3-m;
+  font-family: $body-family-bold;
+  margin-bottom: .5em;
 
   @include from($tablet) {
     font-size: $size-h3;
@@ -115,19 +110,30 @@ h4,
 
 p {
   margin-bottom: 1em;
-  
+//  font-size: $medium-body-m;
+
+//  @include from($tablet) {
+//    font-size: $medium-body;
+//  } 
+
   a {
     @include link;
   }
 
   &:last-of-type {
     margin-bottom: 0;
-  }
+  } 
 }
 
 .lead {
   @extend %h4;
+
+  &--padded {
+    padding: .5em 0;
+  }
 }
+
+
 
 strong,
 .bold,

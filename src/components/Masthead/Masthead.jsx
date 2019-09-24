@@ -2,35 +2,53 @@ import React from 'react'
 import classNames from 'classnames'
 import Logo from '../Logo/Logo.jsx'
 import Button from '../Button/Button.jsx'
-import Form from '../Form/Form.jsx'
 import Field from '../Field/Field.jsx'
 import CookieBar from '../CookieBar/CookieBar.jsx'
 import Icon from '../Icon/Icon.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
-import { Link } from 'gatsby'
+import { Link, graphql, navigate} from 'gatsby'
 import { primary } from '../../fixtures/navigation.js'
 import Navigation from '../Navigation/Navigation.jsx'
 import Hero from '../Hero/Hero.jsx'
-import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
-import styles from '../../scss/_settings.scss'
+import Form from '../Form/Form.jsx'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
+//import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
+
 
 export default class Masthead extends React.PureComponent {
   constructor () {
     super()
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
+    this.searchText = this.searchText.bind(this)
+    this.searchInput = React.createRef()
     this.state = {
       mobileMenuOpen: false,
-      takeover: false
+      takeover: false, 
+      query: ''
     }
   }
 
-  handleSearchSubmit () {
+  searchText(e) {
+    const query = e.target.value
+
+    this.setState({
+      query: query
+    })    
+  }
+
+  handleSearchSubmit (e) {
+    e.preventDefault()
+
     const searchTerm = encodeURIComponent(
-      this.formAutocomplete.searchInput.input.value
-        .toLowerCase()
-        .trim()
+      this.state.query.toLowerCase().trim()
     )
+
     if (searchTerm !== '') {
-      window.location = `/search/${searchTerm}`
+      navigate('/search', {
+        state: {
+          query: this.state.query
+        }
+      })
     }
   }
 
@@ -41,6 +59,14 @@ export default class Masthead extends React.PureComponent {
     })
     // ugh add a class to the html element - redux doesn't reach this far up
     this.state.takeover ? el.remove('html-takeover') : el.add('html-takeover')
+
+    setTimeout(() => {
+      if (this.searchInput && this.searchInput.current) {
+        console.log(this.searchInput.current.focus())
+        this.searchInput.current.focus()
+      }
+    }, 150)
+
   }
 
   handleMenuClick () {
@@ -67,11 +93,11 @@ export default class Masthead extends React.PureComponent {
       url: '../../../svg/buckinghamshire-logo.svg'
     }
 
+    let ariaHidden = {'aria-hidden': this.state.takeover}
 
     return (
       <header className={`masthead ${this.props.hero && this.props.hero.image ? 'masthead--has-shadow' : ''}`}>
         <Hero hero={this.props.hero}>
-          <span className='is-sr-only'>Buckinghamshire Council HR desk service</span>
           <CookieBar />
           <div className='masthead__inner'>
             <section className='navigation-wrapper'>
@@ -79,7 +105,7 @@ export default class Masthead extends React.PureComponent {
                 <div className='navbar-brand'>
                   <Logo url={logo.url} alt={logo.label} className='navbar-item'/>
 
-                  <Button aria-hidden='false' type='a' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
+                  <Button aria-hidden='false' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
                     <span aria-hidden='true'></span>
                     <span aria-hidden='true'></span>
                     <span aria-hidden='true'></span>
@@ -95,27 +121,17 @@ export default class Masthead extends React.PureComponent {
                 </div>
 
                 {this.props.hasSearch && <div className='navbar-end is-hidden-mobile'>
-                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)}><Icon className='spaced-left' {...iconWhite}/></Button>
+                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>
                 </div>}        
               </nav>
             </section>
           </div>
-          {!this.props.hasSearch && <Form className='form--search container container--constrained is-grouped' role='search'>
-            <Field />
-            {/*<Button className='btn--flat submit'><Icon {...icon}/></Button>*/}
-          </Form>}
+          {!this.props.hasSearch && <Form id={'home-hero-search'} submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={ariaHidden} icon={icon} onChangeHandler={this.searchText}/>}
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
             <Button className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
-            <Form className='form--search' role='search'>
-              <div className='field'>
-                <div className='field has-addons is-marginless'>
-                  <input className='input is-large' type='text' placeholder='Your phone number'/>
-                  <Button clickHandler={this.handleSearchSubmit.bind(this)}><Icon {...icon}/></Button>
-                </div>
-              </div>
-            </Form>
+            <Form id={'takeover-search'} submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={ariaHidden} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
           </div>
         </section>}
         {(this.state.takeover && this.props.hasSearch) && <div className='takeover-bg' onClick={this.handleSearchClick.bind(this)}/>}

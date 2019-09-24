@@ -18,11 +18,12 @@
 }
 
 .btn--primary {
-  background-color: $brand-green;
+  background-color: $brand-green-darker;
   color: $white;
 
   &:active,
   &:focus {
+    color: $white;
     text-decoration: underline;
   }
 
@@ -87,6 +88,20 @@
   @include from($tablet) {
     font-size: 1.8rem;
   }
+
+  &.offset-right {
+    margin-left: -3.25rem;
+
+    .image {
+      transform: translateY(-7px);
+    }
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .btn--full-width {

@@ -9,20 +9,24 @@ import Text from '../components/Text/Text.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Collapsible from '../components/Collapsible/Collapsible.jsx'
-import marked from 'marked'
-
-// import renderer from '../renderer.js'
+import Download from '../components/Download/Download.jsx'
 
 class PageTemplate extends React.PureComponent {
 
   render() {
     const map = this.props.pageContext.map
+    const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.contentfulPage')
+    
     return (
-      <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero}>
-        <Helmet title={post.metaTitle} description={post.metaDescription}/>
-        {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
+      <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id} map={map}>
+        <Helmet>
+          <title>{`${post.title} | ${site.title}`}</title>
+          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
+          <meta name='description' content={post.metaDescription} />    
+        </Helmet>
         <Main className='full-width'>
+          {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
@@ -32,7 +36,9 @@ class PageTemplate extends React.PureComponent {
           })}</div>}
 
           {post.related && <LinkList items={post.related} className='container raised' />}
-          <div className='panel panel--flat panel--padding-small panel--has-heading container'><Link to='/downloads' className='download'><span>Downloads</span></Link></div>
+          <div className='container'>
+            <Download flush/>
+          </div>
         </Main>
       </Layout>
     )
@@ -43,6 +49,15 @@ export default PageTemplate
 
 export const pageQuery = graphql`
   query PageBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        basePath
+        gaConfig {
+          id
+        }        
+      }
+    }    
     contentfulPage(slug: {eq: $slug}) {
       title
       metaTitle
@@ -91,62 +106,15 @@ export const pageQuery = graphql`
           id
           title
           slug
-          parentPage {
-            id
-            slug
-            title
-            metaDescription
-          }
+        }
+        mediaLink {
+          id
+          type
+          title
+          mediaLink
+          description
         }
       }
-
-#      references {
-#        ... on ContentfulText {
-#          content {
-#            childMarkdownRemark {
-#              html
-#            }
-#          }
-#        }
-#        ... on ContentfulList {
-#          title
-#          items
-#          type
-#          modifiers
-#        }
-#        ... on ContentfulCollapsible {
-#          title
-#          ariaLabel
-#          content {
-#            childMarkdownRemark {
-#              html
-#            }
-#          }
-#          open
-#          link {
-#            id
-#            title
-#            slug
-#            parentPage {
-#              slug
-#              title
-#              metaDescription
-#            }
-#          }
-#        }
-#        ... on ContentfulCallout {
-#          title
-#          text {
-#            childMarkdownRemark {
-#              html
-#            }
-#          }
-#          modifiers
-#        }
-#      }
-
-
-
 
     }
   }

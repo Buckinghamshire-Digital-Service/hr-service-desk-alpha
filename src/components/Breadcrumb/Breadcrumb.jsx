@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 const Breadcrumb = props => {
   const { pathname } = props.location
@@ -9,8 +10,8 @@ const Breadcrumb = props => {
   const title = props.parent && props.parent.title !== undefined ? props.parent.title : 'Homepage'
 
   return (
-    <div className={`breadcrumb ${props.className}`}>
-      <Link to={`/${path}`}>
+    <div className={`breadcrumb ${props.className}`} aria-label='Breadcrumb'>
+      <Link to={`/${path}`} onClick={() => Event('Breadcrumb link','Click',`/${path}`)}>
         <p className='has-chevron has-chevron--reversed'><span className='underlined'>Back to {title}</span></p>
       </Link>
     </div>

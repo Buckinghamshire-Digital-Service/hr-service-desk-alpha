@@ -20,7 +20,11 @@ if (!spaceId || !accessToken) {
 module.exports = {
   siteMetadata: {
     title: 'Buckinghamshire HR service desk',
-  },
+    basePath: 'https://bucks-temp-name.com',
+    gaConfig: {
+      id: 'UA-129132977-3'
+    }
+  }, 
   pathPrefix: '/',
   plugins: [
     'gatsby-transformer-remark',
@@ -44,6 +48,29 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: ['title','metaDescription', 'intro', 'content'],
+        resolvers: {
+          ContentfulPage: {
+            title: node => node.title,
+            metaDescription: node => node.metaDescription,
+            intro: (node, getNode) => getNode(node.intro___NODE).intro,            
+            content: (node, getNode) => node.collapsibleLinks___NODE && node.collapsibleLinks___NODE.map((v) => {
+              let collapse = getNode(v)
+              return getNode(collapse.content___NODE).content
+            })
+          },
+          ContentfulSecondaryPage: {
+            title: node => node.title,
+            metaDescription: node => node.metaDescription, 
+            intro: (node, getNode) => getNode(node.intro___NODE).intro,
+            content: node => node.title
+          }
+        },
+      },
+    },    
     {
       resolve: "gatsby-plugin-stylelint",
       options: { files: ["**/*.{js,jsx, scss}"] }

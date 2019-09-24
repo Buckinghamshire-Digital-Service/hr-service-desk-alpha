@@ -12,15 +12,20 @@
   background-position: center 35%;
   background-repeat: no-repeat;
 
+  &--small {
+    position: relative;
+    top: 7px;  
+  }
+
   &::before {
     content: '';
-    height: 3px;
+    height: 2px;
     width: 12px;
     background-color: $white;
     position: absolute;
     left: 50%;
     margin-left: -6px;
-    bottom: 5px;
+    bottom: 6px;
   }
   
   &:focus,
@@ -36,5 +41,14 @@
 
   span {
     padding-left: 2.5rem;
+  }
+}
+
+
+.has-hover {
+  a:hover {
+    .download {
+      background-position: center 45%;      
+    }
   }
 }

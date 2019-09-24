@@ -1,0 +1,68 @@
+
+.footer {
+  color: $white;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+  background-color: $gray-900;
+  border-top: 10px solid $brand-green;
+
+  &__inner {
+    @include max-width;
+    @include padding-vertical-small;
+  }
+
+  .navbar-item,
+  .navbar {
+    background-color: transparent;
+  }
+
+  .navbar {
+    @include until($tablet) {
+      margin-left: -.75em;
+    }
+
+    @include from($tablet) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .navbar-item {
+    color: $white;
+    font-family: $body-family;
+    position: relative;
+    line-height: 1;
+
+    &.active {
+      color: $black;
+      background-color: $white;
+    }
+
+    @include from($tablet) {
+      &:after {
+        content: '';
+        height: 1rem;
+        top: 50%;
+        margin-top: -.5rem;
+        right: 0;
+        position: absolute;
+        width: 1px;
+        background-color: $white;
+      }
+
+      &:last-child {
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    .has-hover & {
+      &:hover {
+        color: $white;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+    }
+  }
+
+}

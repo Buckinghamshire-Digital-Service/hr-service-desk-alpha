@@ -11,4 +11,8 @@
   &--constrained {
   	max-width: 50rem;
   }
+
+  &--padded {
+    @include padding-vertical-small;
+  }
 }

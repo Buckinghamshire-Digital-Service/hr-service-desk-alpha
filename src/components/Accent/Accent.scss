@@ -1,0 +1,30 @@
+.accent {
+  @include padding-vertical-small
+
+  &--shallow {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    background-color: $white;
+
+    @include from($desktop) {
+      padding-bottom: 1.5rem;
+      padding-top: 1.5rem;
+    }
+  }
+
+  &--loud {
+    background-color: $brand-orange;
+  }
+
+  &--muted {
+    background-color: $gray-100;
+  }
+
+  &--separated {
+    margin-bottom: 2rem;
+
+    @include from($desktop) {
+      margin-bottom: 4rem;
+    }    
+  }
+}
