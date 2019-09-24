@@ -44,6 +44,8 @@ export default class Masthead extends React.PureComponent {
     )
 
     if (searchTerm !== '') {
+      Event('Search term submit', 'Submit', searchTerm)
+      
       navigate('/search', {
         state: {
           query: this.state.query
@@ -63,9 +65,9 @@ export default class Masthead extends React.PureComponent {
     setTimeout(() => {
       if (this.searchInput && this.searchInput.current) {
         this.searchInput.current.focus()
+        Event('Search modal opened', 'Click', this.props.location.pathname)
       }
     }, 150)
-
   }
 
   handleMenuClick () {

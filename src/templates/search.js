@@ -12,6 +12,7 @@ import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Form from '../components/Form/Form.jsx'
 import Accent from '../components/Accent/Accent.jsx'
+import { Event } from '../components/GoogleAnalytics/GoogleAnalytics'
 import { isEmpty } from '../utilities'
 import queryString from 'query-string'
 
@@ -58,6 +59,8 @@ class SearchPage extends React.PureComponent {
       let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
       window.history.replaceState({}, document.title, path)
     }
+
+    Event('Search term submit - search page', 'Submit', this.state.query)
   }
 
   getOrCreateIndex() {
