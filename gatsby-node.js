@@ -136,7 +136,7 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         secondaryPosts.forEach((post, index) => {
-          let path = `/${post.node.slug}/`
+          let path = post.node.slug
 
           let template
           switch(post.node.slug) {

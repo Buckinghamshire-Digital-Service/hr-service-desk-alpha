@@ -28,6 +28,7 @@ module.exports = {
   pathPrefix: '/',
   plugins: [
     'gatsby-transformer-remark',
+    'gatsby-transformer-remark-plaintext',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
@@ -66,7 +67,7 @@ module.exports = {
             title: node => node.title,
             metaDescription: node => node.metaDescription, 
             intro: (node, getNode) => getNode(node.intro___NODE).intro,
-            content: node => node.title
+            content: (node, getNode) => {return getNode(node.bodyText___NODE).bodyText || ''}
           }
         },
       },
