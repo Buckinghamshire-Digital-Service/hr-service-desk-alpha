@@ -71,9 +71,9 @@ class SearchPage extends React.PureComponent {
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>
             <PageTitle text={page.title}/>
-
+            <Text className='intro lead' content={page.intro.childMarkdownRemark.html} />
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small'>
-              <Accent className='accent--loud accent--shallow'>
+              <Accent className='accent--loud accent--shallow accent--separated'>
                 <p className='lead'>
                   Sorry, the term "<strong>{this.state.searched}</strong>" returned no results : (
                 </p>                  
@@ -87,20 +87,22 @@ class SearchPage extends React.PureComponent {
                 <li className='list__item'>Keep your search term short and simple</li>
               </ul>
             </div>}
-            <Form id='search-page-search' submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
+            <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
 
-            {(this.state.results && this.state.results.length > 0) && <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>}
 
-            {(this.state.results && this.state.results.length > 0) && <ul className='list list--separated is-last'>
+            {(this.state.results && this.state.results.length > 0) && 
+              <>
+              <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>
+              <ul className='list list--separated is-last'>
               {this.state.results.map(page => (
                 <li className='list-item' key={page.id}>
                   <Link to={`/${urlmap[page.id]}`} className='list__link'>
                     <Heading type='h3' className='h3 ' text={page.title} />
-                    <p className='list__content'>{page.metaDescription}</p>
+                    <p className='list__content no-underline'>{page.metaDescription}</p>
                   </Link>
                 </li>
               ))}
-            </ul>}
+            </ul></>}
           </div>
         </Main>
       </Layout>
@@ -160,11 +162,11 @@ export const searchPageQuery = graphql`
       title
       metaTitle
       metaDescription
-#      intro {
-#        childMarkdownRemark {
-#          html
-#        }
-#      }
+      intro {
+        childMarkdownRemark {
+          html
+        }
+      }
 
       hero {
         image {
