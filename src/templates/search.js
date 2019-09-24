@@ -49,8 +49,6 @@ class SearchPage extends React.PureComponent {
       : Index.load(this.searchIndex)
   }
 
-
-
   render() {
     let icon = {
       label: 'search',
