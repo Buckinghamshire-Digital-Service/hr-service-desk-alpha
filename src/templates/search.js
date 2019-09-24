@@ -73,7 +73,7 @@ class SearchPage extends React.PureComponent {
             <PageTitle text={page.title}/>
             <Text className='intro lead' content={page.intro.childMarkdownRemark.html} />
             <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>            
-            {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small'>
+            {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small is-last'>
               <Accent className='accent--loud accent--shallow accent--separated'>
                 <p className='lead'>
                   Sorry, the term "<strong>{this.state.searched}</strong>" returned no results : (
