@@ -10,7 +10,7 @@ const LinkItem = props => {
     <li className='list-item'>
       <a href={props.mediaLink} className='download-block' onClick={() => Event('Document download','Click',props.title)}>
         <span className='download '><span className='is-sr-only'>Download</span></span>
-        <p className={`lead underlined ${props.isLocked ? 'locked' : ''}`}>{props.title}</p>
+        <p className={`lead underlined ${props.isLocked ? 'locked' : ''}`}><strong>{props.title}</strong></p>
         {props.description && <p>{props.description}</p>}
       </a>
     </li>
