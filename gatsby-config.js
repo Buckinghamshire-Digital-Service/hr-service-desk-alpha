@@ -66,7 +66,7 @@ module.exports = {
             title: node => node.title,
             metaDescription: node => node.metaDescription, 
             intro: (node, getNode) => getNode(node.intro___NODE).intro,
-            content: (node, getNode) => {return getNode(node.bodyText___NODE).bodyText || ''}
+            content: node => node.title
           }
         },
       },

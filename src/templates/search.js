@@ -168,12 +168,6 @@ export const searchPageQuery = graphql`
         }
       }
 
-      bodyText {
-        childMarkdownRemark {
-          html
-        }
-      }
-      
       hero {
         image {
           title
