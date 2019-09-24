@@ -28,7 +28,6 @@ module.exports = {
   pathPrefix: '/',
   plugins: [
     'gatsby-transformer-remark',
-    'gatsby-transformer-remark-plaintext',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
