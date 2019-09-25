@@ -25,9 +25,8 @@ const LinkList = props => {
               </Link>
               {content && <Heading type='p' text={content} />}
               <ButtonGroup className='button-group--fixed'>
-                <Button url={link} className='btn--has-radius btn--primary btn--full-width' aria-hidden  clickHandler={() => ctaClick(v.title)}>
-                  Find out more
-                  <span className='is-sr-only'> about {v.title}</span>
+                <Button url={link} className='btn--has-radius btn--primary btn--full-width' clickHandler={() => ctaClick(v.title)} aria-label={`Find out more about ${v.title}`}>
+                  More on {v.title}
                 </Button>
               </ButtonGroup>
             </div>
