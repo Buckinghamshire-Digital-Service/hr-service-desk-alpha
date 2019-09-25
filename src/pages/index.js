@@ -91,12 +91,12 @@ query HomeQuery {
       id
       title
       slug
+      metaDescription
       summary {
         childMarkdownRemark {
           html
         }
       }
-      metaDescription
     }
     childPagesSecondary {
       id

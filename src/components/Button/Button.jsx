@@ -32,6 +32,8 @@ export default class Button extends React.PureComponent {
     }
 
     let id = this.props.id ? {'id': [this.props.id]} : null
+
+    let tabindex = this.props.tabIndex ? {'tabIndex': this.props.tabIndex} : null
     let disabled = !!this.props.disabled
     
     if (url || type === 'a') {
@@ -40,6 +42,7 @@ export default class Button extends React.PureComponent {
           className={classes}
           role='button'
           {...data}
+          {...tabindex}
           {...id}
           onClick={event => this.onClick(event)}>
           {children}{label}</Link>
@@ -50,6 +53,7 @@ export default class Button extends React.PureComponent {
           disabled={disabled}
           {...data}
           {...id}
+          {...tabindex}
           onClick={event => this.onClick(event)}
           className={classes} type={type}>
           {children}{label}

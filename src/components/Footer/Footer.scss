@@ -35,6 +35,7 @@
     &.active {
       color: $black;
       background-color: $white;
+      margin-left: -1px;
     }
 
     @include from($tablet) {
@@ -64,5 +65,20 @@
       }
     }
   }
-
 }
+
+.footer__link {
+  color: $white;
+
+  .has-hover & {
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+  }  
+}
+
+
+
+
+

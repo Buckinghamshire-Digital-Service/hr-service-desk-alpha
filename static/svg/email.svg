@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="26px" viewBox="0 0 34 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Footer" transform="translate(-266.000000, -14.000000)" fill="#D8DDE0" fill-rule="nonzero">
+            <g id="Shape">
+                <path d="M266.98441,14 L299.01559,14 C299.545657,14 300,14.4684685 300,15.015015 L300,39.0630631 C300,39.6096096 299.545657,40 299.01559,40 L266.98441,40 C266.378619,40 266,39.5315315 266,38.984985 L266,15.015015 C266,14.3903904 266.454343,14 266.98441,14 Z M268,37 L277,26.797235 L268,19 L268,37 Z M268,17.2307692 L283,29 L298,17.2307692 L298,16 L268,16 L268,17.2307692 Z M298,19 L289,26.797235 L298,37 L298,19 Z M297,38 L287.751381,28 L284.096685,30.96 C283.798343,31.2 283.276243,31.2 282.977901,30.96 L279.323204,28 L270,38 L297,38 Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

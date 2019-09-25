@@ -44,6 +44,8 @@ export default class Masthead extends React.PureComponent {
     )
 
     if (searchTerm !== '') {
+      Event('Search term submit', 'Submit', searchTerm)
+      
       navigate('/search', {
         state: {
           query: this.state.query
@@ -62,11 +64,10 @@ export default class Masthead extends React.PureComponent {
 
     setTimeout(() => {
       if (this.searchInput && this.searchInput.current) {
-        console.log(this.searchInput.current.focus())
         this.searchInput.current.focus()
+        Event('Search modal opened', 'Click', this.props.location.pathname)
       }
     }, 150)
-
   }
 
   handleMenuClick () {
@@ -77,11 +78,11 @@ export default class Masthead extends React.PureComponent {
 
   render () {
     let iconWhite = {
-      label: 'search',
+      label: 'Submit search',
       url: '../../../svg/magnifying-white.svg'
     } 
     let icon = {
-      label: 'search',
+      label: 'Submit search',
       url: '../../../svg/magnifying.svg'
     }
     let iconClose = {
@@ -111,7 +112,7 @@ export default class Masthead extends React.PureComponent {
                     <span aria-hidden='true'></span>
                   </Button>                  
                   
-                  {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
+                  {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet offset-top' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
                 </div>
 
                 <div id='nav-primary' className={`navbar-menu navbar-primary ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>

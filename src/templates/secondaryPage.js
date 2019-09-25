@@ -27,6 +27,7 @@ class SecondaryPageTemplate extends React.PureComponent {
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
+            {post.bodyText && <Text className='long-form' content={post.bodyText.childMarkdownRemark.html} />}
             <Download flush/>
           </div>
         </Main>
@@ -53,6 +54,12 @@ export const secondaryPageQuery = graphql`
       metaTitle
       metaDescription
       intro {
+        childMarkdownRemark {
+          html
+        }
+      }
+
+      bodyText {
         childMarkdownRemark {
           html
         }
