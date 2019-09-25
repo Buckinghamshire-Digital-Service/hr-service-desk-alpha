@@ -30,7 +30,11 @@ class Downloads extends React.PureComponent {
 
     return (
       <Layout location={this.props.location} hasSearch className='muted full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
-        <Helmet title={page.metaTitle} description={page.metaDescription}/>
+        <Helmet>
+          <title>{`${page.title} | ${site.title}`}</title>
+          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
+          <meta name='description' content={page.metaDescription} />    
+        </Helmet>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>

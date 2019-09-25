@@ -65,5 +65,20 @@
       }
     }
   }
-
 }
+
+.footer__link {
+  color: $white;
+
+  .has-hover & {
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+    }
+  }  
+}
+
+
+
+
+

@@ -12,6 +12,9 @@ import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Form from '../components/Form/Form.jsx'
 import Accent from '../components/Accent/Accent.jsx'
+import { Event } from '../components/GoogleAnalytics/GoogleAnalytics'
+import { isEmpty } from '../utilities'
+import queryString from 'query-string'
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -19,9 +22,12 @@ class SearchPage extends React.PureComponent {
     this.searchIndex = get(this.props, 'data.siteSearchIndex.index')
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.searchText = this.searchText.bind(this)
+
+    const parsed = queryString.parse(location.search)
+
     this.state = {
       query: '',
-      searched: (this.props.location.state && this.props.location.state.query) || '',
+      searched: ((!isEmpty(parsed.q) && parsed.q) || this.props.location.state && this.props.location.state.query) || '',
       results: [],
     }
   }
@@ -46,7 +52,15 @@ class SearchPage extends React.PureComponent {
 
     this.setState({
       searched: this.state.query
-    })     
+    })
+
+    if ('replaceState' in history) {
+      let parsed = { q: this.state.query}
+      let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
+      window.history.replaceState({}, document.title, path)
+    }
+
+    Event('Search term submit - search page', 'Submit', this.state.query)
   }
 
   getOrCreateIndex() {
@@ -66,23 +80,22 @@ class SearchPage extends React.PureComponent {
 
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
-        <Helmet title={page.metaTitle} description={page.metaDescription}/>
+        <Helmet title={`${page.metaTitle} | ${site.title}`} description={page.metaDescription}/>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>
             <PageTitle text={page.title}/>
-            <Text className='intro lead' content={page.intro.childMarkdownRemark.html} />
             <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>            
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small is-last'>
               <Accent className='accent--loud accent--shallow accent--separated'>
                 <p className='lead'>
-                  Sorry, the term "<strong>{this.state.searched}</strong>" returned no results : (
+                  Sorry, the term "<strong>{this.state.searched}</strong>" returned no results <span aria-hidden>: (</span>
                 </p>                  
               </Accent>
-              <p className='lead'>
+              <h2 className='lead sp-top--double'>
                 To help you find what you are looking for, why not:
-              </p>                 
-              <ul className='list bullet'>
+              </h2>                 
+              <ul className='list bullet lead'>
                 <li className='list__item'>Check your spelling</li>
                 <li className='list__item'>Use a different search term</li>
                 <li className='list__item'>Keep your search term short and simple</li>
@@ -92,12 +105,12 @@ class SearchPage extends React.PureComponent {
 
             {(this.state.results && this.state.results.length > 0) && 
               <>
-              <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>
+              <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} search result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>
               <ul className='list list--separated is-last'>
               {this.state.results.map(page => (
                 <li className='list-item' key={page.id}>
-                  <Link to={`/${urlmap[page.id]}`} className='list__link'>
-                    <Heading type='h3' className='h3 ' text={page.title} />
+                  <Link to={`/${urlmap[page.id]}`} className='list__link constrained'>
+                    <Heading type='p' className='h3' text={page.title} />
                     <p className='list__content no-underline'>{page.metaDescription}</p>
                   </Link>
                 </li>
@@ -110,15 +123,6 @@ class SearchPage extends React.PureComponent {
   }
 
   searchSite(query) {
-
-    if (query.length < 3) {
-      this.setState({
-        query
-      })
-
-      return
-    }
-
     this.index = this.getOrCreateIndex()
 
     this.setState({
@@ -162,11 +166,6 @@ export const searchPageQuery = graphql`
       title
       metaTitle
       metaDescription
-      intro {
-        childMarkdownRemark {
-          html
-        }
-      }
 
       hero {
         image {

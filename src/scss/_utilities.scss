@@ -19,7 +19,7 @@
 }
 
 .spaced-left {
-  margin-left: 1rem;
+  margin-left: 1.4rem;
 }
 
 .d-block {
@@ -30,6 +30,10 @@
   margin: 0;
 }
 
+.has-icon {
+  padding-right: 3rem;
+}
+
 .is-last {
   margin-bottom: 4.5rem;
 
@@ -37,3 +41,52 @@
     margin-bottom: 7rem;
   }  
 }
+
+.is-inline-block {
+  //vertical-align: middle;
+}
+
+/**
+ * Spacing mixin
+ */
+@mixin spacing($prefix: '') {
+  @each $direction in '-top', '-bottom', ''  {
+    .#{$prefix}sp#{$direction}--flush {
+      margin#{$direction}: 0 !important;
+    }
+
+    .#{$prefix}sp#{$direction}--single {
+      @if ($direction != '') {
+        margin#{$direction}: ($gap / 2) !important;
+      }
+      @else {
+        margin-top: ($gap / 2) !important;
+        margin-bottom: ($gap / 2) !important;
+      }
+    }
+
+    .#{$prefix}sp#{$direction}--double {
+      @if ($direction != '') {
+        margin#{$direction}: $gap !important;
+      }
+      @else {
+        margin-top: $gap !important;
+        margin-bottom: $gap !important;
+      }
+    }
+  }
+}
+
+/**
+ * Apply vertical spacings to the site's breakpoints
+ */
+@include spacing();
+
+@include from($tablet) {
+  @include spacing('md-');
+}
+
+@include from($desktop) {
+  @include spacing('lg-');
+}
+
