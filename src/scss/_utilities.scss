@@ -19,7 +19,7 @@
 }
 
 .spaced-left {
-  margin-left: 1rem;
+  margin-left: 1.4rem;
 }
 
 .d-block {
@@ -38,6 +38,9 @@
   }  
 }
 
+.is-inline-block {
+  //vertical-align: middle;
+}
 
 /**
  * Spacing mixin
