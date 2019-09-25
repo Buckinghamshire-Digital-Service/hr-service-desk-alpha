@@ -89,7 +89,7 @@ class SearchPage extends React.PureComponent {
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small is-last'>
               <Accent className='accent--loud accent--shallow accent--separated'>
                 <p className='lead'>
-                  Sorry, the term "<strong>{this.state.searched}</strong>" returned no results : (
+                  Sorry, the term "<strong>{this.state.searched}</strong>" returned no results <span aria-hidden>: (</span>
                 </p>                  
               </Accent>
               <h2 className='lead sp-top--double'>
