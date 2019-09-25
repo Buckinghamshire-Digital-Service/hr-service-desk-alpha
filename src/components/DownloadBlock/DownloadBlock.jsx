@@ -8,10 +8,10 @@ import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 const LinkItem = props => {
   return (
     <li className='list-item'>
-      <a href={props.mediaLink} className='download-block' onClick={() => Event('Document download','Click',props.title)} target='_blank'>
+      <a href={props.mediaLink} className='download-block list__link' onClick={() => Event('Document download','Click',props.title)} target='_blank'>
         <span className='download '><span className='is-sr-only'>Download</span></span>
-        <p className={`lead underlined ${props.isLocked ? 'locked' : ''}`}><strong>{props.title}</strong></p>
-        {props.description && <p>{props.description}</p>}
+        <p className={`lead ${props.isLocked ? 'locked' : ''}`}><strong>{props.title}</strong></p>
+        {props.description && <p className='no-underline'>{props.description}</p>}
       </a>
     </li>
   )    
