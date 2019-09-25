@@ -78,11 +78,11 @@ export default class Masthead extends React.PureComponent {
 
   render () {
     let iconWhite = {
-      label: 'search',
+      label: 'Submit search',
       url: '../../../svg/magnifying-white.svg'
     } 
     let icon = {
-      label: 'search',
+      label: 'Submit search',
       url: '../../../svg/magnifying.svg'
     }
     let iconClose = {
