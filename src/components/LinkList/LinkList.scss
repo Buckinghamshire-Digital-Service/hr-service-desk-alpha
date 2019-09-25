@@ -85,11 +85,9 @@ $dims: 1em;
 
   &.columns {
     flex-wrap: wrap;
-    margin-bottom: $gap / 2;
     margin-top: $gap / 2; 
 
     @include from($tablet) {
-      margin-bottom: $gap;
       margin-top: $gap; 
     }
   }
