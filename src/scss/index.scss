@@ -41,6 +41,7 @@ $navbar-breakpoint: $tablet;
 @import "panel";
 
 // modules - will move these back in to be required by the components themselves
+@import "../components/Breakpoints/Breakpoints.scss";
 @import "../components/Collapsible/Collapsible.scss";
 @import "../components/Breadcrumb/Breadcrumb.scss";
 @import "../components/Button/Button.scss";

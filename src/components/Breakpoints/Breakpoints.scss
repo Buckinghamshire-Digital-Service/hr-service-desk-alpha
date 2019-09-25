@@ -3,7 +3,7 @@ body:before {
   display: none; /* Prevent from displaying. */
 }
 
-@include from($desktop) {
+@include from($tablet) {
   body:before {
     content: 'default';
   }

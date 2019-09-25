@@ -207,18 +207,12 @@ $dims: 1em;
 
 .list__link { 
   display: block;
-  text-decoration: underline;
+  @include link;
 
   .h3 {
     margin-bottom: .3em;
   }
 
-  .has-hover & {
-    &:hover {
-      text-decoration: none !important;
-    }
-  } 
-  
   .no-underline {
     display: inline-block;
     text-decoration: none;
@@ -289,7 +283,12 @@ $dims: 1em;
   }
 }
 
+.download-link {
+  @include link;
+}
 
-
+:focus {
+  outline: blue auto 5px;
+}
 
 
