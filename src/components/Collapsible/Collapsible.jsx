@@ -9,6 +9,7 @@ export default class Collapsible extends React.PureComponent {
   constructor (props) {
     super(props)
     this.title = this.props.title// !== undefined ? this.props.title : this.props.title
+    this.id = returnId(this.title)
     this.state = {
       visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
       height: 0,
@@ -27,7 +28,7 @@ export default class Collapsible extends React.PureComponent {
 
     if (this.props.history) {
       if ('replaceState' in history) {
-        let path = (window.location.hash === event.target.getAttribute('data-target')) ? this.props.history.pathname : event.target.href
+        let path = (window.location.hash === `#${this.id}`) ? this.props.history.pathname : event.target.href
         window.history.replaceState({}, document.title, path)
       }
     }
@@ -40,7 +41,7 @@ export default class Collapsible extends React.PureComponent {
 
   componentDidMount () {
     this.setState({height: this.state.visible ? this.panel.clientHeight : 0})
-    if (this.props.history && (this.props.history.hash === '#' + returnId(this.title))) {
+    if (this.props.history && (this.props.history.hash === '#' + this.id)) {
       this.setState({ 
         visible: true,
         height: this.panel.clientHeight 
@@ -52,7 +53,7 @@ export default class Collapsible extends React.PureComponent {
   render () {
     let label = this.props.ariaLabel
     // let hidden
-    const id = returnId(this.title)
+    // const id = returnId(this.title)
 
     let classes = classNames('collapsible collapsible--chevron', this.props.className, {
       'collapsible--active': this.state.visible
@@ -65,14 +66,14 @@ export default class Collapsible extends React.PureComponent {
     })
 
     return (
-      <div className={classes} id={id} ref={node => { this.node = node }}>
+      <div className={classes} ref={node => { this.node = node }}>
         <div className='collapsible__wrapper'>
           <h2 className='collapsible__title'>
-            <a role='button' href={`#${id}`} data-target={`#${id}`} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${id}`} aria-label={label || this.title}>
+            <a role='button' href={`#${this.id}`} id={this.id} className={toggleClass} onClick={this.toggle.bind(this)} aria-expanded={this.state.visible} aria-controls={`section-${this.id}`} aria-label={label || this.title}>
             {this.title}
             </a>
           </h2>
-          <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${id}`} style={{height: this.state.height}}>
+          <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${this.id}`} role='region' aria-labelledby={this.id} style={{height: this.state.height}}>
             <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
               <Text content={this.props.content.childMarkdownRemark.html}/>
               {this.props.mediaLink && <ul className='list list--no-bullet'>{this.props.mediaLink.map(v => <li key={v.id} className='list__item'><a className={`list__link text-link ${v.type}`} href={v.mediaLink} onClick={() => Event('Media download link','Click',v.title) }>{`${v.title} - ${v.description}`}</a></li>)}</ul>}
