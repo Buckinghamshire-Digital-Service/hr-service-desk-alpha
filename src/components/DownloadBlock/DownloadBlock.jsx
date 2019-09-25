@@ -8,7 +8,7 @@ import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 const LinkItem = props => {
   return (
     <li className='list-item'>
-      <a href={props.mediaLink} className='download-block' onClick={() => Event('Document download','Click',props.title)}>
+      <a href={props.mediaLink} className='download-block' onClick={() => Event('Document download','Click',props.title)} target='_blank'>
         <span className='download '><span className='is-sr-only'>Download</span></span>
         <p className={`lead underlined ${props.isLocked ? 'locked' : ''}`}><strong>{props.title}</strong></p>
         {props.description && <p>{props.description}</p>}
@@ -25,7 +25,7 @@ const DownloadBlock = props => {
     <div className='list raised'>
       <div className='list__item list__item--no-pad'>
         <header className='list__header'>
-          <Heading text={parent.title} className='h3'/>
+          <Heading text={parent.title} className='h3 sp--flush'/>
         </header>
         {props.downloads && <ul className='list list--separated'>{props.downloads.map((v, i) => {
           return <LinkItem key={v.node.id} {...v.node}/>

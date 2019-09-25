@@ -110,7 +110,7 @@ class SearchPage extends React.PureComponent {
               {this.state.results.map(page => (
                 <li className='list-item' key={page.id}>
                   <Link to={`/${urlmap[page.id]}`} className='list__link constrained'>
-                    <Heading type='p' className='h3 ' text={page.title} />
+                    <Heading type='p' className='h3' text={page.title} />
                     <p className='list__content no-underline'>{page.metaDescription}</p>
                   </Link>
                 </li>

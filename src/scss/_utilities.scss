@@ -44,6 +44,9 @@
  */
 @mixin spacing($prefix: '') {
   @each $direction in '-top', '-bottom', ''  {
+    .#{$prefix}sp#{$direction}--flush {
+      margin#{$direction}: 0 !important;
+    }
 
     .#{$prefix}sp#{$direction}--single {
       @if ($direction != '') {
