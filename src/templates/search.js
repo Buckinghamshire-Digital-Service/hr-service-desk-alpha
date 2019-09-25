@@ -110,7 +110,7 @@ class SearchPage extends React.PureComponent {
               <ul className='list list--separated is-last'>
               {this.state.results.map(page => (
                 <li className='list-item' key={page.id}>
-                  <Link to={`/${urlmap[page.id]}`} className='list__link'>
+                  <Link to={`/${urlmap[page.id]}`} className='list__link constrained'>
                     <Heading type='p' className='h3 ' text={page.title} />
                     <p className='list__content no-underline'>{page.metaDescription}</p>
                   </Link>
@@ -124,15 +124,6 @@ class SearchPage extends React.PureComponent {
   }
 
   searchSite(query) {
-
-    if (query.length < 3) {
-      this.setState({
-        query
-      })
-
-      return
-    }
-
     this.index = this.getOrCreateIndex()
 
     this.setState({
