@@ -89,7 +89,7 @@ class SearchPage extends React.PureComponent {
             <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>            
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small is-last'>
               <Accent className='accent--loud accent--shallow accent--separated'>
-                <p className='lead'>
+                <p className='lead' role='alert'>
                   Sorry, the term "<strong>{this.state.searched}</strong>" returned no results <span aria-hidden>: (</span>
                 </p>                  
               </Accent>
@@ -106,7 +106,7 @@ class SearchPage extends React.PureComponent {
 
             {(this.state.results && this.state.results.length > 0) && 
               <>
-              <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} search result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>
+              <div className='panel panel--inverted panel--padding-small'><p className='lead' role='alert'>{this.state.results.length} search result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>
               <ul className='list list--separated is-last'>
               {this.state.results.map(page => (
                 <li className='list-item' key={page.id}>
