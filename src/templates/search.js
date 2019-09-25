@@ -85,7 +85,6 @@ class SearchPage extends React.PureComponent {
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>
             <PageTitle text={page.title}/>
-            <Text className='intro lead' content={page.intro.childMarkdownRemark.html} />
             <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>            
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small is-last'>
               <Accent className='accent--loud accent--shallow accent--separated'>
@@ -167,11 +166,6 @@ export const searchPageQuery = graphql`
       title
       metaTitle
       metaDescription
-      intro {
-        childMarkdownRemark {
-          html
-        }
-      }
 
       hero {
         image {
