@@ -52,7 +52,7 @@ $dims: 1em;
 .list__header,
 .list__footer,
 .list--separated .list-item {  
-  @include padding-vertical-small;
+  @include padding-small;
 }
 
 .list__header,

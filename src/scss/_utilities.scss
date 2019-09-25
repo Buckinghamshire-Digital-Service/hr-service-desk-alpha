@@ -47,21 +47,21 @@
 
     .#{$prefix}sp#{$direction}--single {
       @if ($direction != '') {
-        margin#{$direction}: $gap !important;
+        margin#{$direction}: ($gap / 2) !important;
       }
       @else {
-        margin-top: $gap !important;
-        margin-bottom: $gap !important;
+        margin-top: ($gap / 2) !important;
+        margin-bottom: ($gap / 2) !important;
       }
     }
 
     .#{$prefix}sp#{$direction}--double {
       @if ($direction != '') {
-        margin#{$direction}: ($gap * 2) !important;
+        margin#{$direction}: $gap !important;
       }
       @else {
-        margin-top: ($gap * 2) !important;
-        margin-bottom: ($gap * 2) !important;
+        margin-top: $gap !important;
+        margin-bottom: $gap !important;
       }
     }
   }
