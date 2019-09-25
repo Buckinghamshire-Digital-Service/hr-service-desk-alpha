@@ -46,47 +46,8 @@
   //vertical-align: middle;
 }
 
-/**
- * Spacing mixin
- */
-@mixin spacing($prefix: '') {
-  @each $direction in '-top', '-bottom', ''  {
-    .#{$prefix}sp#{$direction}--flush {
-      margin#{$direction}: 0 !important;
-    }
-
-    .#{$prefix}sp#{$direction}--single {
-      @if ($direction != '') {
-        margin#{$direction}: ($gap / 2) !important;
-      }
-      @else {
-        margin-top: ($gap / 2) !important;
-        margin-bottom: ($gap / 2) !important;
-      }
-    }
-
-    .#{$prefix}sp#{$direction}--double {
-      @if ($direction != '') {
-        margin#{$direction}: $gap !important;
-      }
-      @else {
-        margin-top: $gap !important;
-        margin-bottom: $gap !important;
-      }
-    }
-  }
+::-ms-clear {
+  right: 3rem;
 }
 
-/**
- * Apply vertical spacings to the site's breakpoints
- */
-@include spacing();
-
-@include from($tablet) {
-  @include spacing('md-');
-}
-
-@include from($desktop) {
-  @include spacing('lg-');
-}
 

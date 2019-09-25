@@ -12,7 +12,7 @@ import Navigation from '../Navigation/Navigation.jsx'
 import Hero from '../Hero/Hero.jsx'
 import Form from '../Form/Form.jsx'
 import { Event } from '../GoogleAnalytics/GoogleAnalytics'
-//import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
+import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 
 
 export default class Masthead extends React.PureComponent {
@@ -46,7 +46,7 @@ export default class Masthead extends React.PureComponent {
     if (searchTerm !== '') {
       Event('Search term submit', 'Submit', searchTerm)
       
-      navigate('/search', {
+      navigate('/search?q='+searchTerm, {
         state: {
           query: this.state.query
         }
@@ -106,13 +106,15 @@ export default class Masthead extends React.PureComponent {
                 <div className='navbar-brand'>
                   <Logo url={logo.url} alt={logo.label} className='navbar-item'/>
 
-                  <Button aria-hidden='false' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
-                    <span aria-hidden='true'></span>
-                    <span aria-hidden='true'></span>
-                    <span aria-hidden='true'></span>
-                  </Button>                  
-                  
-                  {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet offset-top' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
+                  <ViewportMobile>
+                    <Button aria-hidden='false' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
+                      <span aria-hidden='true'></span>
+                      <span aria-hidden='true'></span>
+                      <span aria-hidden='true'></span>
+                    </Button>
+
+                    {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet offset-top' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
+                  </ViewportMobile>                
                 </div>
 
                 <div id='nav-primary' className={`navbar-menu navbar-primary ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>

@@ -56,6 +56,7 @@ class SearchPage extends React.PureComponent {
 
     if ('replaceState' in history) {
       let parsed = { q: this.state.query}
+          console.log(queryString.stringify(parsed))
       let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
       window.history.replaceState({}, document.title, path)
     }

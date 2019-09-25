@@ -285,8 +285,10 @@ $dims: 1em;
 
 .download-link {
   @include link;
-  
 }
 
+:focus {
+  outline: blue auto 5px;
+}
 
 
