@@ -92,7 +92,7 @@ class SearchPage extends React.PureComponent {
                   Sorry, the term "<strong>{this.state.searched}</strong>" returned no results : (
                 </p>                  
               </Accent>
-              <h2 className='lead'>
+              <h2 className='lead sp-top--double'>
                 To help you find what you are looking for, why not:
               </h2>                 
               <ul className='list bullet lead'>

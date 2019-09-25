@@ -59,7 +59,7 @@ h1,
 h2,
 .h2,
 %h2 {
-  line-height: 1;
+  line-height: 1.2;
   font-size: $size-h2-m;
   font-family: $body-family-bold;
   margin-bottom: .6em;
@@ -72,6 +72,7 @@ h2,
 h3,
 .h3,
 %h3 {
+  line-height: 1.4;
   font-size: $size-h3-m;
   font-family: $body-family-bold;
   margin-bottom: .5em;

@@ -96,6 +96,12 @@
       transform: translateY(-7px);
     }
   }
+
+  &.offset-top {
+    @include until($tablet) {
+      top: -.2em;
+    }    
+  }
 }
 
 .close {

@@ -112,7 +112,7 @@ export default class Masthead extends React.PureComponent {
                     <span aria-hidden='true'></span>
                   </Button>                  
                   
-                  {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
+                  {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet offset-top' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
                 </div>
 
                 <div id='nav-primary' className={`navbar-menu navbar-primary ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>
