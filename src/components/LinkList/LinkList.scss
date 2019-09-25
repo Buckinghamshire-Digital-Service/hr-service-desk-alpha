@@ -92,6 +92,7 @@ $dims: 1em;
 
   .column {
     padding: 0;
+    max-width: 500px;
 
     @include from($tablet) {
       &:nth-child(odd) {
