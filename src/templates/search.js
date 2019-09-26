@@ -22,17 +22,20 @@ class SearchPage extends React.PureComponent {
     this.searchIndex = get(this.props, 'data.siteSearchIndex.index')
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.searchText = this.searchText.bind(this)
-
-    const parsed = queryString.parse(this.props.location.search)
+    this.parsed = queryString.parse(this.props.location.search)
+    
     this.state = {
       query: '',
-      searched: ((!isEmpty(parsed.q) ? parsed.q : null) || this.props.location.state && this.props.location.state.query) || '',
+      searched: ((!isEmpty(this.parsed.q) ? this.parsed.q : null) || this.props.location.state && this.props.location.state.query) || '',
       results: [],
     }
   }
 
   componentDidMount() {
+    
+    console.log(!isEmpty(this.parsed.q) ? this.parsed.q : null)
     if (this.state.searched.length > 0 && this.state.searched !== '') {
+      console.log(this.state.searched)
       this.searchSite(this.state.searched)
     }
   }
