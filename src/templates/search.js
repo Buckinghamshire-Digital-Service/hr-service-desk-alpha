@@ -24,10 +24,9 @@ class SearchPage extends React.PureComponent {
     this.searchText = this.searchText.bind(this)
 
     const parsed = queryString.parse(this.props.location.search)
-    console.log(!isEmpty(parsed.q) && parsed.q)
     this.state = {
       query: '',
-      searched: ((!isEmpty(parsed.q) && parsed.q) || this.props.location.state && this.props.location.state.query) || '',
+      searched: ((!isEmpty(parsed.q) ? parsed.q : null) || this.props.location.state && this.props.location.state.query) || '',
       results: [],
     }
   }
@@ -56,7 +55,6 @@ class SearchPage extends React.PureComponent {
 
     if ('replaceState' in history) {
       let parsed = { q: this.state.query}
-          console.log(queryString.stringify(parsed))
       let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
       window.history.replaceState({}, document.title, path)
     }
