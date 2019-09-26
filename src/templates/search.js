@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql, StaticQuery } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import { Index } from 'elasticlunr'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
@@ -22,22 +22,27 @@ class SearchPage extends React.PureComponent {
     this.searchIndex = get(this.props, 'data.siteSearchIndex.index')
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.searchText = this.searchText.bind(this)
-    this.parsed = queryString.parse(this.props.location.search)
     
     this.state = {
       query: '',
-      searched: ((!isEmpty(this.parsed.q) ? this.parsed.q : null) || this.props.location.state && this.props.location.state.query) || '',
+      searched: '',
       results: [],
     }
   }
 
   componentDidMount() {
-    
-    console.log(!isEmpty(this.parsed.q) ? this.parsed.q : null)
-    if (this.state.searched.length > 0 && this.state.searched !== '') {
-      console.log(this.state.searched)
-      this.searchSite(this.state.searched)
+    const parsed = queryString.parse(this.props.location.search)
+    let q = !isEmpty(parsed.q) ? parsed.q : null
+
+    if (q.length > 0) {
+      this.setState({
+        searched: q,
+        query: q
+      })
+
+      this.searchSite(q)
     }
+      
   }
 
   searchText(e) {
