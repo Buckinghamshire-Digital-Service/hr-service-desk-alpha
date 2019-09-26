@@ -23,7 +23,7 @@ class ErrorPage extends React.PureComponent {
           <Breadcrumb location={this.props.location} parent={{'title': 'Homepage'}} className='container'/>
           <div className='container'>
             <PageTitle text='404 error - this page is missing'/>
-            <div className='panel panel--inverted panel--padding-small'>
+            <div className='panel panel--inverted panel--padding-small sp-bottom--large'>
               <Accent className='accent--loud accent--shallow accent--separated'>
                 <p className='lead'>
                   Sorry, we couldn't find the page you were looking for
