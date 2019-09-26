@@ -52,8 +52,6 @@ export default class Collapsible extends React.PureComponent {
 
   render () {
     let label = this.props.ariaLabel
-    // let hidden
-    // const id = returnId(this.title)
 
     let classes = classNames('collapsible collapsible--chevron', this.props.className, {
       'collapsible--active': this.state.visible

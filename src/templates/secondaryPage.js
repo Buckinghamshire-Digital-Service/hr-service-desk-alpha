@@ -18,7 +18,7 @@ class SecondaryPageTemplate extends React.PureComponent {
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id} map={map}>
         <Helmet>
-          <title>{`${post.title} | ${site.title}`}</title>
+          <title>{`${post.metaTitle} | ${site.title}`}</title>
           <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
           <meta name='description' content={post.metaDescription} />    
         </Helmet>
