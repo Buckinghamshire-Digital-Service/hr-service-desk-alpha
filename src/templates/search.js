@@ -32,7 +32,11 @@ class SearchPage extends React.PureComponent {
 
   componentDidMount() {
     const parsed = queryString.parse(this.props.location.search)
-    let q = !isEmpty(parsed.q) ? parsed.q : nullo
+    let q = !isEmpty(parsed.q) ? parsed.q : null
+
+    if (!q) {
+      return
+    }
 
     if (q.length > 0) {
       this.setState({
@@ -62,7 +66,16 @@ class SearchPage extends React.PureComponent {
   }
 
   handleSearchSubmitSearchpage(e) {
-    let query = (e.preventDefault === true) ? this.state.query : e
+    let query
+
+    if (e.target) {
+      e.persist()
+      e.preventDefault()  
+      query = this.state.query 
+    } else {
+      query = e
+    }
+
     this.searchSite(query)
 
     this.setState({
