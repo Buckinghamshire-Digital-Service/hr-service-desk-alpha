@@ -39,6 +39,13 @@ $dims: 2.4rem;
   .text-link {
     font-size: 100%;
   }
+
+  blockquote {
+    background-color: $brand-orange;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    padding: 1.5rem;
+  }
 }
 
 .collapsible {
