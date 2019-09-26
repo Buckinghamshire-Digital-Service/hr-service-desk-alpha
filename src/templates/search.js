@@ -24,7 +24,7 @@ class SearchPage extends React.PureComponent {
     this.searchText = this.searchText.bind(this)
 
     const parsed = queryString.parse(this.props.location.search)
-
+    console.log(!isEmpty(parsed.q) && parsed.q)
     this.state = {
       query: '',
       searched: ((!isEmpty(parsed.q) && parsed.q) || this.props.location.state && this.props.location.state.query) || '',

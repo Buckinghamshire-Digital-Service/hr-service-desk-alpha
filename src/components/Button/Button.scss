@@ -20,7 +20,6 @@
 .btn--primary {
   background-color: $brand-green;
   color: $white;
-  text-decoration: underline;
 
   &:active,
   &:focus {
@@ -36,7 +35,6 @@
   .has-hover & {
     &:hover {
       color: $white !important;
-      text-decoration: none;
       background-color: $brand-green-darker;
     }
   }

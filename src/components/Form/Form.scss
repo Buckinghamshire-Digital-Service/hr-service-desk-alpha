@@ -24,9 +24,12 @@
 
   &.form--narrow {
     padding-left: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 
     @include from($tablet) {
       padding-left: 2rem;
+      padding-right: 2rem;      
     }
   }
 }
