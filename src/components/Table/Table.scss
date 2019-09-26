@@ -1,0 +1,59 @@
+$table-border-color: $gray-800;
+$table-accent-bg: $gray-900;
+$table-border-width: 1px;
+$table-striped-order: odd;
+
+table, 
+.table {
+  width: 100%;
+  margin-bottom: 2rem;
+  color: inherit;
+
+  th,
+  td {
+    padding: .7em;
+    vertical-align: top;
+    border-top: $table-border-width solid $table-border-color;
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: (2 * $table-border-width) solid $table-border-color;
+  }
+
+  tbody + tbody {
+    border-top: (2 * $table-border-width) solid $table-border-color;
+  }
+
+  // smaller padding
+  &--small {
+    th,
+    td {
+      padding: .3em;
+    }
+  }
+
+  &--striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+      background-color: $table-accent-bg;
+    }
+  }
+
+  &--bordered {
+    border: $table-border-width solid $table-border-color;
+
+    th,
+    td {
+      border: $table-border-width solid $table-border-color;
+    }
+
+    thead {
+      th,
+      td {
+        border-bottom-width: 2 * $table-border-width;
+      }
+    }
+  }
+}
+
+
