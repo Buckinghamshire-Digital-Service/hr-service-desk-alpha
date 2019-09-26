@@ -20,8 +20,8 @@ class SearchPage extends React.PureComponent {
   constructor(props) {
     super(props)
     this.searchIndex = get(this.props, 'data.siteSearchIndex.index')
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
-    this.searchText = this.searchText.bind(this)
+    this.handleSearchSubmitSearchpage = this.handleSearchSubmitSearchpage.bind(this)
+    this.searchTextSearchpage = this.searchTextSearchpage.bind(this)
     
     this.state = {
       query: '',
@@ -32,7 +32,7 @@ class SearchPage extends React.PureComponent {
 
   componentDidMount() {
     const parsed = queryString.parse(this.props.location.search)
-    let q = !isEmpty(parsed.q) ? parsed.q : null
+    let q = !isEmpty(parsed.q) ? parsed.q : nullo
 
     if (q.length > 0) {
       this.setState({
@@ -45,7 +45,7 @@ class SearchPage extends React.PureComponent {
       
   }
 
-  searchText(e) {
+  searchTextSearchpage(e) {
     const query = e.target.value
 
     this.setState({
@@ -53,16 +53,24 @@ class SearchPage extends React.PureComponent {
     })    
   }
 
-  handleSearchSubmit(e) {
-    e.preventDefault()
-    this.searchSite(this.state.query)
+  updateFromOverlay(q) {
+    this.setState({
+      query: q
+    })
+
+    this.handleSearchSubmitSearchpage(q)
+  }
+
+  handleSearchSubmitSearchpage(e) {
+    let query = (e.preventDefault === true) ? this.state.query : e
+    this.searchSite(query)
 
     this.setState({
-      searched: this.state.query
+      searched: query
     })
 
     if ('replaceState' in history) {
-      let parsed = { q: this.state.query}
+      let parsed = { q: query}
       let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
       window.history.replaceState({}, document.title, path)
     }
@@ -86,13 +94,13 @@ class SearchPage extends React.PureComponent {
     const urlmap = this.props.pageContext.map
 
     return (
-      <Layout location={this.props.location} hasSearch className='full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
+      <Layout location={this.props.location} update={this.updateFromOverlay.bind(this)} hasSearch className='full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
         <Helmet title={`${page.metaTitle} | ${site.title}`} description={page.metaDescription}/>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>
             <PageTitle text={page.title}/>
-            <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>            
+            <Form id='search-page-search' simple submitHandler={this.handleSearchSubmitSearchpage} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchTextSearchpage} reference={this.searchInput}/>            
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small is-last'>
               <Accent className='accent--loud accent--shallow accent--separated'>
                 <p className='lead' role='alert'>
