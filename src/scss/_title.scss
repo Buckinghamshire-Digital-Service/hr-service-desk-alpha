@@ -57,6 +57,7 @@ h1,
 }
 
 h2,
+.long-form h2, 
 .h2,
 %h2 {
   line-height: 1.2;
@@ -70,6 +71,7 @@ h2,
   }
 }
 
+.long-form h3, 
 h3,
 .h3,
 %h3 {
@@ -86,7 +88,12 @@ h3,
 
 .constrained {
   max-width: 500px;
+
+  &--wide {
+    max-width: 45rem;
+  }
 }
+
 
 h4,
 .h4,
@@ -168,26 +175,12 @@ b {
     @include link;
   }
 
-  h2 {
-    font-size: 2.2rem;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-  }
-
+  p,
+  h2,
   h3 {
-    font-size: 2rem;
+    line-height: 1.4;
+    margin-top: 1.6em;
   }
-
-  h4 {
-    margin-top: 1.5em;
-    font-size: 1.8rem;
-  }
-
-  h3,
-  h4 {
-    line-height: 1.2;
-  }
-
 
   ol,
   ul {
