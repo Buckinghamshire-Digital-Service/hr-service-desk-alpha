@@ -175,7 +175,15 @@ export function scrollTo(element, to, duration, callback) {
   animateScroll()
 }
 
-
+export const queryString = function(q) {
+  let query = {}
+  const pairs = (q[0] === '?' ? q.substr(1) : q).split('&')
+  for (let i = 0; i < pairs.length; i++) {
+    const pair = pairs[i].split('=')
+    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
+  }
+  return query
+}
 
 /**
  * Debounce functions for better performance

@@ -13,8 +13,8 @@ import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Form from '../components/Form/Form.jsx'
 import Accent from '../components/Accent/Accent.jsx'
 import { Event } from '../components/GoogleAnalytics/GoogleAnalytics'
-import { isEmpty } from '../utilities'
-import queryString from 'query-string'
+import { isEmpty, queryString } from '../utilities'
+// import queryString from 'query-string'
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -31,7 +31,7 @@ class SearchPage extends React.PureComponent {
   }
 
   componentDidMount() {
-    const parsed = queryString.parse(this.props.location.search)
+    const parsed = queryString(this.props.location.search)
     let q = !isEmpty(parsed.q) ? parsed.q : null
 
     console.log('mount  - '+ q)
@@ -84,8 +84,7 @@ class SearchPage extends React.PureComponent {
     })
 
     if ('replaceState' in history) {
-      let parsed = { q: query}
-      let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
+      let path = `${this.props.location.pathname}?q=${query}`
       window.history.replaceState({}, document.title, path)
     }
 
