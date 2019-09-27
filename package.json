@@ -50,7 +50,6 @@
     "npm": "^6.11.3",
     "picturefill": "^3.0.3",
     "prettier": "^1.17.0",
-    "query-string": "^5.1.1",
     "react-ga": "^2.6.0",
     "rimraf": "^2.6.3",
     "stylelint": "^10.1.0",

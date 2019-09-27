@@ -173,6 +173,12 @@ b {
 
   a {
     @include link;
+
+    &.btn--primary {
+      color: $white;
+      margin-top: 1.5rem;
+      display: inline-block;
+    }
   }
 
   p,
