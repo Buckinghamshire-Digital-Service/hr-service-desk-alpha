@@ -101,8 +101,8 @@ query HomeQuery {
     childPagesSecondary {
       id
       title
-      slug
-      metaDescription
+      url
+      newWindow
     }
   }
 }

@@ -22,13 +22,6 @@ class SearchPage extends React.PureComponent {
     this.handleSearchSubmitSearchpage = this.handleSearchSubmitSearchpage.bind(this)
     this.searchTextSearchpage = this.searchTextSearchpage.bind(this)
 
-    const parsed = queryString(this.props.location.search)
-    this.q = !isEmpty(parsed.q) ? parsed.q : null
-
-    if (this.q) {
-      navigate('/search?q=' + this.q)
-    }
-
     this.state = {
       query: '',
       searched: '',
@@ -37,23 +30,20 @@ class SearchPage extends React.PureComponent {
   }
 
   componentDidMount() {
-    console.log(this.props.location.search)
-    // const parsed = queryString(this.props.location.search)
-    // let q = !isEmpty(parsed.q) ? parsed.q : null
+    const parsed = queryString(this.props.location.search)
+    let q = !isEmpty(parsed.q) ? parsed.q : null
 
-    console.log('mount  - '+ this.q)
-    if (!this.q) {
+    if (!q) {
       return
     }
 
-    if (this.q.length > 0) {
+    if (q.length > 0) {
       this.setState({
-        searched: this.q,
-        query: this.q
+        searched: q,
+        query: q
       })
 
-      this.searchSite(this.q)
-      console.log('searching for  - '+ this.q)
+      this.searchSite(q)
     }
   }
 
