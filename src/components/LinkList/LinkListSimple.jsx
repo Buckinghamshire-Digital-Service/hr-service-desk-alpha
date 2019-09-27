@@ -8,10 +8,10 @@ const LinkListSimple = props => {
   return (
     <ul className={`list ${props.className}`}>
       {items && items.map((v, i) => {
-
+        const external = {'target': v.newWindow === true ? '_blank' : null}
         return (
           <li className='list__item' key={i}>
-            <a href={v.href} className='list-item__link' onClick={() => Event('Homepage external links','Click',v.title) }>
+            <a href={v.href} className='list-item__link' onClick={() => Event('Homepage external links','Click',v.title)} {...external}>
               <Heading text={v.title} type='span' className='list-item__title has-chevron'/>
             </a>
           </li>
