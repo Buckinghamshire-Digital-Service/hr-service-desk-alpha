@@ -31,6 +31,7 @@ class SearchPage extends React.PureComponent {
   }
 
   componentDidMount() {
+    console.log(this.props.location.search)
     const parsed = queryString(this.props.location.search)
     let q = !isEmpty(parsed.q) ? parsed.q : null
 
