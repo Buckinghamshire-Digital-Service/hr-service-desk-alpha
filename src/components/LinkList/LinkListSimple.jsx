@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import Heading from '../Heading/Heading.jsx'
 import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
@@ -9,13 +8,12 @@ const LinkListSimple = props => {
   return (
     <ul className={`list ${props.className}`}>
       {items && items.map((v, i) => {
-        const link = (v.parentPage && v.parentPage.slug) !== undefined ? `/${v.parentPage.slug}/${v.slug}/` : `/${v.slug}/`
 
         return (
           <li className='list__item' key={i}>
-            <Link to={link} className='list-item__link'>
-              <Heading text={v.title} type={props.type} className='list-item__title has-chevron' onClick={() => Event('Homepage extra navigation','Click',v.title) }/>
-            </Link>
+            <a href={v.href} className='list-item__link' onClick={() => Event('Homepage external links','Click',v.title) }>
+              <Heading text={v.title} type='span' className='list-item__title has-chevron'/>
+            </a>
           </li>
         )
       }
@@ -25,8 +23,7 @@ const LinkListSimple = props => {
 }
 
 LinkListSimple.defaultProps = {
-  className: '',
-  type: 'h2'
+  className: ''
 }
 
 export default LinkListSimple
