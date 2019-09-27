@@ -34,6 +34,7 @@ class SearchPage extends React.PureComponent {
     const parsed = queryString.parse(this.props.location.search)
     let q = !isEmpty(parsed.q) ? parsed.q : null
 
+    console.log('mount  - '+ q)
     if (!q) {
       return
     }
@@ -45,8 +46,8 @@ class SearchPage extends React.PureComponent {
       })
 
       this.searchSite(q)
+      console.log('searching for  - '+ q)
     }
-      
   }
 
   searchTextSearchpage(e) {
@@ -57,12 +58,12 @@ class SearchPage extends React.PureComponent {
     })    
   }
 
-  updateFromOverlay(q) {
+  updateFromOverlay(query) {
     this.setState({
-      query: q
+      query: query
     })
 
-    this.handleSearchSubmitSearchpage(q)
+    this.handleSearchSubmitSearchpage(query)
   }
 
   handleSearchSubmitSearchpage(e) {
@@ -129,7 +130,6 @@ class SearchPage extends React.PureComponent {
                 <li className='list__item'>Keep your search term short and simple</li>
               </ul>
             </div>}
-
 
             {(this.state.results && this.state.results.length > 0) && 
               <>
