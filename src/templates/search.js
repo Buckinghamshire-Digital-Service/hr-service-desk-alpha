@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, navigate } from 'gatsby'
 import { Index } from 'elasticlunr'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
@@ -14,7 +14,6 @@ import Form from '../components/Form/Form.jsx'
 import Accent from '../components/Accent/Accent.jsx'
 import { Event } from '../components/GoogleAnalytics/GoogleAnalytics'
 import { isEmpty, queryString } from '../utilities'
-// import queryString from 'query-string'
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
@@ -22,7 +21,14 @@ class SearchPage extends React.PureComponent {
     this.searchIndex = get(this.props, 'data.siteSearchIndex.index')
     this.handleSearchSubmitSearchpage = this.handleSearchSubmitSearchpage.bind(this)
     this.searchTextSearchpage = this.searchTextSearchpage.bind(this)
-    
+
+    const parsed = queryString(this.props.location.search)
+    this.q = !isEmpty(parsed.q) ? parsed.q : null
+
+    if (this.q) {
+      navigate('/search?q=' + this.q)
+    }
+
     this.state = {
       query: '',
       searched: '',
@@ -32,22 +38,22 @@ class SearchPage extends React.PureComponent {
 
   componentDidMount() {
     console.log(this.props.location.search)
-    const parsed = queryString(this.props.location.search)
-    let q = !isEmpty(parsed.q) ? parsed.q : null
+    // const parsed = queryString(this.props.location.search)
+    // let q = !isEmpty(parsed.q) ? parsed.q : null
 
-    console.log('mount  - '+ q)
-    if (!q) {
+    console.log('mount  - '+ this.q)
+    if (!this.q) {
       return
     }
 
-    if (q.length > 0) {
+    if (this.q.length > 0) {
       this.setState({
-        searched: q,
-        query: q
+        searched: this.q,
+        query: this.q
       })
 
-      this.searchSite(q)
-      console.log('searching for  - '+ q)
+      this.searchSite(this.q)
+      console.log('searching for  - '+ this.q)
     }
   }
 
