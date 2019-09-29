@@ -116,11 +116,6 @@ h4,
 
 p {
   margin-bottom: 1em;
-//  font-size: $medium-body-m;
-
-//  @include from($tablet) {
-//    font-size: $medium-body;
-//  } 
 
   a {
     @include link;
@@ -167,8 +162,18 @@ b {
 // long-form content overrides
 
 .long-form {
+  
   p {
     margin-bottom: 1em;
+  }
+
+  li, 
+  p {
+    font-size: $medium-body-m;
+
+    @include from($tablet) {
+      font-size: $medium-body;
+    }    
   }
 
   a {
@@ -178,6 +183,7 @@ b {
       color: $white;
       margin-top: 1.5rem;
       display: inline-block;
+      text-decoration: none;
     }
   }
 

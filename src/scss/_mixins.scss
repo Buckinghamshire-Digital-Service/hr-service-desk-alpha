@@ -15,13 +15,13 @@
 @mixin break-word {
   overflow-wrap: break-word;
   word-wrap: break-word;
-  // hyphens: auto;
 }
 
 @mixin vertical-align {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @mixin max-width {
