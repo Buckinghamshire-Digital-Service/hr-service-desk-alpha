@@ -13,18 +13,22 @@ export default class Collapsible extends React.PureComponent {
     this.state = {
       visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
       height: 0,
-      // actualHidden: false,
+      actualHidden: false,
       dir: 'down'      
     }
   }
 
   toggle (event) {
     event.preventDefault()
-    this.setState({
-      visible: !this.state.visible,
-      dir: !this.state.visible ? 'up' : 'down',
-      height: !this.state.visible ? this.panel.clientHeight : 0
-    })
+    this.eventAndAria()
+
+    setTimeout(() => {
+      this.setState({
+        visible: !this.state.visible,
+        dir: !this.state.visible ? 'up' : 'down',
+        height: !this.state.visible ? this.panel.clientHeight : 0
+      })
+    }, 0) 
 
     if (this.props.history) {
       if ('replaceState' in history) {
@@ -33,21 +37,42 @@ export default class Collapsible extends React.PureComponent {
       }
     }
 
+  }
+
+  eventAndAria() {
+
     // only send on opening 
     if (!this.state.visible) {
-      Event('Collapsible','Open collapsible',this.props.title)      
+      Event('Collapsible','Open collapsible',this.props.title)
+      
+      this.setState({
+        actualHidden: false
+      })
+    } else {
+      setTimeout(() => {
+        this.setState({
+          actualHidden: true
+        })
+      }, 500)       
     }
   }
 
   componentDidMount () {
-    this.setState({height: this.state.visible ? this.panel.clientHeight : 0})
+
     if (this.props.history && (this.props.history.hash === '#' + this.id)) {
       this.setState({ 
         visible: true,
         height: this.panel.clientHeight 
       })
+
       scrollIntoView(this.node)
+      return
     }
+
+    this.setState({
+      height: this.state.visible ? this.panel.clientHeight : 0
+    })
+
   }
 
   render () {
@@ -63,6 +88,8 @@ export default class Collapsible extends React.PureComponent {
       'collapsible__trigger--active': this.state.visible
     })
 
+    let hidden = this.state.actualHidden ? { 'hidden': true } : null
+
     return (
       <div className={classes} ref={node => { this.node = node }}>
         <div className='collapsible__wrapper'>
@@ -71,7 +98,7 @@ export default class Collapsible extends React.PureComponent {
             {this.title}
             </a>
           </h2>
-          <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${this.id}`} role='region' aria-labelledby={this.id} style={{height: this.state.height}}>
+          <div className={contentClasses} aria-hidden={!this.state.visible} id={`section-${this.id}`} {...hidden} role='region' aria-labelledby={this.id} style={{height: this.state.height}}>
             <div className='collapsible__inner' ref={panel => { this.panel = panel }}>
               <Text content={this.props.content.childMarkdownRemark.html}/>
               {this.props.mediaLink && <ul className='list list--no-bullet'>{this.props.mediaLink.map(v => <li key={v.id} className='list__item'><a className={`list__link text-link ${v.type}`} href={v.mediaLink} onClick={() => Event('Media download link','Click',v.title) }>{`${v.title}${v.description !== null ? ' - ' + v.description : ''}`}</a></li>)}</ul>}
