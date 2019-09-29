@@ -15,7 +15,7 @@ $dims: 2.4rem;
   }
 
   p {
-    font-size: $large-body-m;
+    font-size: $medium-body-m;
 
     @include from($tablet) {
       font-size: $medium-body;
