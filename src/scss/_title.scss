@@ -166,7 +166,7 @@ b {
   p {
     margin-bottom: 1em;
   }
-  
+
   li, 
   p {
     font-size: $medium-body-m;
@@ -183,6 +183,7 @@ b {
       color: $white;
       margin-top: 1.5rem;
       display: inline-block;
+      text-decoration: none;
     }
   }
 
