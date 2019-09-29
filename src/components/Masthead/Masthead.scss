@@ -18,15 +18,14 @@
 
 .masthead__takeover__inner,
 .masthead__inner {
-  // position: relative;
   @include padding-small;
 }
 
-.masthead__takeover__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+//.masthead__takeover__inner {
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//}
 
 .masthead__takeover {
   z-index: 95;
