@@ -47,7 +47,7 @@ export default class Masthead extends React.PureComponent {
       Event('Search term submit', 'Submit', searchTerm)
       
       if (!this.props.update) {
-        navigate('/search?q='+searchTerm, {
+        navigate('/search/?q='+searchTerm, {
           state: {
             query: this.state.query
           }
