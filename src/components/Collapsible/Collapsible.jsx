@@ -40,7 +40,6 @@ export default class Collapsible extends React.PureComponent {
   }
 
   eventAndAria() {
-
     // only send on opening 
     if (!this.state.visible) {
       Event('Collapsible','Open collapsible',this.props.title)
