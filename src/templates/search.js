@@ -80,11 +80,14 @@ class SearchPage extends React.PureComponent {
       searched: query
     })
 
-    if ('replaceState' in history) {
-      let path = `${this.props.location.pathname}?q=${query}`
-      window.history.replaceState({}, document.title, path)
-    }
+    // if ('replaceState' in history) {
+    //   let path = `${this.props.location.pathname}?q=${query}`
+      
+    //   window.history.replaceState({}, document.title, path)
+    // }
 
+    navigate('/search/?q='+query)
+    
     Event('Search term submit - search page', 'Submit', this.state.query)
   }
 
