@@ -230,6 +230,7 @@ $dims: 1em;
     content: '';
     position: absolute;
     width: $dims;
+    bottom: .3em;
     height: $dims;
     background-image: url('/svg/arrow-right-thin.svg');
     background-repeat: no-repeat;
@@ -250,7 +251,7 @@ $dims: 1em;
     padding-left: 1.2em;
     
     &:after {
-      left: 0;
+      left: 0;      
       bottom: 3px;
       background-position: center left;
       transform: rotate(180deg);
