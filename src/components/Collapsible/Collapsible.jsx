@@ -13,7 +13,7 @@ export default class Collapsible extends React.PureComponent {
     this.state = {
       visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
       height: 0,
-      actualHidden: false,
+      actualHidden: true,
       dir: 'down'      
     }
   }
@@ -62,6 +62,7 @@ export default class Collapsible extends React.PureComponent {
     if (this.props.history && (this.props.history.hash === '#' + this.id)) {
       this.setState({ 
         visible: true,
+        actualHidden: false,
         height: this.panel.clientHeight 
       })
 
