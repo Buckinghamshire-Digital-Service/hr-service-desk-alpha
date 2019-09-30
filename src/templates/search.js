@@ -129,7 +129,7 @@ class SearchPage extends React.PureComponent {
 
             {(this.state.results && this.state.results.length > 0) && 
               <>
-              <div className='panel panel--inverted panel--padding-small'><p className='lead' role='alert'>{this.state.results.length} search result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>
+              <div className='panel panel--inverted panel--padding-small'><p className='lead' role='alert'>{this.state.results.length} search {this.state.results.length > 1 ? 'results' : 'result'} for "<strong>{this.state.searched}</strong>"</p></div>
               <ul className='list list--separated is-last'>
               {this.state.results.map(page => (
                 <li className='list-item' key={page.id}>
