@@ -13,7 +13,7 @@ export default class Collapsible extends React.PureComponent {
     this.state = {
       visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
       height: 0,
-      actualHidden: true,
+      actualHidden: (this.props.history && (this.props.history.hash === '#' + this.id)) ? false : true,
       dir: 'down'      
     }
   }
