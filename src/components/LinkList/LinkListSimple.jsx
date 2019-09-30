@@ -11,7 +11,7 @@ const LinkListSimple = props => {
         const external = {'target': v.newWindow === true ? '_blank' : null}
         return (
           <li className='list__item' key={i}>
-            <a href={v.url} className='list-item__link' onClick={() => Event('Homepage external links','Click',v.title)} {...external}>
+            <a href={v.url} rel='noreferrer' className='list-item__link' onClick={() => Event('Homepage external links','Click',v.title)} {...external}>
               <Heading text={v.title} type='span' className='list-item__title has-chevron'/>
             </a>
           </li>
