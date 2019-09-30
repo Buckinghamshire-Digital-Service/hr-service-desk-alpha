@@ -19,10 +19,8 @@ export default class Button extends React.PureComponent {
   render () {
     let component
     let data = {}
-    let { children, url, label, type, modifiers } = this.props
-    let classes = classNames('btn', this.props.className, {
-      'loading': this.props.disabled && this.props.loading
-    })
+    let { children, url, label, type, name } = this.props
+    let classes = `btn ${this.props.className}`
 
     // list out aria- attributes and stick em in
     for (const prop in this.props) {
@@ -32,15 +30,14 @@ export default class Button extends React.PureComponent {
     }
 
     let id = this.props.id ? {'id': [this.props.id]} : null
-
     let tabindex = this.props.tabIndex ? {'tabIndex': this.props.tabIndex} : null
-    let disabled = !!this.props.disabled
     
     if (url || type === 'a') {
       component = (
         <Link to={url}
           className={classes}
           role='button'
+          name={name || label} 
           {...data}
           {...tabindex}
           {...id}
@@ -49,10 +46,10 @@ export default class Button extends React.PureComponent {
       )
     } else {
       component = (
-        <button
-          disabled={disabled}
+        <button 
           {...data}
           {...id}
+          name={name || label} 
           {...tabindex}
           onClick={event => this.onClick(event)}
           className={classes} type={type}>
@@ -63,4 +60,8 @@ export default class Button extends React.PureComponent {
 
     return component
   }
+}
+
+Button.defaultProps = {
+  className: ''
 }
