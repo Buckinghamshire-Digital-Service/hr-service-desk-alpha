@@ -30,6 +30,11 @@
   margin-right: auto;  
 }
 
+@mixin outline {
+  &:focus {
+    outline: 5px auto focus-ring-color;   
+  }
+}
 
 /**
  * Spacing mixin
