@@ -3,7 +3,6 @@ import { Link, graphql, navigate } from 'gatsby'
 import { Index } from 'elasticlunr'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
-import Icon from '../components/Icon/Icon.jsx'
 import Layout from '../components/Layout/Layout.jsx'
 import Main from '../components/Main/Main.jsx'
 import Text from '../components/Text/Text.jsx'  
@@ -80,14 +79,7 @@ class SearchPage extends React.PureComponent {
       searched: query
     })
 
-    // if ('replaceState' in history) {
-    //   let path = `${this.props.location.pathname}?q=${query}`
-      
-    //   window.history.replaceState({}, document.title, path)
-    // }
-
     navigate('/search/?q='+query)
-    
     Event('Search term submit - search page', 'Submit', this.state.query)
   }
 
