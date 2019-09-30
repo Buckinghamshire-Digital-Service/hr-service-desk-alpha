@@ -185,7 +185,6 @@ b {
     }
   }
 
-  p,
   h2,
   h3 {
     line-height: 1.1;
@@ -193,6 +192,7 @@ b {
   }
 
   p {
+    margin-top: .8em;
     line-height: 1.4;
   }
 
@@ -231,10 +231,15 @@ b {
   ol {
     counter-reset: counter;
 
-    > li::before {
-      display: none;
-      content: counter(counter);
-      counter-increment: counter;
+    > li {
+      left: 1rem;
+      padding-left: 1.5rem;
+
+      &::before {
+        display: none;
+        content: counter(counter);
+        counter-increment: counter;
+      }
     }
   }
 }
