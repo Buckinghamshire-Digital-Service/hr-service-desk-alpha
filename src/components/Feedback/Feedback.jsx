@@ -56,12 +56,7 @@ export default class Feedback extends React.Component {
              <Svg {...iconClose}/>
             </button>
             {this.props.title}
-            {this.props.url &&
-              <Anchor
-                className='spaced-left'
-                target='_blank' onClick={this.handleClick} href={this.props.url}
-                text={this.props.callToAction} />
-            }
+            {this.props.url && <a className='spaced-left' target='_blank' onClick={this.handleClick} href={this.props.url}>{this.props.callToAction}</a>}
           </Accent>
         }
       </ClientOnly>
