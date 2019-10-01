@@ -4,6 +4,7 @@ import Svg from '../Svg/Svg.jsx'
 import Anchor from '../Anchor/Anchor.jsx'
 import { ClientOnly } from '../ClientOnly/ClientOnly'
 import { getCookie, setCookie } from '../../lib/cookie.js'
+import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 
 export default class Feedback extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ export default class Feedback extends React.Component {
 
   handleClick(ev) {
     ev.preventDefault()
+    Event('Request to feedback', 'Click', this.props.id + ' - ' + this.props.title)
     window.location.href = this.props.url
   }
 
