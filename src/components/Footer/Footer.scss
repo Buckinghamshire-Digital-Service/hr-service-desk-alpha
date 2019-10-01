@@ -34,8 +34,10 @@
 
     &.active {
       color: $white;
-      background-color: $gray-700;
-      margin-left: -1px;
+      //background-color: $gray-700;
+      //text-decoration: underline;
+      border-bottom: 3px solid $white;
+      //margin-left: -1px;
     }
 
     @include from($tablet) {

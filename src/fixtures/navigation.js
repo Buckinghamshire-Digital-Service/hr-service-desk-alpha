@@ -40,7 +40,7 @@ export const footer = [
     }
   },
   {
-    label: 'Contacts',
+    label: 'Contact',
     url: '/contact',
     tracking: {
       label: 'Contact us',

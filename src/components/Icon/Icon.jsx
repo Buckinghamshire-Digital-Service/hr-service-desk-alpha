@@ -3,11 +3,11 @@ import Svg from '../Svg/Svg.jsx'
 
 const Icon = props => {
   return (
-    <span className={props.className}>
-      <Svg url={props.url} alt={props.alt}/>
-      <span className='is-sr-only'>{props.label}</span>
-    </span>
+      <Svg url={props.url} alt={props.alt} aria-label={props.label} className={props.className}/>
   )
+}
+Icon.defaultProps = {
+  className: ''
 }
 
 export default Icon

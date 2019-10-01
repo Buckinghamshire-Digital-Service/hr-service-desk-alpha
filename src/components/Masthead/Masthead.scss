@@ -58,6 +58,11 @@
       font-family: $body-family;
     }
 
+    &:focus {
+      color: $white;
+      background-color: $gray-900;
+    }
+
     .has-hover & {
       &:hover {
         color: $white;

@@ -12,6 +12,10 @@
   	max-width: 50rem;
   }
 
+  &.has-icon {
+    padding-right: 4rem !important;
+  }
+
   &--padded {
     @include padding-vertical-small;
   }
