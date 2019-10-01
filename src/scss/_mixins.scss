@@ -1,6 +1,5 @@
 
 @mixin link {
-  margin-bottom: .2em;
   color: $brand-green;
   text-decoration: underline;
 
@@ -8,7 +7,7 @@
     &:active,
     &:hover,
     &:focus {
-      text-decoration: none;
+      text-decoration: none !important;
     }
   }
 }
@@ -16,17 +15,68 @@
 @mixin break-word {
   overflow-wrap: break-word;
   word-wrap: break-word;
-  // hyphens: auto;
 }
 
 @mixin vertical-align {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @mixin max-width {
   max-width: $max-width;
   margin-left: auto;
   margin-right: auto;  
+}
+
+@mixin outline {
+  &:focus {
+    display: inline-block;    
+    outline: 5px auto focus-ring-color;   
+  }
+}
+
+/**
+ * Spacing mixin
+ */
+@mixin spacing($prefix: '') {
+  @each $direction in '-top', '-bottom', ''  {
+    .#{$prefix}sp#{$direction}--flush {
+      margin#{$direction}: 0 !important;
+    }
+
+    .#{$prefix}sp#{$direction}--single {
+      @if ($direction != '') {
+        margin#{$direction}: ($gap / 2) !important;
+      }
+      @else {
+        margin-top: ($gap / 2) !important;
+        margin-bottom: ($gap / 2) !important;
+      }
+    }
+
+    .#{$prefix}sp#{$direction}--double {
+      @if ($direction != '') {
+        margin#{$direction}: $gap !important;
+      }
+      @else {
+        margin-top: $gap !important;
+        margin-bottom: $gap !important;
+      }
+    }
+  }
+}
+
+/**
+ * Apply vertical spacings to the site's breakpoints
+ */
+@include spacing();
+
+@include from($tablet) {
+  @include spacing('md-');
+}
+
+@include from($desktop) {
+  @include spacing('lg-');
 }

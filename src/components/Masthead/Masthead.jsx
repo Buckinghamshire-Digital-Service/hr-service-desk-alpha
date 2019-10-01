@@ -12,7 +12,7 @@ import Navigation from '../Navigation/Navigation.jsx'
 import Hero from '../Hero/Hero.jsx'
 import Form from '../Form/Form.jsx'
 import { Event } from '../GoogleAnalytics/GoogleAnalytics'
-//import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
+import { ViewportMobile, ViewportDefault } from '../Breakpoints/Breakpoints.jsx'
 
 
 export default class Masthead extends React.PureComponent {
@@ -46,11 +46,19 @@ export default class Masthead extends React.PureComponent {
     if (searchTerm !== '') {
       Event('Search term submit', 'Submit', searchTerm)
       
-      navigate('/search', {
-        state: {
-          query: this.state.query
-        }
-      })
+      if (!this.props.update) {
+        navigate('/search/?q='+searchTerm, {
+          state: {
+            query: this.state.query
+          }
+        })
+      } else {
+        this.setState({
+          takeover: false
+        })
+
+        this.props.update(searchTerm)
+      }
     }
   }
 
@@ -78,11 +86,11 @@ export default class Masthead extends React.PureComponent {
 
   render () {
     let iconWhite = {
-      label: 'Submit search',
+      label: 'Search',
       url: '../../../svg/magnifying-white.svg'
     } 
     let icon = {
-      label: 'Submit search',
+      label: 'Search',
       url: '../../../svg/magnifying.svg'
     }
     let iconClose = {
@@ -98,7 +106,7 @@ export default class Masthead extends React.PureComponent {
 
     return (
       <header className={`masthead ${this.props.hero && this.props.hero.image ? 'masthead--has-shadow' : ''}`}>
-        <Hero hero={this.props.hero}>
+        <Hero hero={this.props.hero} className={this.props.parentPage ? 'hero--shallow' : ''}>
           <CookieBar />
           <div className='masthead__inner'>
             <section className='navigation-wrapper'>
@@ -106,13 +114,15 @@ export default class Masthead extends React.PureComponent {
                 <div className='navbar-brand'>
                   <Logo url={logo.url} alt={logo.label} className='navbar-item'/>
 
-                  <Button aria-hidden='false' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
-                    <span aria-hidden='true'></span>
-                    <span aria-hidden='true'></span>
-                    <span aria-hidden='true'></span>
-                  </Button>                  
-                  
-                  {this.props.hasSearch && <Button className='btn--flat is-hidden-tablet offset-top' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
+                  <ViewportMobile>
+                    <Button aria-label='Menu open' aria-hidden='false' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
+                      <span aria-hidden='true'></span>
+                      <span aria-hidden='true'></span>
+                      <span aria-hidden='true'></span>
+                    </Button>
+
+                    {this.props.hasSearch && <Button aria-label='Submit search' className='btn--flat is-hidden-tablet offset-top' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
+                  </ViewportMobile>                
                 </div>
 
                 <div id='nav-primary' className={`navbar-menu navbar-primary ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>
@@ -122,7 +132,7 @@ export default class Masthead extends React.PureComponent {
                 </div>
 
                 {this.props.hasSearch && <div className='navbar-end is-hidden-mobile'>
-                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>
+                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)} aria-label='Submit search'><Icon {...iconWhite}/></Button>
                 </div>}        
               </nav>
             </section>
@@ -131,7 +141,7 @@ export default class Masthead extends React.PureComponent {
         </Hero>
         {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
           <div className='masthead__takeover__inner'>
-            <Button className='close' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconClose}/></Button>
+            <Button className='close' clickHandler={this.handleSearchClick.bind(this)} aria-label='Close takeover'><Icon {...iconClose}/></Button>
             <Form id={'takeover-search'} submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={ariaHidden} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
           </div>
         </section>}

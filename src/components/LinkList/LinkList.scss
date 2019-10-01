@@ -31,6 +31,10 @@ $dims: 1em;
   }      
 }
 
+.list-item__link {
+  @include link;
+}
+
 .list__content,
 .intro {
   max-width: 45rem;  
@@ -81,11 +85,9 @@ $dims: 1em;
 
   &.columns {
     flex-wrap: wrap;
-    margin-bottom: $gap / 2;
     margin-top: $gap / 2; 
 
     @include from($tablet) {
-      margin-bottom: $gap;
       margin-top: $gap; 
     }
   }
@@ -207,18 +209,12 @@ $dims: 1em;
 
 .list__link { 
   display: block;
-  text-decoration: underline;
+  @include link;
 
   .h3 {
     margin-bottom: .3em;
   }
 
-  .has-hover & {
-    &:hover {
-      text-decoration: none !important;
-    }
-  } 
-  
   .no-underline {
     display: inline-block;
     text-decoration: none;
@@ -234,6 +230,7 @@ $dims: 1em;
     content: '';
     position: absolute;
     width: $dims;
+    bottom: .3em;
     height: $dims;
     background-image: url('/svg/arrow-right-thin.svg');
     background-repeat: no-repeat;
@@ -254,7 +251,7 @@ $dims: 1em;
     padding-left: 1.2em;
     
     &:after {
-      left: 0;
+      left: 0;      
       bottom: 3px;
       background-position: center left;
       transform: rotate(180deg);
@@ -289,7 +286,7 @@ $dims: 1em;
   }
 }
 
-
-
-
+.download-link {
+  @include link;
+}
 

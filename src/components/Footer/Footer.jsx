@@ -12,15 +12,15 @@ const Footer = props => {
   }
 
   return (
-    <footer className='footer'>
+    <footer className='footer' role='contentinfo'>
       <div className='footer__inner'>
-        <a href='mailto:hrservicedesk@buckscc.gov.uk' className='footer__link' aria-label='Get in touch by email'>
-          <Heading text='Need to get in touch?' className='lead is-inline-block sp--flush'/>
-          <Icon {...email} className='is-inline-block spaced-left'/>
+        <a href='mailto:hrservicedesk@buckscc.gov.uk' className='footer__link is-flex' aria-label='Get in touch by email'>
+          <Heading text='Need to get in touch?' className='lead sp--flush'/>
+          <Icon {...email} className='spaced-left'/>
         </a>
       </div>
       <Divider />
-      <nav className='navbar footer__inner' role='navigation' aria-label='Footer navigation' role='contentinfo'>
+      <nav className='navbar footer__inner' role='navigation' aria-label='Footer navigation'>
         <Navigation items={footer}/> 
       </nav>
     </footer>

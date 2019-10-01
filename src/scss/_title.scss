@@ -17,11 +17,11 @@ $size-h3-m:     18px;
 $large-body:    24px;
 $large-body-m:  16px;
 $medium-body:   18px;
-$medium-body-m: 16px;   
+$medium-body-m: $large-body-m;   
 $small-body:    15px;
 $small-body-m:  12px;
 $intro-ul:      28px;
-$intro-ul-m:    18px;
+$intro-ul-m:    $size-h3-m;
 
 $title-color: $black !default
 $title-family: false !default
@@ -39,8 +39,6 @@ $subtitle-line-height: 1.25 !default
 $subtitle-strong-color: $gray-800 !default
 $subtitle-negative-margin: -1.25rem !default
 
-
-
 h1,
 .h1,
 %h1 {
@@ -57,6 +55,7 @@ h1,
 }
 
 h2,
+.long-form h2, 
 .h2,
 %h2 {
   line-height: 1.2;
@@ -70,6 +69,7 @@ h2,
   }
 }
 
+.long-form h3, 
 h3,
 .h3,
 %h3 {
@@ -86,7 +86,12 @@ h3,
 
 .constrained {
   max-width: 500px;
+
+  &--wide {
+    max-width: 45rem;
+  }
 }
+
 
 h4,
 .h4,
@@ -109,11 +114,6 @@ h4,
 
 p {
   margin-bottom: 1em;
-//  font-size: $medium-body-m;
-
-//  @include from($tablet) {
-//    font-size: $medium-body;
-//  } 
 
   a {
     @include link;
@@ -160,34 +160,41 @@ b {
 // long-form content overrides
 
 .long-form {
+  
   p {
     margin-bottom: 1em;
   }
 
+  li, 
+  p {
+    font-size: $medium-body-m;
+
+    @include from($tablet) {
+      font-size: $medium-body;
+    }    
+  }
+
   a {
     @include link;
+
+    &.btn--primary {
+      color: $white;
+      margin-top: 1.5rem;
+      display: inline-block;
+      text-decoration: none;
+    }
   }
 
-  h2 {
-    font-size: 2.2rem;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-  }
-
+  h2,
   h3 {
-    font-size: 2rem;
+    line-height: 1.1;
+    margin-top: 1.6em;
   }
 
-  h4 {
-    margin-top: 1.5em;
-    font-size: 1.8rem;
+  p {
+    margin-top: .8em;
+    line-height: 1.4;
   }
-
-  h3,
-  h4 {
-    line-height: 1.2;
-  }
-
 
   ol,
   ul {
@@ -224,10 +231,15 @@ b {
   ol {
     counter-reset: counter;
 
-    > li::before {
-      display: none;
-      content: counter(counter);
-      counter-increment: counter;
+    > li {
+      left: 1rem;
+      padding-left: 1.5rem;
+
+      &::before {
+        display: none;
+        content: counter(counter);
+        counter-increment: counter;
+      }
     }
   }
 }

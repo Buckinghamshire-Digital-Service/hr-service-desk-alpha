@@ -40,7 +40,7 @@ export const footer = [
     }
   },
   {
-    label: 'Contacts',
+    label: 'Contact',
     url: '/contact',
     tracking: {
       label: 'Contact us',
@@ -49,10 +49,10 @@ export const footer = [
     }
   },
   {
-    label: 'Downloads',
-    url: '/downloads',
+    label: 'Accessibility statement',
+    url: '/accessibility-statement',
     tracking: {
-      label: 'Downloads',
+      label: 'Accessibility statement',
       action: 'Click',
       category: 'Footer navigation'
     }

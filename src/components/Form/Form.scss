@@ -1,11 +1,11 @@
 
 .form--search {
   padding: 0 2rem 2rem;
+  width: 100%;
 
   @include from($tablet) {
     padding-left: 4rem;
     padding-right: 4rem;
-    width: 100%;
   }
 
   .control {
@@ -24,9 +24,12 @@
 
   &.form--narrow {
     padding-left: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 
     @include from($tablet) {
       padding-left: 2rem;
+      padding-right: 2rem;      
     }
   }
 }

@@ -11,7 +11,7 @@ const Breadcrumb = props => {
 
   return (
     <div className={`breadcrumb ${props.className}`} aria-label='Breadcrumb'>
-      <Link to={`/${path}`} onClick={() => Event('Breadcrumb link','Click',`/${path}`)}>
+      <Link to={`/${path}`} onClick={() => Event('Breadcrumb link','Click',`/${path}`)} className='breadcrumb__link'>
         <p className='has-chevron has-chevron--reversed'><span className='underlined'>Back to {title}</span></p>
       </Link>
     </div>

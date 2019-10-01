@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link, graphql, StaticQuery } from 'gatsby'
+import { Link, graphql, navigate } from 'gatsby'
 import { Index } from 'elasticlunr'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
-import Icon from '../components/Icon/Icon.jsx'
 import Layout from '../components/Layout/Layout.jsx'
 import Main from '../components/Main/Main.jsx'
 import Text from '../components/Text/Text.jsx'  
@@ -13,32 +12,41 @@ import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Form from '../components/Form/Form.jsx'
 import Accent from '../components/Accent/Accent.jsx'
 import { Event } from '../components/GoogleAnalytics/GoogleAnalytics'
-import { isEmpty } from '../utilities'
-import queryString from 'query-string'
+import { isEmpty, queryString } from '../utilities'
 
 class SearchPage extends React.PureComponent {
   constructor(props) {
     super(props)
     this.searchIndex = get(this.props, 'data.siteSearchIndex.index')
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
-    this.searchText = this.searchText.bind(this)
-
-    const parsed = queryString.parse(location.search)
+    this.handleSearchSubmitSearchpage = this.handleSearchSubmitSearchpage.bind(this)
+    this.searchTextSearchpage = this.searchTextSearchpage.bind(this)
 
     this.state = {
       query: '',
-      searched: ((!isEmpty(parsed.q) && parsed.q) || this.props.location.state && this.props.location.state.query) || '',
+      searched: '',
       results: [],
     }
   }
 
   componentDidMount() {
-    if (this.state.searched.length > 0 && this.state.searched !== '') {
-      this.searchSite(this.state.searched)
+    const parsed = queryString(this.props.location.search)
+    let q = !isEmpty(parsed.q) ? parsed.q : null
+
+    if (!q) {
+      return
+    }
+
+    if (q.length > 0) {
+      this.setState({
+        searched: q,
+        query: q
+      })
+
+      this.searchSite(q)
     }
   }
 
-  searchText(e) {
+  searchTextSearchpage(e) {
     const query = e.target.value
 
     this.setState({
@@ -46,20 +54,32 @@ class SearchPage extends React.PureComponent {
     })    
   }
 
-  handleSearchSubmit(e) {
-    e.preventDefault()
-    this.searchSite(this.state.query)
-
+  updateFromOverlay(query) {
     this.setState({
-      searched: this.state.query
+      query: query
     })
 
-    if ('replaceState' in history) {
-      let parsed = { q: this.state.query}
-      let path = `${this.props.location.pathname}?${queryString.stringify(parsed)}`
-      window.history.replaceState({}, document.title, path)
+    this.handleSearchSubmitSearchpage(query)
+  }
+
+  handleSearchSubmitSearchpage(e) {
+    let query
+
+    if (e.target) {
+      e.persist()
+      e.preventDefault()  
+      query = this.state.query 
+    } else {
+      query = e
     }
 
+    this.searchSite(query)
+
+    this.setState({
+      searched: query
+    })
+
+    navigate('/search/?q='+query)
     Event('Search term submit - search page', 'Submit', this.state.query)
   }
 
@@ -79,16 +99,16 @@ class SearchPage extends React.PureComponent {
     const urlmap = this.props.pageContext.map
 
     return (
-      <Layout location={this.props.location} hasSearch className='full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
+      <Layout location={this.props.location} update={this.updateFromOverlay.bind(this)} hasSearch className='full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
         <Helmet title={`${page.metaTitle} | ${site.title}`} description={page.metaDescription}/>
         <Main className='full-width'>
           {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
           <div className='container'>
             <PageTitle text={page.title}/>
-            <Form id='search-page-search' simple submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>            
+            <Form id='search-page-search' simple submitHandler={this.handleSearchSubmitSearchpage} query={this.state.query} ariaHidden={null} icon={icon} onChangeHandler={this.searchTextSearchpage} reference={this.searchInput}/>            
             {(this.state.results && this.state.results.length === 0) && <div className='panel panel--inverted panel--padding-small is-last'>
               <Accent className='accent--loud accent--shallow accent--separated'>
-                <p className='lead'>
+                <p className='lead' role='alert'>
                   Sorry, the term "<strong>{this.state.searched}</strong>" returned no results <span aria-hidden>: (</span>
                 </p>                  
               </Accent>
@@ -102,10 +122,9 @@ class SearchPage extends React.PureComponent {
               </ul>
             </div>}
 
-
             {(this.state.results && this.state.results.length > 0) && 
               <>
-              <div className='panel panel--inverted panel--padding-small'><p className='lead'>{this.state.results.length} search result{this.state.results.length > 1 ? 's' : ''} for "<strong>{this.state.searched}</strong>"</p></div>
+              <div className='panel panel--inverted panel--padding-small'><p className='lead' role='alert'>{this.state.results.length} search {this.state.results.length > 1 ? 'results' : 'result'} for "<strong>{this.state.searched}</strong>"</p></div>
               <ul className='list list--separated is-last'>
               {this.state.results.map(page => (
                 <li className='list-item' key={page.id}>

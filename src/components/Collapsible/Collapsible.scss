@@ -4,7 +4,7 @@ $dims: 2.4rem;
 .collapsible__inner {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  max-width: 650px;
+  max-width: 600px;
 
   &::before {
     content: '';
@@ -15,7 +15,7 @@ $dims: 2.4rem;
   }
 
   p {
-    font-size: $large-body-m;
+    font-size: $medium-body-m;
 
     @include from($tablet) {
       font-size: $medium-body;
@@ -38,6 +38,14 @@ $dims: 2.4rem;
 
   .text-link {
     font-size: 100%;
+    padding-right: 1rem;
+  }
+
+  blockquote {
+    background-color: $brand-orange;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    padding: 1.5rem;
   }
 }
 

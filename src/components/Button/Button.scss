@@ -18,13 +18,13 @@
 }
 
 .btn--primary {
-  background-color: $brand-green-darker;
+  background-color: $brand-green;
   color: $white;
 
   &:active,
   &:focus {
     color: $white;
-    text-decoration: underline;
+    
   }
 
   &:active {
@@ -35,7 +35,7 @@
   .has-hover & {
     &:hover {
       color: $white !important;
-      text-decoration: underline;
+      background-color: $brand-green-darker;
     }
   }
 }
@@ -108,6 +108,11 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
+
+  &--top {
+    top: -.2em;
+    right: 0; 
+  }
 }
 
 .btn--full-width {

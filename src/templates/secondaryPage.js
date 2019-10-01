@@ -8,6 +8,7 @@ import Text from '../components/Text/Text.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Download from '../components/Download/Download.jsx'
+import Feedback from '../components/Feedback/Feedback.jsx'
 
 class SecondaryPageTemplate extends React.PureComponent {
   render() {
@@ -18,7 +19,7 @@ class SecondaryPageTemplate extends React.PureComponent {
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id} map={map}>
         <Helmet>
-          <title>{`${post.title} | ${site.title}`}</title>
+          <title>{`${post.metaTitle} | ${site.title}`}</title>
           <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
           <meta name='description' content={post.metaDescription} />    
         </Helmet>
@@ -27,10 +28,11 @@ class SecondaryPageTemplate extends React.PureComponent {
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
-            {post.bodyText && <Text className='long-form' content={post.bodyText.childMarkdownRemark.html} />}
+            {post.bodyText && <Text className='long-form constrained constrained--wide' content={post.bodyText.childMarkdownRemark.html} />}
             <Download flush/>
           </div>
         </Main>
+        {post.feedback && <Feedback {...post.feedback}/>}
       </Layout>
     )
   }
@@ -85,6 +87,14 @@ export const secondaryPageQuery = graphql`
           }
         }
       }
+
+      feedback {
+        callToAction
+        delay
+        id
+        url
+        title
+      }      
     }
   }
 `
