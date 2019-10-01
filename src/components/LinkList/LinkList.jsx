@@ -27,7 +27,7 @@ const LinkList = props => {
               </Link>
               {content && <Text content={content} />}
               <ButtonGroup className='button-group--fixed'>
-                <Button url={link} tabIndex='-1' className='btn--has-radius btn--primary btn--full-width' name='sections' clickHandler={() => ctaClick(v.title)} aria-label={`Find out more about ${v.title}`}>
+                <Button url={link} tabIndex='-1' className='btn--has-radius btn--primary btn--full-width' aria-label='Top level sections' clickHandler={() => ctaClick(v.title)} aria-label={`Find out more about ${v.title}`}>
                   More on {v.title}
                 </Button>
               </ButtonGroup>
