@@ -8,6 +8,7 @@ import Text from '../components/Text/Text.jsx'
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
 import Download from '../components/Download/Download.jsx'
+import Feedback from '../components/Feedback/Feedback.jsx'
 
 class SecondaryPageTemplate extends React.PureComponent {
   render() {
@@ -31,6 +32,7 @@ class SecondaryPageTemplate extends React.PureComponent {
             <Download flush/>
           </div>
         </Main>
+        {post.feedback && <Feedback {...post.feedback}/>}
       </Layout>
     )
   }
@@ -85,6 +87,14 @@ export const secondaryPageQuery = graphql`
           }
         }
       }
+
+      feedback {
+        callToAction
+        delay
+        id
+        url
+        title
+      }      
     }
   }
 `
