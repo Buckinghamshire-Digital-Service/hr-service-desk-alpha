@@ -46,6 +46,10 @@ $dims: 1em;
   p:first-of-type() {
     font-size: 110%;
   }
+
+  & + & {
+    margin-top: -1rem;
+  }
 }
 
 .long-form,
