@@ -31,6 +31,7 @@ class PageTemplate extends React.PureComponent {
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
+            {post.body && <Text className='body' content={post.body.childMarkdownRemark.html} />}
           </div>
           {post.collapsibleLinks && <div className='body-content'>{post.collapsibleLinks.map((v, i) => {
             return <Collapsible links={map} key={i} history={this.props.location} {...v}/>
@@ -67,7 +68,14 @@ export const pageQuery = graphql`
         slug
         title
       }
+
       intro {
+        childMarkdownRemark {
+          html
+        }
+      }
+
+      body {
         childMarkdownRemark {
           html
         }
