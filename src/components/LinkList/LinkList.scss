@@ -46,12 +46,9 @@ $dims: 1em;
   p:first-of-type() {
     font-size: 110%;
   }
-
-  & + & {
-    margin-top: -1rem;
-  }
 }
 
+.body,
 .long-form,
 .intro {
   @include spacing-small;
@@ -137,7 +134,8 @@ $dims: 1em;
   }
 }
 
-.intro {
+.intro,
+.body {
   margin-top: 2rem;
   margin-bottom: 2rem;
 
@@ -147,17 +145,26 @@ $dims: 1em;
   }
 
   li {
-    font-size: $intro-ul-m;
     @extend %bullet;
     margin-bottom: 1.2em;
 
     a {
       text-decoration: underline;
     }
-    
+  }  
+}
+
+.intro {
+  li {
+    font-size: $intro-ul-m;
+
     @include from($tablet) {
       font-size: $intro-ul;
     }
+  }
+
+  & + .body {
+    margin-top: -1rem;
   }
 }
 
@@ -167,7 +174,6 @@ $dims: 1em;
   &--has-button {
     display: flex;
     flex-direction: column;
-    //height: 100%;    
     position: relative;
     height: calc(100% - 32px);
   }
