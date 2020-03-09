@@ -75,7 +75,7 @@
 .navbar-primary {
   &.is-active {
     @include until($tablet) {
-      background-color: $brand-green;
+      background-color: $brand-dark-grey-bg;
       @include fixed;
       padding-top: 5rem;
 

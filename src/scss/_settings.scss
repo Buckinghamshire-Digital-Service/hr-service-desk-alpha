@@ -1,16 +1,18 @@
 
-// Brand colors
-$brand-green: #0A6154;
-$brand-green-darker: #083D35;
-$brand-purple: #8A4D76;
-$brand-pink: #FA7C91;
+// brand colors
+$brand-green: #0a6154;
+$brand-green-darker: #083d35;
+$brand-purple: #2c2d84;
+$brand-purple-darker: #1C1C55;
+$brand-pink: #fa7c91;
 $brand-brown: #757763;
-$brand-beige-light: #E9ECE7;
-$brand-beige-lighter: #E9ECE7;
+$brand-beige-light: #e9ece7;
+$brand-beige-lighter: #e9ece7;
 $brand-orange: #ffdc8e;
+$brand-grey-bg: #eee;
+$brand-dark-grey-bg: #343e44;
 
-
-// Greys
+// greys
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
@@ -19,11 +21,12 @@ $gray-400: #ced4da !default;
 $gray-500: #adb5bd !default;
 $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
-$gray-800: #D8D8D8 !default;
-$gray-900: #434B51 !default;
+$gray-800: #d8d8d8 !default;
+$gray-900: #434b51 !default;
+
 $black:    #000 !default;
 
-// Global variables
+// global variables
 
 $constrained-width: 700px;
 $gap: 64px !default
