@@ -48,9 +48,10 @@
     padding-left: 1.25em;
     padding-right: 1.25em;
     font-family: $body-family-bold;
+    font-weight: 700;
 
     &.active {
-      background-color: $gray-900;
+      background-color: $brand-purple;
     }    
 
     @include from($tablet) {
@@ -60,13 +61,13 @@
 
     &:focus {
       color: $white;
-      background-color: $gray-900;
+      background-color: $brand-purple;
     }
 
     .has-hover & {
       &:hover {
         color: $white;
-        background-color: $gray-900;
+        background-color: $brand-purple;
       }
     }      
   }
@@ -75,7 +76,7 @@
 .navbar-primary {
   &.is-active {
     @include until($tablet) {
-      background-color: $brand-dark-grey-bg;
+      background-color: $brand-purple;
       @include fixed;
       padding-top: 5rem;
 
@@ -87,7 +88,7 @@
 
         .has-hover & {
           &:hover {
-            background-color: $gray-900;
+            background-color: $brand-purple;
           }
         }       
       }

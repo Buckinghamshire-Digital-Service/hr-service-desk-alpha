@@ -1,12 +1,15 @@
 
 // brand colors
-$brand-green: #0a6154;
-$brand-green-darker: #083d35;
+$brand-green: #2c2d84;
+$brand-green-darker: #2c2d84;
+// $brand-green: #0a6154;
+// $brand-green-darker: #083d35;
+
 $brand-purple: #2c2d84;
-$brand-purple-darker: #1C1C55;
+$brand-purple-darker: darken($brand-purple, 20%);
 $brand-pink: #fa7c91;
 $brand-brown: #757763;
-$brand-beige-light: #e9ece7;
+$brand-beige-light: #d9d9d9;
 $brand-beige-lighter: #e9ece7;
 $brand-orange: #ffdc8e;
 $brand-grey-bg: #eee;
@@ -23,7 +26,7 @@ $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #d8d8d8 !default;
 $gray-900: #434b51 !default;
-
+$gray-body-copy: #3c3c3b !default;
 $black:    #000 !default;
 
 // global variables
