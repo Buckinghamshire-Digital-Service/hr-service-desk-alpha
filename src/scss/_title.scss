@@ -47,7 +47,7 @@ h1,
   margin-top: 1.2em;
   margin-bottom: .5em;
   font-family: $body-family-bold;
-  font-weight: bold;
+  font-weight: 700;
 
   @include from($tablet) {
     font-size: $size-h1;
@@ -61,8 +61,8 @@ h2,
   line-height: 1.2;
   font-size: $size-h2-m;
   font-family: $body-family-bold;
+  font-weight: 700;
   margin-bottom: .6em;
-  font-weight: bold;
 
   @include from($tablet) {
     font-size: $size-h2;
@@ -76,8 +76,8 @@ h3,
   line-height: 1.4;
   font-size: $size-h3-m;
   font-family: $body-family-bold;
+  font-weight: 700;
   margin-bottom: .5em;
-  font-weight: bold;
 
   @include from($tablet) {
     font-size: $size-h3;
@@ -138,6 +138,7 @@ strong,
 .bold,
 b {
   font-family: $body-family-bold;
+  font-weight: 700;
 }
 
 .list-link {

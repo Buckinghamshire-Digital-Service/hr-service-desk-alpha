@@ -99,7 +99,7 @@ export default class Masthead extends React.PureComponent {
     }
     let logo = {
       label: 'Navigate to homepage',
-      url: '../../../svg/buckinghamshire-logo.svg'
+      url: '../../../svg/buckinghamshire-logo-white.svg'
     }
 
     let ariaHidden = {'aria-hidden': this.state.takeover}
