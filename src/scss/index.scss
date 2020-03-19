@@ -12,9 +12,14 @@ $body-background-color: $white;
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
-$body-color: $black;
-$body-family: 'OpenSans', sans-serif;
-$body-family-bold: 'OpenSans-Bold', sans-serif;
+$body-color: $gray-body-copy;
+// $body-family: 'OpenSans', sans-serif;
+// $body-family-bold: 'OpenSans-Bold', sans-serif;
+
+$body-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$body-family-bold: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
 
 // Bulma styles
 // overwriting the nav breakpoint
