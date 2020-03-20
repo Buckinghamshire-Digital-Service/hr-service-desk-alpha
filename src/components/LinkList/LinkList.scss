@@ -60,10 +60,17 @@ $dims: 1em;
   @include padding-small;
 }
 
+
+.list--separated-small .list-item {  
+  @include padding-vertical-small;
+}
+
+
 .list__header,
-.list--separated .list-item {
+.list--bordered .list-item {
   border-bottom: 1px solid $gray-300;
 }
+
 
 .list__header {
   padding-top: 0;

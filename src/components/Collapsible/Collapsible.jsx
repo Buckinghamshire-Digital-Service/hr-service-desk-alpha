@@ -8,7 +8,7 @@ import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 export default class Collapsible extends React.PureComponent {
   constructor (props) {
     super(props)
-    this.title = this.props.title// !== undefined ? this.props.title : this.props.title
+    this.title = this.props.title
     this.id = returnId(this.title)
     this.state = {
       visible: this.props.open === true || this.props.className === 'collapsible_trigger--active',
