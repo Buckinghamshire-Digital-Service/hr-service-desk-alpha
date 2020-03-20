@@ -61,8 +61,14 @@ $dims: 1em;
 }
 
 
-.list--separated-small .list-item {  
-  @include padding-vertical-small;
+.list--separated-small {
+  margin-left: 0;
+  padding-left: 1rem;
+
+  .list-item {
+    @include padding-vertical-small;
+    padding-left: 1rem !important;
+  }
 }
 
 
