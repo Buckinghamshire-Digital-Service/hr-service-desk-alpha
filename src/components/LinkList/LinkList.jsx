@@ -22,7 +22,7 @@ const LinkList = props => {
         return (
           <li className='column is-half-tablet' key={i}>
             <div className='list__item list__item--has-button'>
-              <Link to={link} className='list-item__link' onClick={() => Event('Top level links homepage','Click',v.title)}>
+              <Link to={link} className='list-item__link' onClick={() => Event('Top level links homepage','Click', v.title)}>
                 <Heading text={v.title} type={props.type} className={`list-item__title ${props.simple ? 'has-chevron' : ''}`}/>
               </Link>
               {content && <Text content={content} />}
