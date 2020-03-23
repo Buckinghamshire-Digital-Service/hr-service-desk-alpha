@@ -25,11 +25,15 @@ class PageTemplate extends React.PureComponent {
     let mediaLinks = post.collapsibleLinks ? post.collapsibleLinks
       .filter(v => v.mediaLink !== null)
       .map(v => v.mediaLink)
-      .reduce((a,b) => a.concat(b), [])
-      .map(v => {        
-        v['url'] = v.mediaLink
-        return v
-      }) : null
+      .reduce((a,b) => a.concat(b), []): []
+      
+      mediaLinks = mediaLinks
+        .concat(post.mediaLink || [])
+        .filter(item => mediaLinks.indexOf(item) < 0)
+        .map(v => {        
+          v['url'] = v.mediaLink
+          return v
+        })
 
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id} map={map} {...parent}>
@@ -43,12 +47,12 @@ class PageTemplate extends React.PureComponent {
           <div className='container'>
             <PageTitle text={post.title}/>
             <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
-            {post.body && <Text className='body' content={post.body.childMarkdownRemark.html} />}
+            {post.body && <Text className='body long-form' content={post.body.childMarkdownRemark.html} />}
           </div>
           {post.collapsibleLinks && <div className='body-content'>{post.collapsibleLinks.map((v, i) => <Collapsible links={map} key={i} history={this.props.location} {...v}/>)}</div>}
-          {(mediaLinks && mediaLinks.length > 0 ) && 
+          {(mediaLinks.length > 0) && 
          
-            <div class="container panel--padding-small">
+            <div className='container panel--padding-small'>
               <Heading text='Downloads in this page' className='h4 sp-top--single'/>
               <ol className='list list--separated list--separated-small'>{mediaLinks.map(v => <LinkItem event={Event} key={v.id} {...v} />)}</ol>
             </div>}
@@ -137,6 +141,14 @@ export const pageQuery = graphql`
           mediaLink
           description
         }
+      }
+
+      mediaLink {
+        id
+        type
+        title
+        mediaLink
+        description
       }
 
     }
