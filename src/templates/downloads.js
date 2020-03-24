@@ -23,7 +23,7 @@ class Downloads extends React.PureComponent {
     const result = flow(
       groupBy(x => x.node.contentfulparent.slug),
       map((value, key) => ({
-        parent: key, 
+        parent: key || 'miscellaneous', 
         downloads: value
       }))
     )(post.edges)
