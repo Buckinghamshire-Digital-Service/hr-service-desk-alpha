@@ -242,6 +242,14 @@ $dims: 1em;
     display: inline-block;
     text-decoration: none;
   }
+
+  &--disabled {
+    @include disabledLink;
+
+    .download {
+      display: none;
+    }
+  }
 }
 
 .has-chevron {

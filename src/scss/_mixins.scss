@@ -12,6 +12,21 @@
   }
 }
 
+@mixin disabledLink {
+  color: $gray-400;
+  text-decoration: none;
+  cursor: default;
+  
+  .has-hover & {
+    &:active,
+    &:hover,
+    &:focus {
+      color: $gray-400;
+    }
+  }
+
+}
+
 @mixin break-word {
   overflow-wrap: break-word;
   word-wrap: break-word;
