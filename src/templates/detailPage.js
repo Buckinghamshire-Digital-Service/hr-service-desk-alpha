@@ -23,15 +23,15 @@ class PageTemplate extends React.PureComponent {
     const post = get(this.props, 'data.contentfulPage')
     const parent = post.parentPage ? {'parentPage': true} : null
     let mediaLinks = post.collapsibleLinks ? post.collapsibleLinks
-      .filter(v => v.mediaLink !== null || v.mediaFile !== undefined)
-      .map(v => v.mediaLink || (v.mediaFile && v.mediaFile.file.url))
+      .filter(v => v.mediaFile !== undefined)
+      .map(v => v.mediaFile && v.mediaFile.file.url)
       .reduce((a,b) => a.concat(b), []): []
       
       mediaLinks = mediaLinks
         .concat(post.mediaLink || [])
-        // .filter(item => mediaLinks.indexOf(item) < 0)
+        .filter(item => mediaLinks.indexOf(item) < 0)
         .map(v => { 
-          v['mediaLink'] = v.mediaLink !== null ? v.mediaLink : (v.mediaFile && v.mediaFile.file) && 'https:' + v.mediaFile.file.url
+          v['mediaLink'] = (v.mediaFile && v.mediaFile.file) && 'https:' + v.mediaFile.file.url
           return v
         })
        

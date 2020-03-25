@@ -19,11 +19,11 @@ class Downloads extends React.PureComponent {
     const post = get(this.props, 'data.allContentfulMedia')
     const page = get(this.props, 'data.contentfulSecondaryPage')
     const urlmap = this.props.pageContext.map
-    
+
     const result = flow(
-      groupBy(x => x.node.contentfulparent.slug),
+      groupBy(parent => parent.node.contentfulparent.slug),
       map((value, key) => ({
-        parent: key || 'miscellaneous', 
+        parent: key, 
         downloads: value
       }))
     )(post.edges)
@@ -104,6 +104,12 @@ export const donwloadPageQuery = graphql`
           description
           isLocked
           mediaLink
+          mediaFile {
+            file {
+              fileName
+              url
+            }
+          }          
           contentfulparent {
             id
             title

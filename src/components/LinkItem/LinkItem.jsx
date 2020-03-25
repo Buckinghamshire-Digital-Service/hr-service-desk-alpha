@@ -1,6 +1,7 @@
 import React from 'react'
 
 const LinkItem = props => {
+	// console.log(props)
   return (
     <li className='list-item'>
       <a href={props.mediaLink} className='download-block list__link' onClick={() => props.event('Document download','Click',props.title)} target='_blank' rel='noreferrer'>
