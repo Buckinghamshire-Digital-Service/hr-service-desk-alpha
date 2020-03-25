@@ -23,17 +23,19 @@ class PageTemplate extends React.PureComponent {
     const post = get(this.props, 'data.contentfulPage')
     const parent = post.parentPage ? {'parentPage': true} : null
     let mediaLinks = post.collapsibleLinks ? post.collapsibleLinks
-      .filter(v => v.mediaLink !== null)
-      .map(v => v.mediaLink)
+      .filter(v => v.mediaFile !== undefined)
+      .map(v => v.mediaFile && v.mediaFile.file.url)
       .reduce((a,b) => a.concat(b), []): []
       
       mediaLinks = mediaLinks
         .concat(post.mediaLink || [])
         .filter(item => mediaLinks.indexOf(item) < 0)
-        .map(v => {        
-          v['url'] = v.mediaLink
+        .map(v => { 
+          v['mediaLink'] = (v.mediaFile && v.mediaFile.file) && 'https:' + v.mediaFile.file.url
           return v
         })
+       
+
 
     return (
       <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id} map={map} {...parent}>
@@ -140,6 +142,13 @@ export const pageQuery = graphql`
           title
           mediaLink
           description
+
+          mediaFile {
+            file {
+              fileName
+              url
+            }
+          }           
         }
       }
 
@@ -149,6 +158,13 @@ export const pageQuery = graphql`
         title
         mediaLink
         description
+
+        mediaFile {
+          file {
+            fileName
+            url
+          }
+        }         
       }
 
     }
