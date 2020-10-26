@@ -152,7 +152,8 @@ class SearchPage extends React.PureComponent {
             title: {boost: 5, expand: true},
             metaDescription: {boost: 3, expand: true},
             intro: {boost: 2, expand: true},
-            content: {boost: 1, expand: true}
+            content: {boost: 1, expand: true},
+            download: {boost: 1, expand: true}
           },
           bool: 'AND',
           expand: true
