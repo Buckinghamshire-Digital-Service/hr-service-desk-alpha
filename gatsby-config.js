@@ -49,16 +49,20 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: ['title','metaDescription', 'intro', 'content'],
+        fields: ['title','metaDescription', 'intro', 'content', 'download'],
         resolvers: {
           ContentfulPage: {
             title: node => node.title,
             metaDescription: node => node.metaDescription,
             intro: (node, getNode) => getNode(node.intro___NODE).intro,            
             content: (node, getNode) => node.collapsibleLinks___NODE && node.collapsibleLinks___NODE.map((v) => {
-              let collapse = getNode(v)
+              const collapse = getNode(v)
               return getNode(collapse.content___NODE).content
-            })
+            }),
+            download: (node, getNode) => node.mediaLink___NODE && node.mediaLink___NODE.map((v) => {
+              const media = getNode(v)
+              return media.title
+            }),
           },
           ContentfulSecondaryPage: {
             title: node => node.title,
