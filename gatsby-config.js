@@ -5,7 +5,7 @@ require('dotenv').config({
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST,
+  // host: process.env.CONTENTFUL_HOST,
   downloadLocal: true
 }
 
@@ -76,6 +76,13 @@ module.exports = {
     {
       resolve: "gatsby-plugin-stylelint",
       options: { files: ["**/*.{js,jsx, scss}"] }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+          bucketName: 'bucks-hr-desk',
+          region: 'eu-west-2'
+      },
+  },
   ],
 }
