@@ -80,8 +80,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-          bucketName: 'bucks-hr-desk',
-          region: 'eu-west-2'
+        bucketName: 'bucks-hr-desk-staging', // or 'bucks-hr-desk' for production
+        region: 'eu-west-2'
       },
   },
   ],
