@@ -6,7 +6,7 @@
 
 ## Development mode
 
-This uses hot reloading to improve developer experience, but the site is run purely on the client side until it is built. 
+This uses hot reloading to improve developer experience, but the site is run purely on the client side when it is built. 
 
 `npm run dev`
 
@@ -48,13 +48,38 @@ Migration and API query tools available using [contentful-cli](https://github.co
 | `content-type get --space-id xxx --id [content type id]`| Get a list of content type fields |
 
 
-
-## CI
+## CI (Currently deactivated)
 
 BuddyCI is used for the CI server.
 
 - The `Build` CI task validates all branches
-- The `Build & Deploy` task runs whenever an update to `develop` is made. This task will update the staging server.
+- The `Build & Deploy to Staging` task runs whenever an update to `develop` is made. This task will update the staging environment.
+- The `Build & Deploy` task runs whenever an update to `master` is made. This task will update the production environment.
+
+## Manual deployment
+
+You will first need access to the cxpartners AWS account to run deployment via an IAM user with permission to create and read content on S3 buckets and invalidate Cloudfront instances.
+
+Deployment uses [gatsby-plugin-s3](https://gatsby-plugin-s3.jari.io/).
+
+The S3 bucket is defined in `gatsby-config.js` and you will need to manually change the bucket name for each environment:
+
+```
+  
+  options: {
+    bucketName: 'bucks-hr-desk-staging', // or 'bucks-hr-desk' for production
+    region: 'eu-west-2'
+  }
+
+```
+
+`npm run deploy` builds the latest pages, deploys to the S3 bucket.
+`npm run deploy-staging` builds the latest pages, deploys to the S3 bucket and invalidates the cache.
+`npm run deploy-live` builds the latest pages, deploys to the S3 bucket and invalidates the cache.
+
+Invalidation can take several minutes.
+
+
 
 ### SSH / Keys
 
