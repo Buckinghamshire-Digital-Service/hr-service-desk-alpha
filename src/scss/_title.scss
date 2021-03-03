@@ -230,7 +230,6 @@ b {
   }
 
   ol {
-    counter-reset: counter;
 
     > li {
       left: 1rem;
@@ -238,8 +237,6 @@ b {
 
       &::before {
         display: none;
-        content: counter(counter);
-        counter-increment: counter;
       }
     }
   }

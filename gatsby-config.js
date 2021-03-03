@@ -5,7 +5,7 @@ require('dotenv').config({
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST,
+  // host: process.env.CONTENTFUL_HOST,
   downloadLocal: true
 }
 
@@ -49,16 +49,20 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: ['title','metaDescription', 'intro', 'content'],
+        fields: ['title','metaDescription', 'intro', 'content', 'download'],
         resolvers: {
           ContentfulPage: {
             title: node => node.title,
             metaDescription: node => node.metaDescription,
             intro: (node, getNode) => getNode(node.intro___NODE).intro,            
             content: (node, getNode) => node.collapsibleLinks___NODE && node.collapsibleLinks___NODE.map((v) => {
-              let collapse = getNode(v)
+              const collapse = getNode(v)
               return getNode(collapse.content___NODE).content
-            })
+            }),
+            download: (node, getNode) => node.mediaLink___NODE && node.mediaLink___NODE.map((v) => {
+              const media = getNode(v)
+              return media.title
+            }),
           },
           ContentfulSecondaryPage: {
             title: node => node.title,
@@ -72,6 +76,13 @@ module.exports = {
     {
       resolve: "gatsby-plugin-stylelint",
       options: { files: ["**/*.{js,jsx, scss}"] }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: 'bucks-hr-desk-staging', // or 'bucks-hr-desk' for production
+        region: 'eu-west-2'
+      },
+  },
   ],
 }

@@ -7,8 +7,8 @@ import { Event } from '../GoogleAnalytics/GoogleAnalytics'
 const DownloadBlock = props => {
   let parent = props.downloads[0].node.contentfulparent
   let downloads = props.downloads.map(v => {
-    v.node['mediaLink'] = v.node.mediaFile && v.node.mediaFile.file && 'https:' + v.node.mediaFile.file.url
-    v.node['c'] = v.node.mediaFile ? '' : 'list__link--disabled'
+    v.node['mediaLink'] = v.node['mediaLink'] !== null ? v.node['mediaLink'] : v.node.mediaFile && v.node.mediaFile.file && 'https:' + v.node.mediaFile.file.url
+    //v.node['c'] = v.node.mediaFile ? '' : 'list__link--disabled'
     return v
   }) 
 
