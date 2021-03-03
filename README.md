@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-- nodejs version `12.8.0`
+- nodejs version `12.13.0`
 
 ## Development mode
 
@@ -48,7 +48,7 @@ Migration and API query tools available using [contentful-cli](https://github.co
 | `content-type get --space-id xxx --id [content type id]`| Get a list of content type fields |
 
 
-## CI (Currently deactivated)
+## CI
 
 BuddyCI is used for the CI server.
 
@@ -83,4 +83,4 @@ Invalidation can take several minutes.
 
 ### SSH / Keys
 
-To give BuddyCI access to the integration server, the public key (found at `/environment-variables`) should be added to the `deploy` user's `~/.ssh/authorized_keys` file on the staging server.
+To give BuddyCI access to the integration server, it has its own AWS IAM user set up.
