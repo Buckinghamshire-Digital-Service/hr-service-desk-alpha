@@ -49,7 +49,7 @@
     "gh-pages": "^2.0.1",
     "inquirer": "^6.2.2",
     "install": "^0.13.0",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "npm": "^6.14.8",
     "picturefill": "^3.0.3",
     "prettier": "^1.17.0",
