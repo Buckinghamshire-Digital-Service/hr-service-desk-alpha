@@ -46,21 +46,15 @@
     "gatsby-plugin-sass": "^2.3.21",
     "gatsby-plugin-stylelint": "^3.2.0",
     "gatsby-source-contentful": "^4.6.2",
-    "gh-pages": "^2.0.1",
-    "inquirer": "^6.2.2",
-    "install": "^0.13.0",
     "marked": "^0.7.0",
-    "npm": "^6.14.8",
     "picturefill": "^3.0.3",
     "prettier": "^1.17.0",
     "react-ga": "^2.6.0",
-    "rimraf": "^2.6.3",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0",
-    "stylelint-webpack-plugin": "^0.10.5",
-    "yargs-parser": "^13.1.2"
+    "stylelint-webpack-plugin": "^0.10.5"
   },
   "homepage": "https://github.com/contentful-userland/gatsby-contentful-starter#readme",
   "keywords": [
