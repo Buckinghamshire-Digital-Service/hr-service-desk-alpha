@@ -3,16 +3,10 @@ import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout/Layout.jsx'
-import ListItem from '../components/ListItem/ListItem.jsx'
-import Heading from '../components/Heading/Heading.jsx'
 import Text from '../components/Text/Text.jsx'
 import LinkList from '../components/LinkList/LinkList.jsx'
-import LinkListSimple from '../components/LinkList/LinkListSimple.jsx'
 import Main from '../components/Main/Main.jsx'
-import Icon from '../components/Icon/Icon.jsx'
 import PageTitle from '../components/PageTitle/PageTitle.jsx'
-import Download from '../components/Download/Download.jsx'
-
 
 class RootIndex extends React.PureComponent {
   render() {
@@ -21,23 +15,36 @@ class RootIndex extends React.PureComponent {
     const map = this.props.pageContext.map
 
     return (
-      <Layout location={this.props.location} className='muted full-width' hero={post.hero} ga={site.gaConfig.id} map={map}>
+      <Layout
+        location={this.props.location}
+        className="muted full-width"
+        hero={post.hero}
+        ga={site.gaConfig.id}
+        map={map}
+      >
         <Helmet>
           <title>{`${post.title} | ${site.title}`}</title>
-          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
-          <meta name='description' content={post.metaDescription} />    
+          <link
+            rel="canonical"
+            href={`${site.basePath}${this.props.location.pathname}`}
+          />
+          <meta name="description" content={post.metaDescription} />
         </Helmet>
-        <Main  className='full-width'>
-          <div className='container'>
-            <PageTitle text={post.title} className='no-breadcrumb'/>
-            <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
-            {post.childPages && <LinkList isDouble items={post.childPages} className='raised columns'/>}
+        <Main className="full-width">
+          <div className="container">
+            <PageTitle text={post.title} className="no-breadcrumb" />
+            <Text
+              className="intro lead"
+              content={post.intro.childMarkdownRemark.html}
+            />
+            {post.childPages && (
+              <LinkList
+                isDouble
+                items={post.childPages}
+                className="raised columns"
+              />
+            )}
           </div>
-
-          <div className='container'>
-            <Download flush/>
-          </div>
-          {post.childPagesSecondary && <div className='panel panel--flat panel--flush'><div className='container panel--padding-small'><Heading className='h3' text='Other areas' /><LinkListSimple type='h3' items={post.childPagesSecondary} simple className='simple simple--flat'/></div></div>}
         </Main>
       </Layout>
     )
@@ -87,24 +94,6 @@ query HomeQuery {
         }
       }
     }
-    childPages {
-      id
-      title
-      slug
-      metaDescription
-      summary {
-        childMarkdownRemark {
-          html
-        }
-      }
-    }
-    childPagesSecondary {
-      id
-      title
-      url
-      newWindow
     }
   }
-}
-
 `

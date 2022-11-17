@@ -32,11 +32,11 @@ $black:    #000 !default;
 // global variables
 
 $constrained-width: 700px;
-$gap: 64px !default
-$tablet: 769px !default
-$desktop: 960px !default
-$widescreen: 1152px + (2 * $gap) !default
-$widescreen-enabled: true !default
-$fullhd: 1344px + (2 * $gap) !default
-$fullhd-enabled: true !default
+$gap: 64px !default;
+$tablet: 769px !default;
+$desktop: 960px !default;
+$widescreen: 1152px + (2 * $gap) !default;
+$widescreen-enabled: true !default;
+$fullhd: 1344px + (2 * $gap) !default;
+$fullhd-enabled: true !default;
 $max-width: $desktop;

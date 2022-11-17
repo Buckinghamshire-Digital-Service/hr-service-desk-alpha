@@ -5,17 +5,17 @@ export const primary = [
     tracking: {
       label: 'About us',
       action: 'Click',
-      category: 'Primary navigation'
-    }
-  },  
+      category: 'Primary navigation',
+    },
+  },
   {
     label: 'Downloads',
     url: '/downloads',
     tracking: {
       label: 'All downloads',
       action: 'Click',
-      category: 'Primary navigation'
-    }
+      category: 'Primary navigation',
+    },
   },
   {
     label: 'Contact',
@@ -23,11 +23,10 @@ export const primary = [
     tracking: {
       label: 'Contact Buckinghamshire Council',
       action: 'Click',
-      category: 'Primary navigation'
-    }
-  }
+      category: 'Primary navigation',
+    },
+  },
 ]
-
 
 export const footer = [
   {
@@ -36,8 +35,8 @@ export const footer = [
     tracking: {
       label: 'About us',
       action: 'Click',
-      category: 'Footer navigation'
-    }
+      category: 'Footer navigation',
+    },
   },
   {
     label: 'Contact',
@@ -45,8 +44,8 @@ export const footer = [
     tracking: {
       label: 'Contact us',
       action: 'Click',
-      category: 'Footer navigation'
-    }
+      category: 'Footer navigation',
+    },
   },
   {
     label: 'Accessibility statement',
@@ -54,8 +53,8 @@ export const footer = [
     tracking: {
       label: 'Accessibility statement',
       action: 'Click',
-      category: 'Footer navigation'
-    }
+      category: 'Footer navigation',
+    },
   },
   {
     label: 'Privacy',
@@ -63,8 +62,8 @@ export const footer = [
     tracking: {
       label: 'Privacy',
       action: 'Click',
-      category: 'Footer navigation'
-    }
+      category: 'Footer navigation',
+    },
   },
   {
     label: 'Cookies',
@@ -72,8 +71,8 @@ export const footer = [
     tracking: {
       label: 'Cookies',
       action: 'Click',
-      category: 'Footer navigation'
-    }
+      category: 'Footer navigation',
+    },
   },
   {
     label: 'Modern slavery statement',
@@ -81,7 +80,7 @@ export const footer = [
     tracking: {
       label: 'Modern slavery statement',
       action: 'Click',
-      category: 'Footer navigation'
-    }
-  }
+      category: 'Footer navigation',
+    },
+  },
 ]

@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function HTML(props) {
   return (
-    <html {...props.htmlAttributes} className='has-hover' lang='en'>
+    <html {...props.htmlAttributes} className="has-hover" lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -12,13 +12,15 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
-        <script dangerouslySetInnerHTML={{__html:
-        `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
         window.addEventListener('touchstart', function onFirstTouch() {
           document.documentElement.classList.remove('has-hover')
           window.removeEventListener('touchstart', onFirstTouch, false)
-        }, false)`
-        }} />        
+        }, false)`,
+          }}
+        />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}

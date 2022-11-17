@@ -113,39 +113,17 @@ export default class Masthead extends React.PureComponent {
               <nav className='navbar' role='navigation' aria-label='main navigation'>
                 <div className='navbar-brand'>
                   <Logo url={logo.url} alt={logo.label} className='navbar-item'/>
-
-                  <ViewportMobile>
-                    <Button aria-label='Menu open' aria-hidden='false' className={`navbar-burger burger ${this.state.mobileMenuOpen ? 'is-active' : ''}`} aria-controls='nav-primary' aria-haspopup={!this.state.mobileMenuOpen} aria-expanded={this.state.mobileMenuOpen} aria-label={this.state.mobileMenuOpen ? 'Hide navigation' : 'Show navigation'} clickHandler={this.handleMenuClick.bind(this)} data-target='nav-primary'>
-                      <span aria-hidden='true'></span>
-                      <span aria-hidden='true'></span>
-                      <span aria-hidden='true'></span>
-                    </Button>
-
-                    {this.props.hasSearch && <Button aria-label='Submit search' className='btn--flat is-hidden-tablet offset-top' clickHandler={this.handleSearchClick.bind(this)}><Icon {...iconWhite}/></Button>}
-                  </ViewportMobile>                
                 </div>
 
                 <div id='nav-primary' className={`navbar-menu navbar-primary ${this.state.mobileMenuOpen ? 'is-active' : ''}`}>
                   <div className='navbar-end'>
-                    <Navigation items={primary} />
                   </div>
                 </div>
 
-                {this.props.hasSearch && <div className='navbar-end is-hidden-mobile'>
-                  <Button className='btn--flat' clickHandler={this.handleSearchClick.bind(this)} aria-label='Submit search'><Icon {...iconWhite}/></Button>
-                </div>}        
               </nav>
             </section>
           </div>
-          {!this.props.hasSearch && <Form id={'home-hero-search'} submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={ariaHidden} icon={icon} onChangeHandler={this.searchText}/>}
         </Hero>
-        {(this.state.takeover && this.props.hasSearch) && <section className='masthead__takeover'>
-          <div className='masthead__takeover__inner'>
-            <Button className='close' clickHandler={this.handleSearchClick.bind(this)} aria-label='Close takeover'><Icon {...iconClose}/></Button>
-            <Form id={'takeover-search'} submitHandler={this.handleSearchSubmit} query={this.state.query} ariaHidden={ariaHidden} icon={icon} onChangeHandler={this.searchText} reference={this.searchInput}/>
-          </div>
-        </section>}
-        {(this.state.takeover && this.props.hasSearch) && <div className='takeover-bg' onClick={this.handleSearchClick.bind(this)}/>}
       </header>
     )
   }

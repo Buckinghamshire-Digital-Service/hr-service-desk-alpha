@@ -1,12 +1,12 @@
 // stylelint-disable declaration-no-important, selector-list-comma-newline-after
 
-$size-1: 3rem !default
-$size-2: 2.5rem !default
-$size-3: 2rem !default
-$size-4: 1.5rem !default
-$size-5: 1.25rem !default
-$size-6: 1rem !default
-$size-7: 0.75rem !default
+$size-1: 3rem !default;
+$size-2: 2.5rem !default;
+$size-3: 2rem !default;
+$size-4: 1.5rem !default;
+$size-5: 1.25rem !default;
+$size-6: 1rem !default;
+$size-7: 0.75rem !default;
 
 $size-h1:       56px;
 $size-h1-m:     30px;
@@ -23,21 +23,21 @@ $small-body-m:  12px;
 $intro-ul:      28px;
 $intro-ul-m:    $size-h3-m;
 
-$title-color: $black !default
-$title-family: false !default
-$title-size: $size-3 !default
-$title-line-height: 1.125 !default
-$title-strong-color: inherit !default
-$title-strong-weight: inherit !default
-$title-sub-size: 0.75em !default
-$title-sup-size: 0.75em !default
+$title-color: $black !default;
+$title-family: false !default;
+$title-size: $size-3 !default;
+$title-line-height: 1.125 !default;
+$title-strong-color: inherit !default;
+$title-strong-weight: inherit !default;
+$title-sub-size: 0.75em !default;
+$title-sup-size: 0.75em !default;
 
-$subtitle-color: $gray-800 !default
-$subtitle-family: false !default
-$subtitle-size: $size-5 !default
-$subtitle-line-height: 1.25 !default
-$subtitle-strong-color: $gray-800 !default
-$subtitle-negative-margin: -1.25rem !default
+$subtitle-color: $gray-800 !default;
+$subtitle-family: false !default;
+$subtitle-size: $size-5 !default;
+$subtitle-line-height: 1.25 !default;
+$subtitle-strong-color: $gray-800 !default;
+$subtitle-negative-margin: -1.25rem !default;
 
 h1,
 .h1,

@@ -23,33 +23,51 @@ class Downloads extends React.PureComponent {
     const result = flow(
       groupBy(parent => parent.node.contentfulparent.slug),
       map((value, key) => ({
-        parent: key, 
-        downloads: value
+        parent: key,
+        downloads: value,
       }))
     )(post.edges)
 
     return (
-      <Layout location={this.props.location} hasSearch className='muted full-width' hero={page.hero} ga={site.gaConfig.id} map={urlmap}>
+      <Layout
+        location={this.props.location}
+        hasSearch
+        className="muted full-width"
+        hero={page.hero}
+        ga={site.gaConfig.id}
+        map={urlmap}
+      >
         <Helmet>
           <title>{`${page.title} | ${site.title}`}</title>
-          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
-          <meta name='description' content={page.metaDescription} />    
+          <link
+            rel="canonical"
+            href={`${site.basePath}${this.props.location.pathname}`}
+          />
+          <meta name="description" content={page.metaDescription} />
         </Helmet>
-        <Main className='full-width'>
-          {this.props.location && <Breadcrumb location={this.props.location} parent={page.parent} className='container'/>}
-          <div className='container'>
-            <PageTitle text={page.title}/>
-            <Text className='intro lead' content={page.intro.childMarkdownRemark.html} />
+        <Main className="full-width">
+          {this.props.location && (
+            <Breadcrumb
+              location={this.props.location}
+              parent={page.parent}
+              className="container"
+            />
+          )}
+          <div className="container">
+            <PageTitle text={page.title} />
+            <Text
+              className="intro lead"
+              content={page.intro.childMarkdownRemark.html}
+            />
           </div>
-          <div className='container container--constrained downloads-container'>
-            {result && result.map((v, i) => <DownloadBlock key={i} {...v}/>)}
+          <div className="container container--constrained downloads-container">
+            {result && result.map((v, i) => <DownloadBlock key={i} {...v} />)}
           </div>
         </Main>
       </Layout>
     )
   }
 }
-
 
 export default Downloads
 
@@ -64,7 +82,7 @@ export const donwloadPageQuery = graphql`
         }
       }
     }
-    contentfulSecondaryPage(slug: {eq: $slug}) {
+    contentfulSecondaryPage(slug: { eq: $slug }) {
       title
       metaTitle
       metaDescription
@@ -93,8 +111,8 @@ export const donwloadPageQuery = graphql`
             url
           }
         }
-      }      
-    }    
+      }
+    }
     allContentfulMedia {
       edges {
         node {
@@ -109,7 +127,7 @@ export const donwloadPageQuery = graphql`
               fileName
               url
             }
-          }          
+          }
           contentfulparent {
             id
             title

@@ -20,9 +20,6 @@ const Footer = props => {
         </a>
       </div>
       <Divider />
-      <nav className='navbar footer__inner' role='navigation' aria-label='Footer navigation'>
-        <Navigation items={footer}/> 
-      </nav>
     </footer>
   )
 }

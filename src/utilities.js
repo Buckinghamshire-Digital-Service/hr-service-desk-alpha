@@ -1,17 +1,20 @@
-
-export function isInBrowser () {
+export function isInBrowser() {
   return typeof window !== 'undefined' && window.document
 }
 
-export function isArray (obj) {
+export function isArray(obj) {
   return obj.constructor === Array
 }
 
-export function returnId (str) {
-  return str.toLowerCase().trim().replace(/[^\w\s]|_/g, '').replace(/ /g, '-')
+export function returnId(str) {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s]|_/g, '')
+    .replace(/ /g, '-')
 }
 
-export function stringContains (haystack, needles) {
+export function stringContains(haystack, needles) {
   if (isArray(needles)) {
     for (let needle of needles) {
       if (stringContains(haystack, needle)) return true
@@ -22,16 +25,18 @@ export function stringContains (haystack, needles) {
   }
 }
 
-export function getObjectKeys (obj) {
+export function getObjectKeys(obj) {
   let keys = []
   for (let key in obj) {
-    if (!obj.hasOwnProperty) { continue }
+    if (!obj.hasOwnProperty) {
+      continue
+    }
     keys.push(key)
   }
   return keys
 }
 
-export function isEmpty (obj) {
+export function isEmpty(obj) {
   for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) {
       return false
@@ -40,9 +45,11 @@ export function isEmpty (obj) {
   return true
 }
 
-export const removeMarkdown = (string) => string.replace(/#|\*|_|-|\|>|\[|\]|\(.*\)|`/g, '')
-export const removeTags = (string) => string.replace(/<\/?[^>]+(>|$)/g, '')
-export const replaceNewLine = (str, replacement) => str.replace(/(?:\r\n|\r|\n)/g, replacement)
+export const removeMarkdown = string =>
+  string.replace(/#|\*|_|-|\|>|\[|\]|\(.*\)|`/g, '')
+export const removeTags = string => string.replace(/<\/?[^>]+(>|$)/g, '')
+export const replaceNewLine = (str, replacement) =>
+  str.replace(/(?:\r\n|\r|\n)/g, replacement)
 
 /**
  * Usage: getIfExists(obj, 'prop1.prop2')
@@ -50,14 +57,14 @@ export const replaceNewLine = (str, replacement) => str.replace(/(?:\r\n|\r|\n)/
  * @param {*} obj
  * @param {*} key
  */
-export function getIfExists (obj, key) {
-  return key.split('.').reduce(function (o, x) {
-    return (typeof o === 'undefined' || o === null) ? o : o[x]
+export function getIfExists(obj, key) {
+  return key.split('.').reduce(function(o, x) {
+    return typeof o === 'undefined' || o === null ? o : o[x]
   }, obj)
 }
 
-export function exists (obj, key) {
-  return key.split('.').every(function (x) {
+export function exists(obj, key) {
+  return key.split('.').every(function(x) {
     if (typeof obj !== 'object' || obj === null || !(x in obj)) {
       return false
     }
@@ -76,11 +83,11 @@ export function exists (obj, key) {
  * @returns {void}
  */
 
-export function scrollIntoView (node, duration = 300, offset = 80, callback) {
+export function scrollIntoView(node, duration = 300, offset = 80, callback) {
   document.documentElement.scrollTop = 0
   const el = document.body || document.documentElement
   const start = el.scrollTop
-  const change = (node.getBoundingClientRect().top - offset) - start
+  const change = node.getBoundingClientRect().top - offset - start
   const increment = 20
   let currentTime = 0
   let timerid
@@ -92,16 +99,16 @@ export function scrollIntoView (node, duration = 300, offset = 80, callback) {
 
     if (currentTime < duration) {
       setTimeout(animateScroll, increment)
-    } else if (callback && typeof (callback) === 'function') {
+    } else if (callback && typeof callback === 'function') {
       callback()
     }
   }
 
-  Math.easeInOutQuad = function (t, b, c, d) {
+  Math.easeInOutQuad = function(t, b, c, d) {
     t /= d / 2
-    if (t < 1) return c / 2 * t * t + b
+    if (t < 1) return (c / 2) * t * t + b
     t--
-    return -c / 2 * (t * (t - 2) - 1) + b
+    return (-c / 2) * (t * (t - 2) - 1) + b
   }
 
   if (timerid) {
@@ -131,15 +138,22 @@ export function scrollTo(element, to, duration, callback) {
 
     _t /= _d / 2
     if (_t < 1) {
-      return _c / 2 * _t * _t + _b
+      return (_c / 2) * _t * _t + _b
     }
     _t--
-    return -_c / 2 * (_t * (_t - 2) - 1) + _b
+    return (-_c / 2) * (_t * (_t - 2) - 1) + _b
   }
 
   // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
-  const requestAnimFrame = (function () {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) { window.setTimeout(callback, 1000 / 60) }
+  const requestAnimFrame = (function() {
+    return (
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      function(callback) {
+        window.setTimeout(callback, 1000 / 60)
+      }
+    )
   })()
 
   const body = () => {
@@ -151,7 +165,7 @@ export function scrollTo(element, to, duration, callback) {
   const change = to - start
   let currentTime = 0
   const increment = 20
-  const _duration = (typeof (duration) === 'undefined') ? 400 : duration
+  const _duration = typeof duration === 'undefined' ? 400 : duration
 
   const animateScroll = () => {
     if (!ele) {
@@ -167,7 +181,7 @@ export function scrollTo(element, to, duration, callback) {
     // do the animation unless its over
     if (currentTime < _duration) {
       requestAnimFrame(animateScroll)
-    } else if (callback && typeof (callback) === 'function') {
+    } else if (callback && typeof callback === 'function') {
       // the animation is done so lets callback
       callback()
     }
@@ -190,14 +204,12 @@ export const queryString = function(q) {
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Function} fn The function to debounce
  */
-export const debounce = function (fn) {
-
+export const debounce = function(fn) {
   // Setup a timer
   let timeout
 
   // Return a function to run debounced
-  return function () {
-
+  return function() {
     // Setup the arguments
     let context = this
     let args = arguments
@@ -208,11 +220,8 @@ export const debounce = function (fn) {
     }
 
     // Setup the new requestAnimationFrame()
-    timeout = window.requestAnimationFrame(function () {
+    timeout = window.requestAnimationFrame(function() {
       fn.apply(context, args)
     })
-
   }
-
 }
-

@@ -15,24 +15,48 @@ class SecondaryPageTemplate extends React.PureComponent {
     const site = get(this.props, 'data.site.siteMetadata')
     const post = get(this.props, 'data.contentfulSecondaryPage')
     const map = this.props.pageContext.map
-    
+
     return (
-      <Layout location={this.props.location} hasSearch className='full-width' hero={post.hero} ga={site.gaConfig.id} map={map}>
+      <Layout
+        location={this.props.location}
+        hasSearch
+        className="full-width"
+        hero={post.hero}
+        ga={site.gaConfig.id}
+        map={map}
+      >
         <Helmet>
           <title>{`${post.metaTitle} | ${site.title}`}</title>
-          <link rel='canonical' href={`${site.basePath}${this.props.location.pathname}`} />
-          <meta name='description' content={post.metaDescription} />    
+          <link
+            rel="canonical"
+            href={`${site.basePath}${this.props.location.pathname}`}
+          />
+          <meta name="description" content={post.metaDescription} />
         </Helmet>
-        <Main className='full-width'>
-          {this.props.location && <Breadcrumb location={this.props.location} parent={post.parentPage} className='container'/>}
-          <div className='container'>
-            <PageTitle text={post.title}/>
-            <Text className='intro lead' content={post.intro.childMarkdownRemark.html} />
-            {post.bodyText && <Text className='long-form constrained constrained--wide' content={post.bodyText.childMarkdownRemark.html} />}
-            <Download flush/>
+        <Main className="full-width">
+          {this.props.location && (
+            <Breadcrumb
+              location={this.props.location}
+              parent={post.parentPage}
+              className="container"
+            />
+          )}
+          <div className="container">
+            <PageTitle text={post.title} />
+            <Text
+              className="intro lead"
+              content={post.intro.childMarkdownRemark.html}
+            />
+            {post.bodyText && (
+              <Text
+                className="long-form constrained constrained--wide"
+                content={post.bodyText.childMarkdownRemark.html}
+              />
+            )}
+            <Download flush />
           </div>
         </Main>
-        {post.feedback && <Feedback {...post.feedback}/>}
+        {post.feedback && <Feedback {...post.feedback} />}
       </Layout>
     )
   }
@@ -48,10 +72,10 @@ export const secondaryPageQuery = graphql`
         basePath
         gaConfig {
           id
-        }        
+        }
       }
-    }     
-    contentfulSecondaryPage(slug: {eq: $slug}) {
+    }
+    contentfulSecondaryPage(slug: { eq: $slug }) {
       title
       metaTitle
       metaDescription
@@ -94,7 +118,7 @@ export const secondaryPageQuery = graphql`
         id
         url
         title
-      }      
+      }
     }
   }
 `

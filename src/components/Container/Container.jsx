@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Container = props => (
-  <div className={`container ${props.className}`}>{props.children}</div>
+  <div style={{ backgroundColor: '#fff'}} className={`container ${props.className}`}>{props.children}</div>
 )
 
 Container.defaultProps = {

@@ -1,5 +1,5 @@
 .accent {
-  @include padding-vertical-small
+  @include padding-vertical-small;
 
   &--shallow {
     padding-bottom: 1rem;

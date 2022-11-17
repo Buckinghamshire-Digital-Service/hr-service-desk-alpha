@@ -15,18 +15,20 @@ let history
 
 let options = {
   renderNode: {
-    [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+    [BLOCKS.EMBEDDED_ENTRY]: node => {
       let reactComponent = null
       const system = node.data.target.sys
 
       if (system && system.contentType) {
         const type = system.contentType.sys.id
-        const rand = Math.floor((Math.random() * 10000) + 1)
+        const rand = Math.floor(Math.random() * 10000 + 1)
         const fields = node.data.target.fields
 
-
         if (fields.content) {
-          fields.content = fields.content['en-US'] !== undefined ? fields.content['en-US'] : fields.content 
+          fields.content =
+            fields.content['en-US'] !== undefined
+              ? fields.content['en-US']
+              : fields.content
           fields.content = marked(fields.content)
         }
 
@@ -35,35 +37,49 @@ let options = {
             reactComponent = <Heading {...fields} key={system.id + rand} />
             break
           case 'text':
-            reactComponent = <Text {...fields} key={system.id + rand} className='long-form'/>
+            reactComponent = (
+              <Text {...fields} key={system.id + rand} className="long-form" />
+            )
             break
           case 'callout':
             reactComponent = <Callout {...fields} key={system.id + rand} />
             break
           case 'list':
-            reactComponent = <List className='simple bullet' {...fields} key={system.id + rand} />
+            reactComponent = (
+              <List
+                className="simple bullet"
+                {...fields}
+                key={system.id + rand}
+              />
+            )
             break
           case 'collapsible':
-            reactComponent = <Collapsible {...fields} key={system.id + rand} history={history}/>
+            reactComponent = (
+              <Collapsible
+                {...fields}
+                key={system.id + rand}
+                history={history}
+              />
+            )
             break
           case 'blockquote':
             reactComponent = <Blockquote {...fields} key={system.id + rand} />
-            break             
+            break
           case 'progress':
             reactComponent = <Progress {...fields} key={system.id + rand} />
             break
           case 'table':
             reactComponent = <Table {...fields} key={system.id + rand} />
-            break           
+            break
           default:
             console.error('Could not match ' + type)
-            //continue
+          //continue
         }
 
         return reactComponent
       }
-    }
-  }
+    },
+  },
 }
 
 const renderer = (data, location) => {
