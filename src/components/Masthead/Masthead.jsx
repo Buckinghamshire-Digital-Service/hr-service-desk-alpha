@@ -107,7 +107,6 @@ export default class Masthead extends React.PureComponent {
     return (
       <header className={`masthead ${this.props.hero && this.props.hero.image ? 'masthead--has-shadow' : ''}`}>
         <Hero hero={this.props.hero} className={this.props.parentPage ? 'hero--shallow' : ''}>
-          <CookieBar />
           <div className='masthead__inner'>
             <section className='navigation-wrapper'>
               <nav className='navbar' role='navigation' aria-label='main navigation'>
